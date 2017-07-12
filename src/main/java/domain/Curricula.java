@@ -22,6 +22,7 @@ public class Curricula extends DomainEntity{
 	private List<ProfessionalRecord> professionalRecords;
 	private List<MiscellaneousRecord> miscellaneousRecords;
 	private List<EndorserRecord> endorserRecords;
+	private List<Note> notes;
 	
 	//Getters
 	
@@ -60,6 +61,12 @@ public class Curricula extends DomainEntity{
 		return endorserRecords;
 	}
 	
+	@NotNull
+	@OneToMany
+	public List<Note> getNotes(){
+		return notes;
+	}
+	
 	//Setters
 	
 	public void setTicker(String ticker) {
@@ -86,7 +93,9 @@ public class Curricula extends DomainEntity{
 		this.endorserRecords = endorserRecords;
 	}
 	
-	
+	public void setNotes(List<Note> notes){
+		this.notes = notes;
+	}
 	
 
 }

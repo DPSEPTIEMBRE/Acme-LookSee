@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- 
- * PopulateDatabase.xml
- *
- * Copyright (C) 2017 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
- * http://www.tdg-seville.info/License.html
- -->
+<!-- * PopulateDatabase.xml * * Copyright (C) 2017 Universidad de Sevilla 
+	* * The use of this project is hereby constrained to the conditions of the 
+	* TDG Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	">
-	
+
 	<!-- User accounts -->
 
 	<bean id="userAccount1" class="security.UserAccount">
@@ -30,7 +24,670 @@
 		</property>
 	</bean>
 
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="super" />
+		<property name="password" value="1b3231655cebb7a1f783eddf27d254ca" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CANDIDATE" />
+				</bean>
+				<bean class="security.Authority">
+					<property name="authority" value="COMPANY" />
+				</bean>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMINISTRATOR" />
+				</bean>
+				<bean class="security.Authority">
+					<property name="authority" value="VERIFIER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="candidate1" />
+		<property name="password" value="e7a02779bc8c3b75ffd0039ced68c8f8" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CANDIDATE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="candidate2" />
+		<property name="password" value="f61b2fa651fbf329a43d2e100c1f4425" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CANDIDATE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="company1" />
+		<property name="password" value="df655f976f7c9d3263815bd981225cd9" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="COMPANY" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="company2" />
+		<property name="password" value="d196a28097115067fefd73d25b0c0be8" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="COMPANY" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="verifier1" />
+		<property name="password" value="f7c9ed573deaccaa627fed102428ca4d" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="VERIFIER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount8" class="security.UserAccount">
+		<property name="username" value="verifier2" />
+		<property name="password" value="c6191e06b6b6a7b79199e36d7cfb246e" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="VERIFIER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 	
-	<!-- Other domain beans come here -->	
+	
+	<bean id="LOW" class="domain.Priority">
+		<property name="value" value="LOW" />
+	</bean>
+	<bean id="HIGH" class="domain.Priority">
+		<property name="value" value="HIGH" />
+	</bean>
+	<bean id="NEUTRAL" class="domain.Priority">
+		<property name="value" value="NEUTRAL" />
+	</bean>
+	
+	
+	<bean id="VISA" class="domain.Brand">
+		<property name="value" value="VISA" />
+	</bean>
+	<bean id="MASTERCARD" class="domain.Brand">
+		<property name="value" value="MASTERCARD" />
+	</bean>
+	<bean id="DISCOVER" class="domain.Brand">
+		<property name="value" value="DISCOVER" />
+	</bean>
+	<bean id="DINNERS" class="domain.Brand">
+		<property name="value" value="DINNERS" />
+	</bean>
+	<bean id="AMEX" class="domain.Brand">
+		<property name="value" value="AMEX" />
+	</bean>
+	
+	
+	<bean id="PENDING_STATUS" class="domain.Status">
+		<property name="value" value="PENDING" />
+	</bean>
+	<bean id="ACCEPTED" class="domain.Status">
+		<property name="value" value="ACCEPTED" />
+	</bean>
+	<bean id="REJECTED_STATUS" class="domain.Status">
+		<property name="value" value="REJECTED" />
+	</bean>
+
+
+	<bean id="PENDING_STATUSNOTE" class="domain.StatusNote">
+		<property name="value" value="PENDING" />
+	</bean>
+	<bean id="CANCELLED" class="domain.StatusNote">
+		<property name="value" value="CANCELLED" />
+	</bean>
+	<bean id="CORRECTED" class="domain.StatusNote">
+		<property name="value" value="CORRECTED" />
+	</bean>
+	<bean id="REJECTED_STATUSNOTE" class="domain.StatusNote">
+		<property name="value" value="REJECTED" />
+	</bean>
+
+	<!-- Other domain beans come here -->
+	
+	<bean id="administrator" class="domain.Administrator">
+		<property name="actorName" value="Pablo" />
+		<property name="surname" value="Pablito" />
+		<property name="email" value="pablo@hotmail.com" />
+		<property name="phone" value="+5 (10) 9132" />
+		<property name="address" value="41001" />
+		<property name="userAccount" ref="userAccount1" />
+		<property name="activities">
+			<list></list>
+		</property>
+		<property name="folders">
+			<list></list>
+		</property>
+	</bean>
+
+	<bean id="viagra" class="domain.SpamWord">
+		<property name="name" value="viagra"/>
+	</bean>
+	<bean id="cialis" class="domain.SpamWord">
+		<property name="name" value="cialis"/>
+	</bean>
+	<bean id="sex" class="domain.SpamWord">
+		<property name="name" value="sex"/>
+	</bean>
+	<bean id="love" class="domain.SpamWord">
+		<property name="name" value="love"/>
+	</bean>
+
+	<bean id="educationRecord1" class="domain.EducationRecord">
+		<property name="diplomaTitle" value="Enginer informatic of software" />
+		<property name="initialStudying" value="20/09/2013" />
+		<property name="finalStudying" value="21/07/2016" />
+		<property name="institution" value="US" />
+		<property name="attachment" value="https://www.diploma.com/diploma" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> A+ in all subjects</value>
+			</list>
+		</property>
+
+	</bean>
+
+
+	<bean id="educationRecord2" class="domain.EducationRecord">
+		<property name="diplomaTitle" value="Master Enginer informatic of software" />
+		<property name="initialStudying" value="20/09/2016" />
+		<property name="finalStudying" value="21/07/2017" />
+		<property name="institution" value="US" />
+		<property name="attachment" value="https://www.diploma.com/diploma" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> A+ in all subjects</value>
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="endorserRecord1" class="domain.EndorserRecord">
+		<property name="endorserName" value="Juan Jose Lopez Aguado" />
+		<property name="endorserEmail" value="lop@gmail.com" />
+		<property name="endorserPhone" value="+5 (10) 4488" />
+		<property name="linkedIn" value="https://www.linkedin.com/in/JuanjoseLop/" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> He is a good alumn</value>
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="endorserRecord2" class="domain.EndorserRecord">
+		<property name="endorserName" value="Juan Lopez Aguado" />
+		<property name="endorserEmail" value="lop@gmail.com" />
+		<property name="endorserPhone" value="+5 (10) 4788" />
+		<property name="linkedIn" value="https://www.linkedin.com/in/JuanLop/" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> He is a good alumn</value>
+			</list>
+		</property>
+
+	</bean>
+
+
+	<bean id="professionalRecord1" class="domain.ProfessionalRecord">
+		<property name="companyName" value="Oracle" />
+		<property name="initialWork" value="14/07/2017" />
+		<property name="finalWork" value="23/07/2017" />
+		<property name="role" value="Developer" />
+		<property name="attachment" value="https://www.cv.com/mycv1" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> It is a very important company</value>
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="professionalRecord2" class="domain.ProfessionalRecord">
+		<property name="companyName" value="Microsoft" />
+		<property name="initialWork" value="11/07/2017" />
+		<property name="finalWork" value="21/12/2017" />
+		<property name="role" value="Tester" />
+		<property name="attachment" value="https://www.cv.com/mycv2" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> It is a very important company so</value>
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="personalRecord1" class="domain.PersonalRecord">
+		<property name="fullName" value="Juan Jose Valle Zarza" />
+		<property name="picture"
+			value="https://cdn.shopify.com/s/files/1/0792/9923/t/5/assets/logo.png?3399403889687444689" />
+		<property name="email" value="juanjo@gmail.com" />
+		<property name="phone" value="+5 (10) 9888" />
+		<property name="linkedIn" value="https://www.linkedin.com/in/Juanjose/" />
+
+	</bean>
+
+	<bean id="personalRecord2" class="domain.PersonalRecord">
+		<property name="fullName" value="Juan Carlos Lopez Muñoz" />
+		<property name="picture"
+			value="https://cdn.shopify.com/s/files/1/0792/9923/t/5/assets/logo.png?3399403889687444689" />
+		<property name="email" value="juanca@gmail.com" />
+		<property name="phone" value="+5 (10) 8888" />
+		<property name="linkedIn" value="https://www.linkedin.com/in/Juancarlos/" />
+
+	</bean>
+
+	<bean id="miscellaneousRecord1" class="domain.MiscellaneousRecord">
+		<property name="title" value="acme pad-thai" />
+		<property name="attachment" value="https://www.acme-pad-thai.com" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> It is a social network for food thailand </value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="miscellaneousRecord2" class="domain.MiscellaneousRecord">
+		<property name="title" value="acme love" />
+		<property name="attachment" value="https://www.acme-love.com" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> It is a social network for love</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="miscellaneousRecord3" class="domain.MiscellaneousRecord">
+		<property name="title" value="acme gym" />
+		<property name="attachment" value="https://www.acme-gym.com" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> It is a social network for gym</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="curricula1" class="domain.Curricula">
+		<property name="ticker" value="2017-07-11-asdfg" />
+		<property name="educationRecords">
+			<list></list>
+		</property>
+		<property name="personalRecord" ref="personalRecord2" />
+		<property name="professionalRecords">
+			<list>
+				<ref bean="professionalRecord1" />
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list></list>
+		</property>
+		<property name="endorserRecords">
+			<list></list>
+		</property>
+		<property name="notes">
+			<list></list>
+		</property>
+	</bean>
+
+	<bean id="curricula2" class="domain.Curricula">
+		<property name="ticker" value="2017-07-11-avdfg" />
+		<property name="educationRecords">
+			<list>
+				<ref bean="educationRecord1" />
+				<ref bean="educationRecord2" />
+			</list>
+		</property>
+		<property name="personalRecord" ref="personalRecord2" />
+		<property name="professionalRecords">
+			<list>
+
+				<ref bean="professionalRecord2" />
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list>
+				<ref bean="miscellaneousRecord1" />
+				<ref bean="miscellaneousRecord2" />
+				<ref bean="miscellaneousRecord3" />
+			</list>
+		</property>
+		<property name="endorserRecords">
+			<list>
+				<ref bean="endorserRecord1" />
+				<ref bean="endorserRecord2" />
+			</list>
+		</property>
+		<property name="notes">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="activityReport1" class="domain.ActivityReport">
+		<property name="writtenMoment" value="11/07/2017" />
+		<property name="title" value="search a job" />
+		<property name="description" value="search a job" />
+		<property name="attachments">
+			<list value-type="java.lang.String">
+				<value>https://www.activity.com/job</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="activityReport2" class="domain.ActivityReport">
+		<property name="writtenMoment" value="13/07/2017" />
+		<property name="title" value="written a reading" />
+		<property name="description" value="written a reading" />
+		<property name="attachments">
+			<list value-type="java.lang.String">
+				<value>https://www.activity.com/reading</value>
+			</list>
+		</property>
+
+	</bean>
+
+
+
+
+	<bean id="candidate1" class="domain.Candidate">
+		<property name="actorName" value="Juan Jose" />
+		<property name="surname" value="Valle Zarza" />
+		<property name="email" value="juanjo@hotmail.com" />
+		<property name="phone" value="+5 (10) 9888" />
+		<property name="address" value="41192" />
+		<property name="userAccount" ref="userAccount3" />
+		<property name="activities">
+			<list></list>
+		</property>
+		<property name="folders">
+			<list></list>
+		</property>
+
+		<property name="curricula" ref="curricula1" />
+		<property name="applications">
+			<list></list>
+		</property>
+	</bean>
+
+	<bean id="candidate2" class="domain.Candidate">
+		<property name="actorName" value="Juan Carlos" />
+		<property name="surname" value="Lopez Muñoz" />
+		<property name="email" value="juanca@hotmail.com" />
+		<property name="phone" value="+5 (10) 8888" />
+		<property name="address" value="41100" />
+		<property name="userAccount" ref="userAccount4" />
+		<property name="activities">
+			<list>
+				<ref bean="activityReport1" />
+				<ref bean="activityReport2" />
+			</list>
+		</property>
+		<property name="folders">
+			<list></list>
+		</property>
+
+		<property name="curricula" ref="curricula2" />
+		<property name="applications">
+			<list></list>
+		</property>
+	</bean>
+
+	<bean id="mailMessage1" class="domain.MailMessage">
+		<property name="sent" value="11/07/2017" />
+		<property name="subject" value="urgent" />
+		<property name="body" value="it is a mesage important" />
+		<property name="priority" ref="HIGH" />
+		<property name="sender" ref="candidate1" />
+		<property name="recipient" ref="candidate2" />
+	</bean>
+
+	<bean id="mailMessage2" class="domain.MailMessage">
+		<property name="sent" value="11/07/2017" />
+		<property name="subject" value="hello" />
+		<property name="body" value="it is a mesage important" />
+		<property name="priority" ref="NEUTRAL" />
+		<property name="sender" ref="candidate1" />
+		<property name="recipient" ref="candidate2" />
+	</bean>
+
+	<bean id="mailMessage3" class="domain.MailMessage">
+		<property name="sent" value="11/07/2017" />
+		<property name="subject" value="hello world" />
+		<property name="body" value="it is a mesage important" />
+		<property name="priority" ref="LOW" />
+		<property name="sender" ref="candidate1" />
+		<property name="recipient" ref="candidate2" />
+	</bean>
+
+
+	<bean id="candi1Inbox" class="domain.Folder">
+		<property name="folderName" value="inbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+
+	<bean id="candi2Outbox" class="domain.Folder">
+		<property name="folderName" value="outbox" />
+		<property name="messages">
+			<list>
+				<ref bean="mailMessage1" />
+				<ref bean="mailMessage2" />
+				<ref bean="mailMessage3" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="creditCard1" class="domain.CreditCard">
+		<property name="holderName" value="holder name 1" />
+		<property name="brandName" ref="AMEX" />
+		<property name="number" value="7521532412355264" />
+		<property name="expirationMonth" value="12" />
+		<property name="expirationYear" value="2020" />
+		<property name="CVV" value="123" />
+	</bean>
+
+	<bean id="creditCard2" class="domain.CreditCard">
+		<property name="holderName" value="holder name 2" />
+		<property name="brandName" ref="MASTERCARD" />
+		<property name="number" value="1234567891234567" />
+		<property name="expirationMonth" value="10" />
+		<property name="expirationYear" value="2019" />
+		<property name="CVV" value="236" />
+	</bean>
+
+	<bean id="payment1" class="domain.Payment">
+		<property name="createMoment" value="10/06/2017 20:00:30" />
+		<property name="description" value="description payment 1" />
+		<property name="price" value="120.0" />
+		<property name="tax" value="21.0" />
+		<property name="creditCard" ref="creditCard1" />
+	</bean>
+
+	<bean id="payment2" class="domain.Payment">
+		<property name="createMoment" value="10/07/2017 15:00:00" />
+		<property name="description" value="description payment 2" />
+		<property name="price" value="121.0" />
+		<property name="tax" value="31.0" />
+		<property name="creditCard" ref="creditCard1" />
+	</bean>
+
+	<bean id="company1" class="domain.Company">
+		<property name="actorName" value="Jesus" />
+		<property name="surname" value="Jaime" />
+		<property name="email" value="jaime@hotmail.com" />
+		<property name="phone" value="+5 (10) 9777" />
+		<property name="address" value="41036" />
+		<property name="userAccount" ref="userAccount5" />
+		<property name="activities">
+			<list></list>
+		</property>
+		<property name="folders">
+			<list></list>
+		</property>
+
+		<property name="companyName" value="Company name 1" />
+		<property name="VAT" value="ES12345678R" />
+		<property name="creditCard" ref="creditCard1" />
+		<property name="offers">
+			<list></list>
+		</property>
+		<property name="payments">
+			<list>
+				<ref bean="payment1" />
+				<ref bean="payment2" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="company2" class="domain.Company">
+		<property name="actorName" value="Paco" />
+		<property name="surname" value="Pepe" />
+		<property name="email" value="pp@hotmail.com" />
+		<property name="phone" value="+5 (10) 9678" />
+		<property name="address" value="41436" />
+		<property name="userAccount" ref="userAccount6" />
+		<property name="activities">
+			<list></list>
+		</property>
+		<property name="folders">
+			<list></list>
+		</property>
+
+		<property name="companyName" value="Company name 2" />
+		<property name="VAT" value="ES87654321R" />
+		<property name="creditCard" ref="creditCard2" />
+		<property name="offers">
+			<list></list>
+		</property>
+		<property name="payments">
+			<list></list>
+		</property>
+	</bean>
+
+	<bean id="offer1" class="domain.Offer">
+		<property name="title" value="title offer 1" />
+		<property name="description" value="description offer 1" />
+		<property name="minRange" value="1200.0" />
+		<property name="maxRange" value="1400.0" />
+		<property name="currency" value="euros" />
+		<property name="deadlineApply" value="20/10/2018 12:23:00" />
+		<property name="company" ref="company1"></property>
+	</bean>
+
+	<bean id="offer2" class="domain.Offer">
+		<property name="title" value="title offer 2" />
+		<property name="description" value="description offer 2" />
+		<property name="minRange" value="1300.0" />
+		<property name="maxRange" value="1400.0" />
+		<property name="currency" value="euros" />
+		<property name="deadlineApply" value="20/06/2018 20:23:00" />
+		<property name="company" ref="company1"></property>
+	</bean>
+
+	<bean id="offer3" class="domain.Offer">
+		<property name="title" value="title offer 3" />
+		<property name="description" value="description offer 3" />
+		<property name="minRange" value="1800.0" />
+		<property name="maxRange" value="2000.0" />
+		<property name="currency" value="dolares" />
+		<property name="deadlineApply" value="13/11/2017 12:23:00" />
+		<property name="company" ref="company2"></property>
+	</bean>
+
+	<bean id="application1" class="domain.Application">
+		<property name="createMoment" value="12/07/2017 17:29:00" />
+		<property name="status" ref="PENDING_STATUS" />
+		<property name="curricula" ref="curricula1" />
+		<property name="offer" ref="offer1" />
+	</bean>
+	<bean id="application2" class="domain.Application">
+		<property name="createMoment" value="11/07/2017 12:30:00" />
+		<property name="status" ref="ACCEPTED" />
+		<property name="curricula" ref="curricula2" />
+		<property name="offer" ref="offer2" />
+	</bean>
+	
+	<bean id="note1" class="domain.Note">
+		<property name="createdMoment" value="12/07/2017 18:07:02"/>
+		<property name="remark" value="remark1"/>
+		<property name="reply" value="reply1"/>
+		<property name="replyMoment" value="12/07/2017 18:09:00"/>
+		<property name="status" ref="CORRECTED"/>
+		<property name="curricula" ref="curricula1"/>
+	</bean>
+	<bean id="note2" class="domain.Note">
+		<property name="createdMoment" value="12/07/2017 18:25:02"/>
+		<property name="remark" value="remark2"/>
+		<property name="reply" value="reply2"/>
+		<property name="replyMoment" value="12/07/2017 18:39:00"/>
+		<property name="status" ref="PENDING_STATUSNOTE"/>
+		<property name="curricula" ref="curricula2"/>
+	</bean>
+	
+	<bean id="verifier1" class="domain.Verifier">
+		<property name="actorName" value="Lucas" />
+		<property name="surname" value="Vazquez" />
+		<property name="email" value="lucas@hotmail.com" />
+		<property name="phone" value="+5 (10) 9654" />
+		<property name="address" value="41010" />
+		<property name="userAccount" ref="userAccount7" />
+		<property name="activities">
+			<list></list>
+		</property>
+		<property name="folders">
+			<list></list>
+		</property>
+		<property name="notes">
+			<list>
+				<ref bean="note1"/>
+				<ref bean="note2"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="verifier2" class="domain.Verifier">
+		<property name="actorName" value="Maria" />
+		<property name="surname" value="Vazquez" />
+		<property name="email" value="mari@hotmail.com" />
+		<property name="phone" value="+5 (10) 9112" />
+		<property name="address" value="41013" />
+		<property name="userAccount" ref="userAccount8" />
+		<property name="activities">
+			<list></list>
+		</property>
+		<property name="folders">
+			<list></list>
+		</property>
+		<property name="notes">
+			<list></list>
+		</property>
+	</bean>
 	
 </beans>

@@ -1,5 +1,7 @@
 package domain;
 
+import java.math.BigInteger;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
@@ -17,7 +19,7 @@ public class CreditCard extends DomainEntity{
 	
 	private String holderName;
 	private Brand brandName;
-	private Integer number;
+	private BigInteger number;
 	private Integer expirationMonth;
 	private Integer expirationYear;
 	private Integer CVV;
@@ -36,23 +38,24 @@ public class CreditCard extends DomainEntity{
 	}
 	
 	@NotNull
-	@Range(min=1,max=12)
-	public Integer getNumber() {
+	public BigInteger getNumber() {
 		return number;
 	}
 	
 	@NotNull
+	@Range(min=1,max=12)
 	public Integer getExpirationMonth() {
 		return expirationMonth;
 	}
 	
 	@NotNull
-	@Range(min=100,max=999)
+	@Range(min=1000,max=9999)
 	public Integer getExpirationYear() {
 		return expirationYear;
 	}
 	
 	@NotNull
+	@Range(min=100,max=999)
 	public Integer getCVV() {
 		return CVV;
 	}
@@ -67,7 +70,7 @@ public class CreditCard extends DomainEntity{
 		this.brandName = brandName;
 	}
 	
-	public void setNumber(Integer number) {
+	public void setNumber(BigInteger number) {
 		this.number = number;
 	}
 	
