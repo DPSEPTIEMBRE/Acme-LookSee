@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -24,6 +25,7 @@ public class Note extends DomainEntity{
 	private String reply;
 	private Date replyMoment;
 	private StatusNote status;
+	private Curricula curricula;
 	
 	//Getters
 	
@@ -57,6 +59,12 @@ public class Note extends DomainEntity{
 		return status;
 	}
 	
+	@NotNull
+	@ManyToOne(optional=false)
+	public Curricula getCurricula(){
+		return curricula;
+	}
+	
 	//Setters
 	
 	public void setCreatedMoment(Date createdMoment) {
@@ -79,5 +87,7 @@ public class Note extends DomainEntity{
 		this.status = status;
 	}
 	
-	
+	public void setCurricula(Curricula curricula){
+		this.curricula = curricula;
+	}
 }
