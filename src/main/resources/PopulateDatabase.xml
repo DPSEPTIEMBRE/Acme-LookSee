@@ -430,7 +430,7 @@
 			<list></list>
 		</property>
 
-		<property name="curricula">
+		<property name="curriculas">
 			<list>
 				<ref bean="curricula1" />
 			</list>
@@ -457,7 +457,7 @@
 			<list></list>
 		</property>
 
-		<property name="curricula">
+		<property name="curriculas">
 			<list>
 				<ref bean="curricula2" />
 			</list>

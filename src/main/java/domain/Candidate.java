@@ -33,7 +33,7 @@ public class Candidate extends Actor{
 	
 	//Setters
 	
-	public void setCurricula(List<Curricula> curriculas) {
+	public void setCurriculas(List<Curricula> curriculas) {
 		this.curriculas = curriculas;
 	}
 	
