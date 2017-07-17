@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Access;
@@ -15,15 +16,15 @@ public class Candidate extends Actor{
 	
 	//Attributes
 	
-	private Curricula curricula;
+	private Collection<Curricula> curriculas;
 	private List<Application> applications;
 	
 	//Getters
 	
 	@OneToOne(optional=true)
 	@NotNull
-	public Curricula getCurricula() {
-		return curricula;
+	public Collection<Curricula> getCurriculas() {
+		return curriculas;
 	}
 	
 	@OneToMany
@@ -34,8 +35,8 @@ public class Candidate extends Actor{
 	
 	//Setters
 	
-	public void setCurricula(Curricula curricula) {
-		this.curricula = curricula;
+	public void setCurricula(Collection<Curricula> curriculas) {
+		this.curriculas = curriculas;
 	}
 	
 	public void setApplications(List<Application> applications) {
