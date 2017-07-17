@@ -608,6 +608,9 @@
 		<property name="currency" value="euros" />
 		<property name="deadlineApply" value="20/10/2018 12:23:00" />
 		<property name="company" ref="company1"></property>
+		<property name="applications">
+			<list></list>
+		</property>
 	</bean>
 
 	<bean id="offer2" class="domain.Offer">
@@ -618,6 +621,9 @@
 		<property name="currency" value="euros" />
 		<property name="deadlineApply" value="20/06/2018 20:23:00" />
 		<property name="company" ref="company1"></property>
+		<property name="applications">
+			<list></list>
+		</property>
 	</bean>
 
 	<bean id="offer3" class="domain.Offer">
@@ -628,6 +634,9 @@
 		<property name="currency" value="dolares" />
 		<property name="deadlineApply" value="13/11/2017 12:23:00" />
 		<property name="company" ref="company2"></property>
+		<property name="applications">
+			<list></list>
+		</property>
 	</bean>
 
 	<bean id="application1" class="domain.Application">

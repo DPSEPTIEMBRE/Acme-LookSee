@@ -1,11 +1,13 @@
 package domain;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -26,6 +28,7 @@ public class Offer extends DomainEntity{
 	private String currency;
 	private Date deadlineApply;
 	private Company company;
+	private List<Application> applications;
 	
 	//Getters
 	
@@ -67,6 +70,12 @@ public class Offer extends DomainEntity{
 		return company;
 	}
 	
+	@NotNull
+	@OneToMany
+	public List<Application> getApplications() {
+		return applications;
+	}
+	
 	//Setters
 	
 	public void setTitle(String title) {
@@ -95,6 +104,10 @@ public class Offer extends DomainEntity{
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+	
+	public void setApplications(List<Application> applications) {
+		this.applications = applications;
 	}
 
 

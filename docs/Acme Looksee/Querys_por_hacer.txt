@@ -1,0 +1,52 @@
+Querys por hacer:
+
+Nivel C:
+-Explorar la lista de compañías. Hecho
+-Explorar la lista de ofertas. Hecho 
+-Buscar ofertas que contengan una sola palabra clave en su título o
+descripción, proveen un salario determinado (en una moneda determinada) y
+siguen abiertas. ?? raro
+-Ver una lista de sus currículos. un candidato solo tiene un curriculum por lo que pne en el uml
+-Buscar un curriculum específico usando una sola palabra clave que puede
+aparecer en cualquier registro. Se hace en los servicios
+-Ver una lista de sus solicitudes y ordenarlas por estado, momento de
+solicitud o fecha límite. Hecho 
+
+Mostrar una dashboard con la siguiente información:
+a. El listado de candidatos, ordenados en orden descendente por
+número de currículos. Hecho
+b. El listado de compañías, ordenados en orden descendente por
+número de ofertas.Hecho
+c. La media de currículos por candidato.Hecho
+d. La media de ofertas por compañía. Hecho
+e. Los candidatos que han registrado más currículos. Hecho
+f. Las compañías que han registrado más ofertas. Hecho.
+g. La media, mínimo y máximo de solicitudes por candidato. Hecho.
+h. La media, mínimo y máximo de solicitudes por oferta.Hecho.
+i. La media, mínimo y máximo de solicitudes pendientes por compañía. TODO
+j. La media, mínimo y máximo de solicitudes aceptadas por compañía. TODO
+k. La media, mínimo y máximo de solicitudes rechazadas por compañía. TODO 
+
+Nivel B:
+-Crear un buscador de ofertas en el cual él/ella pueda especificar una palabra
+clave y un rango de salarios. Hecho
+-Consultar su buscador de ofertas, que debe mostrar las ofertas que cumplen
+los criterios de búsqueda. Los resultados de un buscador deben guardarse en
+caché durante al menos una hora y no debe devolver más de 10 resultados.
+-Crear un buscador para buscar candidatos usando una palabra clave que
+debe aparecer en cualquier parte de sus currículos. Se hace en JAVA por eficiencia.
+-Consultar su buscador, que debe mostrar candidatos que cumplan los
+criterios de búsqueda. Los resultados del buscador se deben guardar en
+caché al menos una hora, y no debe devolver más de 10 resultados. TODO 
+2. Mostrar un dashboard con la siguiente información:
+a. El mínimo, máximo y media de registros de actividad por actor. HECHO.
+b. Los actores que tienen ±10% de la media de registros de actividad por
+actor. HECHO
+c. El mínimo, máximo y media de pagos por compañía. HECHO
+d. El ratio de compañías con pagos no finalizados. HECHO
+e. La media de pagos no finalizados por compañía. REVISAR TODO
+f. La media de notas por verificador.HECHO
+g. La media de notas, agrupadas por estado.HECHO
+
+Nivel A:
+Nada
