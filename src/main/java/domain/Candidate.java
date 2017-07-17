@@ -1,13 +1,11 @@
 package domain;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -16,14 +14,14 @@ public class Candidate extends Actor{
 	
 	//Attributes
 	
-	private Collection<Curricula> curriculas;
+	private List<Curricula> curriculas;
 	private List<Application> applications;
 	
 	//Getters
 	
-	@OneToOne(optional=true)
+	@OneToMany
 	@NotNull
-	public Collection<Curricula> getCurriculas() {
+	public List<Curricula> getCurriculas() {
 		return curriculas;
 	}
 	
@@ -35,7 +33,7 @@ public class Candidate extends Actor{
 	
 	//Setters
 	
-	public void setCurricula(Collection<Curricula> curriculas) {
+	public void setCurricula(List<Curricula> curriculas) {
 		this.curriculas = curriculas;
 	}
 	

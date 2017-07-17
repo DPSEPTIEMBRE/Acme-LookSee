@@ -116,8 +116,8 @@
 			</list>
 		</property>
 	</bean>
-	
-	
+
+
 	<bean id="LOW" class="domain.Priority">
 		<property name="value" value="LOW" />
 	</bean>
@@ -127,8 +127,8 @@
 	<bean id="NEUTRAL" class="domain.Priority">
 		<property name="value" value="NEUTRAL" />
 	</bean>
-	
-	
+
+
 	<bean id="VISA" class="domain.Brand">
 		<property name="value" value="VISA" />
 	</bean>
@@ -144,8 +144,8 @@
 	<bean id="AMEX" class="domain.Brand">
 		<property name="value" value="AMEX" />
 	</bean>
-	
-	
+
+
 	<bean id="PENDING_STATUS" class="domain.Status">
 		<property name="value" value="PENDING" />
 	</bean>
@@ -171,7 +171,7 @@
 	</bean>
 
 	<!-- Other domain beans come here -->
-	
+
 	<bean id="administrator" class="domain.Administrator">
 		<property name="actorName" value="Pablo" />
 		<property name="surname" value="Pablito" />
@@ -188,16 +188,16 @@
 	</bean>
 
 	<bean id="viagra" class="domain.SpamWord">
-		<property name="name" value="viagra"/>
+		<property name="name" value="viagra" />
 	</bean>
 	<bean id="cialis" class="domain.SpamWord">
-		<property name="name" value="cialis"/>
+		<property name="name" value="cialis" />
 	</bean>
 	<bean id="sex" class="domain.SpamWord">
-		<property name="name" value="sex"/>
+		<property name="name" value="sex" />
 	</bean>
 	<bean id="love" class="domain.SpamWord">
-		<property name="name" value="love"/>
+		<property name="name" value="love" />
 	</bean>
 
 	<bean id="educationRecord1" class="domain.EducationRecord">
@@ -430,7 +430,11 @@
 			<list></list>
 		</property>
 
-		<property name="curricula" ref="curricula1" />
+		<property name="curricula">
+			<list>
+				<ref bean="curricula1" />
+			</list>
+		</property>
 		<property name="applications">
 			<list></list>
 		</property>
@@ -453,7 +457,11 @@
 			<list></list>
 		</property>
 
-		<property name="curricula" ref="curricula2" />
+		<property name="curricula">
+			<list>
+				<ref bean="curricula2" />
+			</list>
+		</property>
 		<property name="applications">
 			<list></list>
 		</property>
@@ -634,24 +642,24 @@
 		<property name="curricula" ref="curricula2" />
 		<property name="offer" ref="offer2" />
 	</bean>
-	
+
 	<bean id="note1" class="domain.Note">
-		<property name="createdMoment" value="12/07/2017 18:07:02"/>
-		<property name="remark" value="remark1"/>
-		<property name="reply" value="reply1"/>
-		<property name="replyMoment" value="12/07/2017 18:09:00"/>
-		<property name="status" ref="CORRECTED"/>
-		<property name="curricula" ref="curricula1"/>
+		<property name="createdMoment" value="12/07/2017 18:07:02" />
+		<property name="remark" value="remark1" />
+		<property name="reply" value="reply1" />
+		<property name="replyMoment" value="12/07/2017 18:09:00" />
+		<property name="status" ref="CORRECTED" />
+		<property name="curricula" ref="curricula1" />
 	</bean>
 	<bean id="note2" class="domain.Note">
-		<property name="createdMoment" value="12/07/2017 18:25:02"/>
-		<property name="remark" value="remark2"/>
-		<property name="reply" value="reply2"/>
-		<property name="replyMoment" value="12/07/2017 18:39:00"/>
-		<property name="status" ref="PENDING_STATUSNOTE"/>
-		<property name="curricula" ref="curricula2"/>
+		<property name="createdMoment" value="12/07/2017 18:25:02" />
+		<property name="remark" value="remark2" />
+		<property name="reply" value="reply2" />
+		<property name="replyMoment" value="12/07/2017 18:39:00" />
+		<property name="status" ref="PENDING_STATUSNOTE" />
+		<property name="curricula" ref="curricula2" />
 	</bean>
-	
+
 	<bean id="verifier1" class="domain.Verifier">
 		<property name="actorName" value="Lucas" />
 		<property name="surname" value="Vazquez" />
@@ -667,8 +675,8 @@
 		</property>
 		<property name="notes">
 			<list>
-				<ref bean="note1"/>
-				<ref bean="note2"/>
+				<ref bean="note1" />
+				<ref bean="note2" />
 			</list>
 		</property>
 	</bean>
@@ -689,5 +697,5 @@
 			<list></list>
 		</property>
 	</bean>
-	
+
 </beans>
