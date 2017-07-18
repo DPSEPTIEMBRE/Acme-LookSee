@@ -35,6 +35,11 @@
 	type="text/css" />
 <link rel="stylesheet" href="styles/displaytag.css" type="text/css">
 
+<!-- Bootstrap links -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 
 <script type="text/javascript">
