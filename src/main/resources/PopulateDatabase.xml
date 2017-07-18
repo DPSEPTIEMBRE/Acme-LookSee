@@ -117,7 +117,8 @@
 		</property>
 	</bean>
 
-
+	<!-- ENUMS -->
+	
 	<bean id="LOW" class="domain.Priority">
 		<property name="value" value="LOW" />
 	</bean>
@@ -146,13 +147,13 @@
 	</bean>
 
 
-	<bean id="PENDING_STATUS" class="domain.Status">
+	<bean id="PENDING_STATUS" class="domain.StatusApplication">
 		<property name="value" value="PENDING" />
 	</bean>
-	<bean id="ACCEPTED" class="domain.Status">
+	<bean id="ACCEPTED" class="domain.StatusApplication">
 		<property name="value" value="ACCEPTED" />
 	</bean>
-	<bean id="REJECTED_STATUS" class="domain.Status">
+	<bean id="REJECTED_STATUS" class="domain.StatusApplication">
 		<property name="value" value="REJECTED" />
 	</bean>
 
@@ -205,33 +206,45 @@
 		<property name="initialStudying" value="20/09/2013" />
 		<property name="finalStudying" value="21/07/2016" />
 		<property name="institution" value="US" />
-		<property name="attachment" value="https://www.diploma.com/diploma" />
+		<property name="attachment" value="http://tusimagenesde.com/wp-content/uploads/2016/07/diplomas-1.jpg" />
 		<property name="comments">
 			<list value-type="java.lang.String">
-				<value> A+ in all subjects</value>
+				<value> Good education record</value>
 			</list>
 		</property>
-
 	</bean>
 
 
 	<bean id="educationRecord2" class="domain.EducationRecord">
 		<property name="diplomaTitle" value="Master Enginer informatic of software" />
-		<property name="initialStudying" value="20/09/2016" />
-		<property name="finalStudying" value="21/07/2017" />
+		<property name="initialStudying" value="20/09/2012" />
+		<property name="finalStudying" value="21/07/2018" />
 		<property name="institution" value="US" />
-		<property name="attachment" value="https://www.diploma.com/diploma" />
+		<property name="attachment" value="https://image.slidesharecdn.com/diplomas-150722061346-lva1-app6892/95/diplomas-1-638.jpg?cb=1437545653" />
 		<property name="comments">
 			<list value-type="java.lang.String">
 				<value> A+ in all subjects</value>
 			</list>
 		</property>
-
+	</bean>
+	
+	<bean id="educationRecord3" class="domain.EducationRecord">
+		<property name="diplomaTitle" value="Master Enginer informatic of software" />
+		<property name="initialStudying" value="10/09/2011" />
+		<property name="finalStudying" value="21/07/2017" />
+		<property name="institution" value="US" />
+		<property name="attachment" value="http://www.cblingua.com/wp-content/uploads/2016/10/traduccion_diploma.jpg" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> A+ in all subjects</value>
+				<value> Speak 3 idioms</value>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="endorserRecord1" class="domain.EndorserRecord">
 		<property name="endorserName" value="Juan Jose Lopez Aguado" />
-		<property name="endorserEmail" value="lop@gmail.com" />
+		<property name="endorserEmail" value="lope@gmail.com" />
 		<property name="endorserPhone" value="+5 (10) 4488" />
 		<property name="linkedIn" value="https://www.linkedin.com/in/JuanjoseLop/" />
 		<property name="comments">
@@ -239,49 +252,71 @@
 				<value> He is a good alumn</value>
 			</list>
 		</property>
-
 	</bean>
-
+	
 	<bean id="endorserRecord2" class="domain.EndorserRecord">
-		<property name="endorserName" value="Juan Lopez Aguado" />
-		<property name="endorserEmail" value="lop@gmail.com" />
-		<property name="endorserPhone" value="+5 (10) 4788" />
-		<property name="linkedIn" value="https://www.linkedin.com/in/JuanLop/" />
+		<property name="endorserName" value="Juan Carlos Lopez Muñoz" />
+		<property name="endorserEmail" value="karliokre@hotmail.com" />
+		<property name="endorserPhone" value="+5 (10) 4488" />
+		<property name="linkedIn" value="https://www.linkedin.com/in/juan-carlos-l%C3%B3pez-mu%C3%B1oz-34881b145/" />
 		<property name="comments">
 			<list value-type="java.lang.String">
 				<value> He is a good alumn</value>
 			</list>
 		</property>
+	</bean>
 
+	<bean id="endorserRecord3" class="domain.EndorserRecord">
+		<property name="endorserName" value="Laura Padial González" />
+		<property name="endorserEmail" value="laurapadialglez@gmail.com" />
+		<property name="endorserPhone" value="+34 663384774" />
+		<property name="linkedIn" value="https://www.linkedin.com/in/laura-padial-gonz%C3%A1lez-4b871460/" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> She is a good alumn</value>
+			</list>
+		</property>
 	</bean>
 
 
 	<bean id="professionalRecord1" class="domain.ProfessionalRecord">
 		<property name="companyName" value="Oracle" />
-		<property name="initialWork" value="14/07/2017" />
-		<property name="finalWork" value="23/07/2017" />
+		<property name="initialWork" value="14/07/2014" />
+		<property name="finalWork" value="23/07/2015" />
 		<property name="role" value="Developer" />
-		<property name="attachment" value="https://www.cv.com/mycv1" />
+		<property name="attachment" value="http://intt2.com.mx/wp-content/uploads/2016/01/m348_oracle.png" />
 		<property name="comments">
 			<list value-type="java.lang.String">
 				<value> It is a very important company</value>
 			</list>
 		</property>
-
 	</bean>
 
 	<bean id="professionalRecord2" class="domain.ProfessionalRecord">
 		<property name="companyName" value="Microsoft" />
-		<property name="initialWork" value="11/07/2017" />
-		<property name="finalWork" value="21/12/2017" />
+		<property name="initialWork" value="11/07/2015" />
+		<property name="finalWork" value="21/12/2016" />
 		<property name="role" value="Tester" />
-		<property name="attachment" value="https://www.cv.com/mycv2" />
+		<property name="attachment" value="http://satelec.etsit.upm.es/wp-content/uploads/2017/02/microsoft-gray-300x111.png" />
 		<property name="comments">
 			<list value-type="java.lang.String">
 				<value> It is a very important company so</value>
 			</list>
 		</property>
-
+	</bean>
+	
+	<bean id="professionalRecord3" class="domain.ProfessionalRecord">
+		<property name="companyName" value="Facebook" />
+		<property name="initialWork" value="11/01/2016" />
+		<property name="finalWork" value="21/06/2017" />
+		<property name="role" value="Project Manager" />
+		<property name="attachment" value="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Facebook_New_Logo_%282015%29.svg/245px-Facebook_New_Logo_%282015%29.svg.png" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> It is a very important company so</value>
+				<value> I love this work</value>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="personalRecord1" class="domain.PersonalRecord">
@@ -291,7 +326,6 @@
 		<property name="email" value="juanjo@gmail.com" />
 		<property name="phone" value="+5 (10) 9888" />
 		<property name="linkedIn" value="https://www.linkedin.com/in/Juanjose/" />
-
 	</bean>
 
 	<bean id="personalRecord2" class="domain.PersonalRecord">
@@ -301,7 +335,15 @@
 		<property name="email" value="juanca@gmail.com" />
 		<property name="phone" value="+5 (10) 8888" />
 		<property name="linkedIn" value="https://www.linkedin.com/in/Juancarlos/" />
-
+	</bean>
+	
+	<bean id="personalRecord3" class="domain.PersonalRecord">
+		<property name="fullName" value="Laura Padial González" />
+		<property name="picture"
+			value="https://cdn.shopify.com/s/files/1/0792/9923/t/5/assets/logo.png?3399403889687444689" />
+		<property name="email" value="laura94sev@hotmail.com" />
+		<property name="phone" value="+5 (10) 1234567" />
+		<property name="linkedIn" value="https://www.linkedin.com/in/laura-padial-gonz%C3%A1lez-4b871460/" />
 	</bean>
 
 	<bean id="miscellaneousRecord1" class="domain.MiscellaneousRecord">
@@ -339,19 +381,25 @@
 	<bean id="curricula1" class="domain.Curricula">
 		<property name="ticker" value="2017-07-11-asdfg" />
 		<property name="educationRecords">
-			<list></list>
+			<list>
+				<ref bean="educationRecord3" />
+			</list>
 		</property>
 		<property name="personalRecord" ref="personalRecord2" />
 		<property name="professionalRecords">
 			<list>
 				<ref bean="professionalRecord1" />
+				<ref bean="professionalRecord3" />
 			</list>
 		</property>
 		<property name="miscellaneousRecords">
-			<list></list>
+			<list>
+			</list>
 		</property>
 		<property name="endorserRecords">
-			<list></list>
+			<list>
+				<ref bean="endorserRecord3" />
+			</list>
 		</property>
 		<property name="notes">
 			<list></list>
@@ -369,7 +417,6 @@
 		<property name="personalRecord" ref="personalRecord2" />
 		<property name="professionalRecords">
 			<list>
-
 				<ref bean="professionalRecord2" />
 			</list>
 		</property>
@@ -390,6 +437,32 @@
 			<list></list>
 		</property>
 	</bean>
+	
+	<bean id="curricula3" class="domain.Curricula">
+		<property name="ticker" value="2017-07-18-avdfh" />
+		<property name="educationRecords">
+			<list>
+			</list>
+		</property>
+		<property name="personalRecord" ref="personalRecord2" />
+		<property name="professionalRecords">
+			<list>
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list>
+			</list>
+		</property>
+		<property name="endorserRecords">
+			<list>
+			</list>
+		</property>
+		<property name="notes">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
 	<bean id="activityReport1" class="domain.ActivityReport">
 		<property name="writtenMoment" value="11/07/2017" />
 		<property name="title" value="search a job" />
@@ -410,9 +483,18 @@
 				<value>https://www.activity.com/reading</value>
 			</list>
 		</property>
-
 	</bean>
-
+	
+	<bean id="activityReport3" class="domain.ActivityReport">
+		<property name="writtenMoment" value="18/07/2017" />
+		<property name="title" value="Modify curricula 1" />
+		<property name="description" value="written a new education record" />
+		<property name="attachments">
+			<list value-type="java.lang.String">
+				<value>https://www.activity.com/education</value>
+			</list>
+		</property>
+	</bean>
 
 
 
@@ -490,8 +572,8 @@
 		<property name="subject" value="hello world" />
 		<property name="body" value="it is a mesage important" />
 		<property name="priority" ref="LOW" />
-		<property name="sender" ref="candidate1" />
-		<property name="recipient" ref="candidate2" />
+		<property name="sender" ref="candidate2" />
+		<property name="recipient" ref="candidate1" />
 	</bean>
 
 
@@ -507,7 +589,23 @@
 		<property name="messages">
 			<list>
 				<ref bean="mailMessage1" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="candi1Spambox" class="domain.Folder">
+		<property name="folderName" value="spambox" />
+		<property name="messages">
+			<list>
 				<ref bean="mailMessage2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="candi2Trashbox" class="domain.Folder">
+		<property name="folderName" value="trashbox" />
+		<property name="messages">
+			<list>
 				<ref bean="mailMessage3" />
 			</list>
 		</property>
@@ -530,6 +628,15 @@
 		<property name="expirationYear" value="2019" />
 		<property name="CVV" value="236" />
 	</bean>
+	
+	<bean id="creditCard3" class="domain.CreditCard">
+		<property name="holderName" value="holder name 3" />
+		<property name="brandName" ref="MASTERCARD" />
+		<property name="number" value="1234567891234567" />
+		<property name="expirationMonth" value="10" />
+		<property name="expirationYear" value="2019" />
+		<property name="CVV" value="238" />
+	</bean>
 
 	<bean id="payment1" class="domain.Payment">
 		<property name="createMoment" value="10/06/2017 20:00:30" />
@@ -544,7 +651,15 @@
 		<property name="description" value="description payment 2" />
 		<property name="price" value="121.0" />
 		<property name="tax" value="31.0" />
-		<property name="creditCard" ref="creditCard1" />
+		<property name="creditCard" ref="creditCard2" />
+	</bean>
+	
+	<bean id="payment3" class="domain.Payment">
+		<property name="createMoment" value="18/07/2017 15:02:00" />
+		<property name="description" value="description payment 2" />
+		<property name="price" value="400.0" />
+		<property name="tax" value="20.0" />
+		<property name="creditCard" ref="creditCard2" />
 	</bean>
 
 	<bean id="company1" class="domain.Company">
@@ -570,7 +685,6 @@
 		<property name="payments">
 			<list>
 				<ref bean="payment1" />
-				<ref bean="payment2" />
 			</list>
 		</property>
 	</bean>
@@ -588,15 +702,18 @@
 		<property name="folders">
 			<list></list>
 		</property>
-
 		<property name="companyName" value="Company name 2" />
 		<property name="VAT" value="ES87654321R" />
 		<property name="creditCard" ref="creditCard2" />
 		<property name="offers">
-			<list></list>
+			<list>
+			</list>
 		</property>
 		<property name="payments">
-			<list></list>
+			<list>
+				<ref bean="payment2" />
+				<ref bean="payment3" />
+			</list>
 		</property>
 	</bean>
 
@@ -645,10 +762,18 @@
 		<property name="curricula" ref="curricula1" />
 		<property name="offer" ref="offer1" />
 	</bean>
+	
 	<bean id="application2" class="domain.Application">
 		<property name="createMoment" value="11/07/2017 12:30:00" />
 		<property name="status" ref="ACCEPTED" />
 		<property name="curricula" ref="curricula2" />
+		<property name="offer" ref="offer2" />
+	</bean>
+	
+	<bean id="application3" class="domain.Application">
+		<property name="createMoment" value="10/07/2017 12:30:00" />
+		<property name="status" ref="REJECTED_STATUS" />
+		<property name="curricula" ref="curricula3" />
 		<property name="offer" ref="offer2" />
 	</bean>
 
@@ -660,6 +785,7 @@
 		<property name="status" ref="CORRECTED" />
 		<property name="curricula" ref="curricula1" />
 	</bean>
+	
 	<bean id="note2" class="domain.Note">
 		<property name="createdMoment" value="12/07/2017 18:25:02" />
 		<property name="remark" value="remark2" />
@@ -667,6 +793,15 @@
 		<property name="replyMoment" value="12/07/2017 18:39:00" />
 		<property name="status" ref="PENDING_STATUSNOTE" />
 		<property name="curricula" ref="curricula2" />
+	</bean>
+	
+	<bean id="note3" class="domain.Note">
+		<property name="createdMoment" value="17/07/2017 18:25:02" />
+		<property name="remark" value="remark3" />
+		<property name="reply" value="reply3" />
+		<property name="replyMoment" value="17/07/2017 18:39:00" />
+		<property name="status" ref="PENDING_STATUSNOTE" />
+		<property name="curricula" ref="curricula3" />
 	</bean>
 
 	<bean id="verifier1" class="domain.Verifier">
@@ -689,6 +824,7 @@
 			</list>
 		</property>
 	</bean>
+	
 	<bean id="verifier2" class="domain.Verifier">
 		<property name="actorName" value="Maria" />
 		<property name="surname" value="Vazquez" />
@@ -703,7 +839,9 @@
 			<list></list>
 		</property>
 		<property name="notes">
-			<list></list>
+			<list>
+				<ref bean="note3" />
+			</list>
 		</property>
 	</bean>
 

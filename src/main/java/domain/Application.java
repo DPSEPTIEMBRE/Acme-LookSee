@@ -21,7 +21,7 @@ public class Application extends DomainEntity{
 	//Attributes
 	
 	private Date createMoment;
-	private Status status;
+	private StatusApplication status;
 	private Curricula curricula;
 	private Offer offer;
 	
@@ -36,7 +36,7 @@ public class Application extends DomainEntity{
 	
 	@Valid
 	@NotNull
-	public Status getStatus() {
+	public StatusApplication getStatus() {
 		return status;
 	}
 	
@@ -58,7 +58,7 @@ public class Application extends DomainEntity{
 		this.createMoment = createMoment;
 	}
 	
-	public void setStatus(Status status) {
+	public void setStatus(StatusApplication status) {
 		this.status = status;
 	}
 	
