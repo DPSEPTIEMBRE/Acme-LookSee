@@ -10,26 +10,28 @@ import domain.Company;
 
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Integer> {
-	
+
+
+	//Compañia por oferta
+	@Query("select o.company from Offer o where o.id=?1 ")
+	Company companyByOffer(int offer_id);
+
+	//La lista de compañias
 	@Query("select c from Company c")
-	public Company companies();
-	
+	Company companies();
+
+	//Las compañias ordenadas por su numero de ofertas
 	@Query("select c from Company c order by c.offers.size DESC")
 	List<Company> orderByNumOffers();
-	
+
+	//La media de ofertas por compañia
 	@Query("select avg(c.offers.size) from Company c")
 	Double avgNumberOfferByCompany();
-	
+
+	//La compañia que han registrado mas ofertas
 	@Query("select c from Company c where c.offers.size = (select max(c.offers.size) from Company c) ")
 	List<Company> companyMaxOffers();
-	
-	//El mínimo, máximo y media de pagos por compañía.
-	@Query("select min(c.payments.size), max(c.payments.size), avg(c.payments.size) from Company c")
-	public Object[] minMaxAvgPaymentsByCompany();
-	
-	//El ratio de compañías con pagos no finalizados.
-	@Query("select count(c) from Company c join c.payments pa where pa.createMoment + 7 <= CURRENT_TIMESTAMP/(select count(c) from Company c)")
-	public Double RatioCompanyNoFinish();
+
 
 
 

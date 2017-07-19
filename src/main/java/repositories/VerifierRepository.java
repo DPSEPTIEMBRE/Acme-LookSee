@@ -7,5 +7,5 @@ import domain.Verifier;
 
 @Repository
 public interface VerifierRepository extends JpaRepository<Verifier, Integer> {
-
+	
 }

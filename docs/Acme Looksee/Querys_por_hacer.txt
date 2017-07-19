@@ -1,52 +1,91 @@
 Querys por hacer:
 
+
+
 Nivel C:
--Explorar la lista de compañías. Hecho
--Explorar la lista de ofertas. Hecho 
+
+-Explorar la lista de compañías. HECHO
+-Oferta por compañía HECHO
+-Explorar la lista de ofertas. HECHO
+-Compañia por oferta HECHO
 -Buscar ofertas que contengan una sola palabra clave en su título o
 descripción, proveen un salario determinado (en una moneda determinada) y
-siguen abiertas. ?? raro
--Ver una lista de sus currículos. un candidato solo tiene un curriculum por lo que pne en el uml
+siguen abiertas.
+
+ JAVA
+-Ver una lista de sus currículos HECHO
 -Buscar un curriculum específico usando una sola palabra clave que puede
-aparecer en cualquier registro. Se hace en los servicios
+ aparecer en cualquier registro. JAVA
 -Ver una lista de sus solicitudes y ordenarlas por estado, momento de
-solicitud o fecha límite. Hecho 
+solicitud o fecha límite. HECHO
+-
 
 Mostrar una dashboard con la siguiente información:
-a. El listado de candidatos, ordenados en orden descendente por
-número de currículos. Hecho
+
+	a. El listado de candidatos, ordenados en orden descendente por
+número de currículos. HECHO
+	
 b. El listado de compañías, ordenados en orden descendente por
-número de ofertas.Hecho
-c. La media de currículos por candidato.Hecho
-d. La media de ofertas por compañía. Hecho
-e. Los candidatos que han registrado más currículos. Hecho
-f. Las compañías que han registrado más ofertas. Hecho.
-g. La media, mínimo y máximo de solicitudes por candidato. Hecho.
-h. La media, mínimo y máximo de solicitudes por oferta.Hecho.
-i. La media, mínimo y máximo de solicitudes pendientes por compañía. TODO
-j. La media, mínimo y máximo de solicitudes aceptadas por compañía. TODO
-k. La media, mínimo y máximo de solicitudes rechazadas por compañía. TODO 
+número de ofertas. HECHO
+	
+c. La media de currículos por candidato. HECHO
+	
+d. La media de ofertas por compañía. HECHO
+	
+e. Los candidatos que han registrado más currículos. HECHO
+	
+f. Las compañías que han registrado más ofertas. HECHO
+	g. La media, mínimo y máximo de solicitudes por candidato. HECHO
+	
+h. La media, mínimo y máximo de solicitudes por oferta. HECHO
+	
+i. La media, mínimo y máximo de solicitudes pendientes por compañía. 
+HECHO
+	j. La media, mínimo y máximo de solicitudes aceptadas por compañía. HECHO
+	
+k. La media, mínimo y máximo de solicitudes rechazadas por compañía. HECHO
 
 Nivel B:
+
+-Mensajes de una carpeta HECHO
+-Lista de palabras de spam HECHO
+-Carpetas de mensajes por actor HECHO
+-Notas de verificador agrupadas por estado HECHO
+-Notas de verificador agrupadas por candidato FALTA
+-Currículos agrupados por compañía HECHO
+-Currículos agrupados por oferta HECHO
+-Currículos agrupados por candidato HECHO
+-Registro de actividad por actor HECHO
+-Pagos por compañia HECHO
 -Crear un buscador de ofertas en el cual él/ella pueda especificar una palabra
-clave y un rango de salarios. Hecho
+clave y un rango de salarios. JAVA
 -Consultar su buscador de ofertas, que debe mostrar las ofertas que cumplen
 los criterios de búsqueda. Los resultados de un buscador deben guardarse en
 caché durante al menos una hora y no debe devolver más de 10 resultados.
+
+ JAVA
 -Crear un buscador para buscar candidatos usando una palabra clave que
-debe aparecer en cualquier parte de sus currículos. Se hace en JAVA por eficiencia.
+debe aparecer en cualquier parte de sus currículos. JAVA 
 -Consultar su buscador, que debe mostrar candidatos que cumplan los
 criterios de búsqueda. Los resultados del buscador se deben guardar en
-caché al menos una hora, y no debe devolver más de 10 resultados. TODO 
-2. Mostrar un dashboard con la siguiente información:
-a. El mínimo, máximo y media de registros de actividad por actor. HECHO.
-b. Los actores que tienen ±10% de la media de registros de actividad por
+caché al menos una hora, y no debe devolver más de 10 resultados. JAVA
+-Mostrar un dashboard con la siguiente información:
+
+	a. El mínimo, máximo y media de registros de actividad por actor. HECHO
+	
+b. Los actores que tienen ±10% de la media de registros de actividad por 
 actor. HECHO
+	
 c. El mínimo, máximo y media de pagos por compañía. HECHO
-d. El ratio de compañías con pagos no finalizados. HECHO
-e. La media de pagos no finalizados por compañía. REVISAR TODO
-f. La media de notas por verificador.HECHO
-g. La media de notas, agrupadas por estado.HECHO
+	d. El ratio de compañías con pagos no finalizados. HECHO
+	
+e. La media de pagos no finalizados por compañía. HECHO
+	
+f. La media de notas por verificador. HECHO
+	
+g. La media de notas, agrupadas por estado. HECHO
+
+
 
 Nivel A:
 Nada
