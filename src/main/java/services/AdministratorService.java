@@ -1,6 +1,8 @@
 package services;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +38,13 @@ public class AdministratorService {
 
 	public <S extends Administrator> S save(S arg0) {
 		return administratorRepository.save(arg0);
+	}
+	
+	//Util Methods
+	public static boolean check_phone(CharSequence phone) {
+		Pattern p = Pattern.compile("(\\+\\d{2} \\(\\d{1,3}\\) \\d{4,})|(\\+\\d{2} \\d{4,})");
+		Matcher m = p.matcher(phone);
+		
+		return m.matches();
 	}
 }

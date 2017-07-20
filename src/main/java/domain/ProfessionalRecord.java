@@ -26,9 +26,17 @@ public class ProfessionalRecord extends DomainEntity{
 	private String role;
 	private String attachment;
 	private List<String> comments;
+	private Boolean copy;
+	
 	
 	//Getters
 	
+	@NotNull
+	public Boolean getCopy() {
+		return copy;
+	}
+
+
 	@NotBlank
 	public String getCompanyName() {
 		return companyName;
@@ -66,6 +74,10 @@ public class ProfessionalRecord extends DomainEntity{
 	}
 	
 	//Setters
+	
+	public void setCopy(Boolean copy) {
+		this.copy = copy;
+	}
 	
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;

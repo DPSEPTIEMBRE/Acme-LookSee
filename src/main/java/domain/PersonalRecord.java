@@ -3,6 +3,7 @@ package domain;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -18,9 +19,16 @@ public class PersonalRecord extends DomainEntity{
 	private String email;
 	private String phone;
 	private String linkedIn;
+	private Boolean copy;
+	
 	
 	//Getters
 	
+	@NotNull
+	public Boolean getCopy() {
+		return copy;
+	}
+
 	@NotBlank
 	public String getFullName() {
 		return fullName;
@@ -50,6 +58,10 @@ public class PersonalRecord extends DomainEntity{
 	}
 	
 	//Setters
+	
+	public void setCopy(Boolean copy) {
+		this.copy = copy;
+	}
 	
 	public void setFullName(String fullName) {
 		this.fullName = fullName;

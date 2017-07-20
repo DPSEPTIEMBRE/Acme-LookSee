@@ -19,9 +19,17 @@ public class MiscellaneousRecord extends DomainEntity{
 	private String title;
 	private String attachment;
 	private List<String> comments;
+	private Boolean copy;
+	
+	
 	
 	//Getters
 	
+	@NotNull
+	public Boolean getCopy() {
+		return copy;
+	}
+
 	@NotBlank
 	public String getTitle() {
 		return title;
@@ -40,6 +48,10 @@ public class MiscellaneousRecord extends DomainEntity{
 	}
 	
 	//Setters
+	
+	public void setCopy(Boolean copy) {
+		this.copy = copy;
+	}
 	
 	public void setTitle(String title) {
 		this.title = title;

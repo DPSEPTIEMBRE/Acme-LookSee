@@ -44,10 +44,8 @@
 	<acme:inputPassword code="security.password" path="password"
 		placeholder="security.password" />
 
-
-
-	</br>
-
+	<br />
+	
 	<input class="btn" style="width: 25%" type="submit"
 		value="<spring:message code="security.login" />" />
 

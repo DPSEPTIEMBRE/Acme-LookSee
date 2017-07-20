@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -23,10 +24,17 @@ public class Curricula extends DomainEntity{
 	private List<MiscellaneousRecord> miscellaneousRecords;
 	private List<EndorserRecord> endorserRecords;
 	private List<Note> notes;
+	private Boolean copy;
 	
 	//Getters
 	
+	@NotNull
+	public Boolean getCopy() {
+		return copy;
+	}
+
 	@NotBlank
+	@Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}-[a-zA-Z]{5}")
 	public String getTicker() {
 		return ticker;
 	}
@@ -97,5 +105,8 @@ public class Curricula extends DomainEntity{
 		this.notes = notes;
 	}
 	
+	public void setCopy(Boolean copy) {
+		this.copy = copy;
+	}
 
 }

@@ -39,6 +39,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" href="styles/acme.css">
 
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 
@@ -60,7 +61,7 @@
 	<div>
 		<tiles:insertAttribute name="header" />
 	</div>
-	<div>
+	<div class = "acme-body">
 		<h1>
 			<tiles:insertAttribute name="title" />
 		</h1>

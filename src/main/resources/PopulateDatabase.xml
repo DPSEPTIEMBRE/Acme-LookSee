@@ -202,6 +202,7 @@
 	</bean>
 
 	<bean id="educationRecord1" class="domain.EducationRecord">
+		<property name="copy" value="false" />
 		<property name="diplomaTitle" value="Enginer informatic of software" />
 		<property name="initialStudying" value="20/09/2013" />
 		<property name="finalStudying" value="21/07/2016" />
@@ -216,6 +217,36 @@
 
 
 	<bean id="educationRecord2" class="domain.EducationRecord">
+		<property name="copy" value="false" />
+		<property name="diplomaTitle" value="Master Enginer informatic of software" />
+		<property name="initialStudying" value="20/09/2012" />
+		<property name="finalStudying" value="21/07/2018" />
+		<property name="institution" value="US" />
+		<property name="attachment" value="https://image.slidesharecdn.com/diplomas-150722061346-lva1-app6892/95/diplomas-1-638.jpg?cb=1437545653" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> A+ in all subjects</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="educationRecord1c" class="domain.EducationRecord">
+		<property name="copy" value="true" />
+		<property name="diplomaTitle" value="Enginer informatic of software" />
+		<property name="initialStudying" value="20/09/2013" />
+		<property name="finalStudying" value="21/07/2016" />
+		<property name="institution" value="US" />
+		<property name="attachment" value="http://tusimagenesde.com/wp-content/uploads/2016/07/diplomas-1.jpg" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> Good education record</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="educationRecord2c" class="domain.EducationRecord">
+		<property name="copy" value="true" />
 		<property name="diplomaTitle" value="Master Enginer informatic of software" />
 		<property name="initialStudying" value="20/09/2012" />
 		<property name="finalStudying" value="21/07/2018" />
@@ -229,6 +260,22 @@
 	</bean>
 	
 	<bean id="educationRecord3" class="domain.EducationRecord">
+		<property name="copy" value="false" />
+		<property name="diplomaTitle" value="Master Enginer informatic of software" />
+		<property name="initialStudying" value="10/09/2011" />
+		<property name="finalStudying" value="21/07/2017" />
+		<property name="institution" value="US" />
+		<property name="attachment" value="http://www.cblingua.com/wp-content/uploads/2016/10/traduccion_diploma.jpg" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> A+ in all subjects</value>
+				<value> Speak 3 idioms</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="educationRecord3c" class="domain.EducationRecord">
+		<property name="copy" value="true" />
 		<property name="diplomaTitle" value="Master Enginer informatic of software" />
 		<property name="initialStudying" value="10/09/2011" />
 		<property name="finalStudying" value="21/07/2017" />
@@ -243,6 +290,7 @@
 	</bean>
 
 	<bean id="endorserRecord1" class="domain.EndorserRecord">
+		<property name="copy" value="false" />
 		<property name="endorserName" value="Juan Jose Lopez Aguado" />
 		<property name="endorserEmail" value="lope@gmail.com" />
 		<property name="endorserPhone" value="+5 (10) 4488" />
@@ -255,6 +303,33 @@
 	</bean>
 	
 	<bean id="endorserRecord2" class="domain.EndorserRecord">
+		<property name="copy" value="false" />
+		<property name="endorserName" value="Juan Carlos Lopez Muñoz" />
+		<property name="endorserEmail" value="karliokre@hotmail.com" />
+		<property name="endorserPhone" value="+5 (10) 4488" />
+		<property name="linkedIn" value="https://www.linkedin.com/in/juan-carlos-l%C3%B3pez-mu%C3%B1oz-34881b145/" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> He is a good alumn</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="endorserRecord1c" class="domain.EndorserRecord">
+		<property name="copy" value="true" />
+		<property name="endorserName" value="Juan Jose Lopez Aguado" />
+		<property name="endorserEmail" value="lope@gmail.com" />
+		<property name="endorserPhone" value="+5 (10) 4488" />
+		<property name="linkedIn" value="https://www.linkedin.com/in/JuanjoseLop/" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> He is a good alumn</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="endorserRecord2c" class="domain.EndorserRecord">
+		<property name="copy" value="true" />
 		<property name="endorserName" value="Juan Carlos Lopez Muñoz" />
 		<property name="endorserEmail" value="karliokre@hotmail.com" />
 		<property name="endorserPhone" value="+5 (10) 4488" />
@@ -267,6 +342,20 @@
 	</bean>
 
 	<bean id="endorserRecord3" class="domain.EndorserRecord">
+		<property name="copy" value="false" />
+		<property name="endorserName" value="Laura Padial González" />
+		<property name="endorserEmail" value="laurapadialglez@gmail.com" />
+		<property name="endorserPhone" value="+34 663384774" />
+		<property name="linkedIn" value="https://www.linkedin.com/in/laura-padial-gonz%C3%A1lez-4b871460/" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> She is a good alumn</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="endorserRecord3c" class="domain.EndorserRecord">
+		<property name="copy" value="true" />
 		<property name="endorserName" value="Laura Padial González" />
 		<property name="endorserEmail" value="laurapadialglez@gmail.com" />
 		<property name="endorserPhone" value="+34 663384774" />
@@ -280,6 +369,21 @@
 
 
 	<bean id="professionalRecord1" class="domain.ProfessionalRecord">
+		<property name="copy" value="false" />
+		<property name="companyName" value="Oracle" />
+		<property name="initialWork" value="14/07/2014" />
+		<property name="finalWork" value="23/07/2015" />
+		<property name="role" value="Developer" />
+		<property name="attachment" value="http://intt2.com.mx/wp-content/uploads/2016/01/m348_oracle.png" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> It is a very important company</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="professionalRecord1c" class="domain.ProfessionalRecord">
+		<property name="copy" value="true" />
 		<property name="companyName" value="Oracle" />
 		<property name="initialWork" value="14/07/2014" />
 		<property name="finalWork" value="23/07/2015" />
@@ -293,6 +397,21 @@
 	</bean>
 
 	<bean id="professionalRecord2" class="domain.ProfessionalRecord">
+		<property name="copy" value="false" />
+		<property name="companyName" value="Microsoft" />
+		<property name="initialWork" value="11/07/2015" />
+		<property name="finalWork" value="21/12/2016" />
+		<property name="role" value="Tester" />
+		<property name="attachment" value="http://satelec.etsit.upm.es/wp-content/uploads/2017/02/microsoft-gray-300x111.png" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> It is a very important company so</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="professionalRecord2c" class="domain.ProfessionalRecord">
+		<property name="copy" value="true" />
 		<property name="companyName" value="Microsoft" />
 		<property name="initialWork" value="11/07/2015" />
 		<property name="finalWork" value="21/12/2016" />
@@ -306,6 +425,22 @@
 	</bean>
 	
 	<bean id="professionalRecord3" class="domain.ProfessionalRecord">
+		<property name="copy" value="false" />
+		<property name="companyName" value="Facebook" />
+		<property name="initialWork" value="11/01/2016" />
+		<property name="finalWork" value="21/06/2017" />
+		<property name="role" value="Project Manager" />
+		<property name="attachment" value="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Facebook_New_Logo_%282015%29.svg/245px-Facebook_New_Logo_%282015%29.svg.png" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> It is a very important company so</value>
+				<value> I love this work</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="professionalRecord3c" class="domain.ProfessionalRecord">
+		<property name="copy" value="true" />
 		<property name="companyName" value="Facebook" />
 		<property name="initialWork" value="11/01/2016" />
 		<property name="finalWork" value="21/06/2017" />
@@ -320,6 +455,7 @@
 	</bean>
 
 	<bean id="personalRecord1" class="domain.PersonalRecord">
+		<property name="copy" value="false" />
 		<property name="fullName" value="Juan Jose Valle Zarza" />
 		<property name="picture"
 			value="https://cdn.shopify.com/s/files/1/0792/9923/t/5/assets/logo.png?3399403889687444689" />
@@ -329,6 +465,17 @@
 	</bean>
 
 	<bean id="personalRecord2" class="domain.PersonalRecord">
+		<property name="copy" value="false" />
+		<property name="fullName" value="Juan Carlos Lopez Muñoz" />
+		<property name="picture"
+			value="https://cdn.shopify.com/s/files/1/0792/9923/t/5/assets/logo.png?3399403889687444689" />
+		<property name="email" value="juanca@gmail.com" />
+		<property name="phone" value="+5 (10) 8888" />
+		<property name="linkedIn" value="https://www.linkedin.com/in/Juancarlos/" />
+	</bean>
+	
+	<bean id="personalRecord2c" class="domain.PersonalRecord">
+		<property name="copy" value="true" />
 		<property name="fullName" value="Juan Carlos Lopez Muñoz" />
 		<property name="picture"
 			value="https://cdn.shopify.com/s/files/1/0792/9923/t/5/assets/logo.png?3399403889687444689" />
@@ -338,6 +485,7 @@
 	</bean>
 	
 	<bean id="personalRecord3" class="domain.PersonalRecord">
+		<property name="copy" value="false" />
 		<property name="fullName" value="Laura Padial González" />
 		<property name="picture"
 			value="https://cdn.shopify.com/s/files/1/0792/9923/t/5/assets/logo.png?3399403889687444689" />
@@ -347,6 +495,7 @@
 	</bean>
 
 	<bean id="miscellaneousRecord1" class="domain.MiscellaneousRecord">
+		<property name="copy" value="false" />
 		<property name="title" value="acme pad-thai" />
 		<property name="attachment" value="https://www.acme-pad-thai.com" />
 		<property name="comments">
@@ -357,6 +506,7 @@
 	</bean>
 
 	<bean id="miscellaneousRecord2" class="domain.MiscellaneousRecord">
+		<property name="copy" value="false" />
 		<property name="title" value="acme love" />
 		<property name="attachment" value="https://www.acme-love.com" />
 		<property name="comments">
@@ -368,6 +518,41 @@
 
 
 	<bean id="miscellaneousRecord3" class="domain.MiscellaneousRecord">
+		<property name="copy" value="false" />
+		<property name="title" value="acme gym" />
+		<property name="attachment" value="https://www.acme-gym.com" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> It is a social network for gym</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="miscellaneousRecord1c" class="domain.MiscellaneousRecord">
+		<property name="copy" value="true" />
+		<property name="title" value="acme pad-thai" />
+		<property name="attachment" value="https://www.acme-pad-thai.com" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> It is a social network for food thailand </value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="miscellaneousRecord2c" class="domain.MiscellaneousRecord">
+		<property name="copy" value="true" />
+		<property name="title" value="acme love" />
+		<property name="attachment" value="https://www.acme-love.com" />
+		<property name="comments">
+			<list value-type="java.lang.String">
+				<value> It is a social network for love</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="miscellaneousRecord3c" class="domain.MiscellaneousRecord">
+		<property name="copy" value="true" />
 		<property name="title" value="acme gym" />
 		<property name="attachment" value="https://www.acme-gym.com" />
 		<property name="comments">
@@ -379,6 +564,7 @@
 
 
 	<bean id="curricula1" class="domain.Curricula">
+		<property name="copy" value="false"/>
 		<property name="ticker" value="2017-07-11-asdfg" />
 		<property name="educationRecords">
 			<list>
@@ -405,8 +591,38 @@
 			<list></list>
 		</property>
 	</bean>
+	
+	<bean id="curricula1c" class="domain.Curricula">
+		<property name="copy" value="true"/>
+		<property name="ticker" value="2017-07-11-asdfg" />
+		<property name="educationRecords">
+			<list>
+				<ref bean="educationRecord3c" />
+			</list>
+		</property>
+		<property name="personalRecord" ref="personalRecord2c" />
+		<property name="professionalRecords">
+			<list>
+				<ref bean="professionalRecord1c" />
+				<ref bean="professionalRecord3c" />
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list>
+			</list>
+		</property>
+		<property name="endorserRecords">
+			<list>
+				<ref bean="endorserRecord3c" />
+			</list>
+		</property>
+		<property name="notes">
+			<list></list>
+		</property>
+	</bean>
 
 	<bean id="curricula2" class="domain.Curricula">
+		<property name="copy" value="false"/>
 		<property name="ticker" value="2017-07-11-avdfg" />
 		<property name="educationRecords">
 			<list>
@@ -438,13 +654,73 @@
 		</property>
 	</bean>
 	
+	<bean id="curricula2c" class="domain.Curricula">
+		<property name="copy" value="true"/>
+		<property name="ticker" value="2017-07-11-avdfg" />
+		<property name="educationRecords">
+			<list>
+				<ref bean="educationRecord1c" />
+				<ref bean="educationRecord2c" />
+			</list>
+		</property>
+		<property name="personalRecord" ref="personalRecord2c" />
+		<property name="professionalRecords">
+			<list>
+				<ref bean="professionalRecord2c" />
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list>
+				<ref bean="miscellaneousRecord1c" />
+				<ref bean="miscellaneousRecord2c" />
+				<ref bean="miscellaneousRecord3c" />
+			</list>
+		</property>
+		<property name="endorserRecords">
+			<list>
+				<ref bean="endorserRecord1c" />
+				<ref bean="endorserRecord2c" />
+			</list>
+		</property>
+		<property name="notes">
+			<list></list>
+		</property>
+	</bean>
+	
 	<bean id="curricula3" class="domain.Curricula">
+		<property name="copy" value="false"/>
 		<property name="ticker" value="2017-07-18-avdfh" />
 		<property name="educationRecords">
 			<list>
 			</list>
 		</property>
 		<property name="personalRecord" ref="personalRecord2" />
+		<property name="professionalRecords">
+			<list>
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list>
+			</list>
+		</property>
+		<property name="endorserRecords">
+			<list>
+			</list>
+		</property>
+		<property name="notes">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="curricula3c" class="domain.Curricula">
+		<property name="copy" value="true"/>
+		<property name="ticker" value="2017-07-18-avdfh" />
+		<property name="educationRecords">
+			<list>
+			</list>
+		</property>
+		<property name="personalRecord" ref="personalRecord2c" />
 		<property name="professionalRecords">
 			<list>
 			</list>
@@ -759,21 +1035,21 @@
 	<bean id="application1" class="domain.Application">
 		<property name="createMoment" value="12/07/2017 17:29:00" />
 		<property name="status" ref="PENDING_STATUS" />
-		<property name="curricula" ref="curricula1" />
+		<property name="curricula" ref="curricula1c" />
 		<property name="offer" ref="offer1" />
 	</bean>
 	
 	<bean id="application2" class="domain.Application">
 		<property name="createMoment" value="11/07/2017 12:30:00" />
 		<property name="status" ref="ACCEPTED" />
-		<property name="curricula" ref="curricula2" />
+		<property name="curricula" ref="curricula2c" />
 		<property name="offer" ref="offer2" />
 	</bean>
 	
 	<bean id="application3" class="domain.Application">
 		<property name="createMoment" value="10/07/2017 12:30:00" />
 		<property name="status" ref="REJECTED_STATUS" />
-		<property name="curricula" ref="curricula3" />
+		<property name="curricula" ref="curricula3c" />
 		<property name="offer" ref="offer2" />
 	</bean>
 

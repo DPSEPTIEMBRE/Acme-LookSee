@@ -26,9 +26,17 @@ public class EducationRecord extends DomainEntity{
 	private String institution;
 	private String attachment;
 	private List<String> comments;
+	private Boolean copy;
+	
+	
 	
 	//Getters
 	
+	@NotNull
+	public Boolean getCopy() {
+		return copy;
+	}
+
 	@NotBlank
 	public String getDiplomaTitle() {
 		return diplomaTitle;
@@ -66,6 +74,10 @@ public class EducationRecord extends DomainEntity{
 	}
 	
 	//Setters
+	
+	public void setCopy(Boolean copy) {
+		this.copy = copy;
+	}
 	
 	public void setDiplomaTitle(String diplomaTitle) {
 		this.diplomaTitle = diplomaTitle;

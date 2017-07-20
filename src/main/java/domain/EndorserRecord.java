@@ -22,9 +22,17 @@ public class EndorserRecord extends DomainEntity{
 	private String endorserPhone;
 	private String linkedIn;
 	private List<String> comments;
+	private Boolean copy;
+	
+	
 	
 	//Getters
 	
+	@NotNull
+	public Boolean getCopy() {
+		return copy;
+	}
+
 	@NotBlank
 	public String getEndorserName() {
 		return endorserName;
@@ -54,6 +62,10 @@ public class EndorserRecord extends DomainEntity{
 	}
 	
 	//Setters
+	
+	public void setCopy(Boolean copy) {
+		this.copy = copy;
+	}
 	
 	public void setEndorserName(String endorserName) {
 		this.endorserName = endorserName;
