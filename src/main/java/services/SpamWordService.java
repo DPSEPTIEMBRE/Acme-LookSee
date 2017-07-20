@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import domain.Folder;
 import domain.SpamWord;
 import repositories.SpamWordRepository;
 
@@ -39,11 +38,4 @@ public class SpamWordService {
 		return spamWordRepository.save(arg0);
 	}
 	
-	//Others Methods
-	
-	public List<Folder> listSpamWords() {
-		return spamWordRepository.listSpamWords();
-	}
-
-
 }

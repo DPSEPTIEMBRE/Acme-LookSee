@@ -24,8 +24,10 @@ public class Payment extends DomainEntity{
 	private Double price;
 	private Double tax;
 	private CreditCard creditCard;
+	private Boolean paid;
 	
 	//Getters
+	
 	
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
@@ -34,6 +36,11 @@ public class Payment extends DomainEntity{
 		return createMoment;
 	}
 	
+	@NotNull
+	public Boolean getPaid() {
+		return paid;
+	}
+
 	@NotBlank
 	public String getDescription() {
 		return description;
@@ -77,5 +84,7 @@ public class Payment extends DomainEntity{
 		this.creditCard = creditCard;
 	}
 	
-	
+	public void setPaid(Boolean paid) {
+		this.paid = paid;
+	}
 }

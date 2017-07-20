@@ -920,6 +920,7 @@
 		<property name="price" value="120.0" />
 		<property name="tax" value="21.0" />
 		<property name="creditCard" ref="creditCard1" />
+		<property name="paid" value="false"/>
 	</bean>
 
 	<bean id="payment2" class="domain.Payment">
@@ -928,6 +929,7 @@
 		<property name="price" value="121.0" />
 		<property name="tax" value="31.0" />
 		<property name="creditCard" ref="creditCard2" />
+		<property name="paid" value="true"/>
 	</bean>
 	
 	<bean id="payment3" class="domain.Payment">
@@ -936,6 +938,7 @@
 		<property name="price" value="400.0" />
 		<property name="tax" value="20.0" />
 		<property name="creditCard" ref="creditCard2" />
+		<property name="paid" value="true"/>
 	</bean>
 
 	<bean id="company1" class="domain.Company">

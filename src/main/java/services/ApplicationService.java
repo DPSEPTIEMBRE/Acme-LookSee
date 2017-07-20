@@ -1,5 +1,6 @@
 package services;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +68,9 @@ public class ApplicationService {
 	}
 
 	public List<Application> applicationOrderLimit(int candidate_id) {
-		return applicationRepository.applicationOrderLimit(candidate_id);
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH) -7);
+		return applicationRepository.applicationOrderLimit(candidate_id, c.getTime());
 	}
 
 	public Object[] AvgMaxMinApplicationsByCandidate() {

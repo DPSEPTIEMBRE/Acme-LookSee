@@ -49,20 +49,8 @@ public class NoteService {
 		return noteRepository.avgNotesByVerifier();
 	}
 
-	public Double avgNotesByVerifierGroupByStatusPending() {
-		return noteRepository.avgNotesByVerifierGroupByStatusPending();
-	}
-
-	public Double avgNotesByVerifierGroupByStatusCancelled() {
-		return noteRepository.avgNotesByVerifierGroupByStatusCancelled();
-	}
-
-	public Double avgNotesByVerifierGroupByStatusCorrected() {
-		return noteRepository.avgNotesByVerifierGroupByStatusCorrected();
-	}
-	
-	public Double avgNotesByVerifierGroupByStatusRejected() {
-		return noteRepository.avgNotesByVerifierGroupByStatusRejected();
+	Number[] notesOfVerifierGroupByCandidates(int verifier_id) {
+		return noteRepository.notesOfVerifierGroupByCandidates(verifier_id);
 	}
 
 

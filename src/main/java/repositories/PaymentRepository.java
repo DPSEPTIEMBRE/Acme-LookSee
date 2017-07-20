@@ -12,7 +12,7 @@ import domain.Payment;
 public interface PaymentRepository extends JpaRepository<Payment, Integer> {
 
 	//Media de pagos no finalizados por compañia
-	@Query("select avg(c.payments.size) from Company c join c.payments pa where pa.createMoment+7 < CURRENT_TIMESTAMP")
+	@Query("select count(p) * 1. / (select sum(o.payments.size) from Company o) from Company c join c.payments p where p.paid = false")
 	Double AvgPaymentsNoFinishByCompany();
 
 	//El mínimo, máximo y media de pagos por compañía.
@@ -20,11 +20,11 @@ public interface PaymentRepository extends JpaRepository<Payment, Integer> {
 	Object[] minMaxAvgPaymentsByCompany();
 
 	//El ratio de compañías con pagos no finalizados.
-	@Query("select count(c) from Company c join c.payments pa where pa.createMoment + 7 <= CURRENT_TIMESTAMP/(select count(c) from Company c)")
+	@Query("select count(c) * 1. / (select count(o) from Company o) from Company c join c.payments p where p.paid = false")
 	Double RatioCompanyNoFinish();
 
 	//Pagos por compañia.
-	@Query("select c.payments from Company c where c.id=?1")
+	@Query("select c.payments from Company c where c.id = ?1")
 	List<Payment> paymentByCompany(int company_id);
 
 }

@@ -16,10 +16,6 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
 	@Query("select o.company from Offer o where o.id=?1 ")
 	Company companyByOffer(int offer_id);
 
-	//La lista de compañias
-	@Query("select c from Company c")
-	Company companies();
-
 	//Las compañias ordenadas por su numero de ofertas
 	@Query("select c from Company c order by c.offers.size DESC")
 	List<Company> orderByNumOffers();

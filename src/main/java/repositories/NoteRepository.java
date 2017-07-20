@@ -20,22 +20,11 @@ public interface NoteRepository extends JpaRepository<Note, Integer> {
 	@Query("select avg(v.notes.size) from Verifier v")
 	Double avgNotesByVerifier();
 
-	//La media de notas, agrupadas por estado. PENDING
-	@Query("select count(n)/(select count(no)*1.0 from Note no) from Note n where n.status = 'PENDING'")
-	Double avgNotesByVerifierGroupByStatusPending();
-
-	//La media de notas, agrupadas por estado. CANCELLED
-	@Query("select count(n)/(select count(no)*1.0 from Note no) from Note n where n.status = 'CANCELLED'")
-	Double avgNotesByVerifierGroupByStatusCancelled();
-
-	//La media de notas, agrupadas por estado. CORRECTED
-	@Query("select count(n)/(select count(no)*1.0 from Note no) from Note n where n.status = 'CORRECTED'")
-	Double avgNotesByVerifierGroupByStatusCorrected();
-
-	//La media de notas, agrupadas por estado. REJECTED
-	@Query("select count(n)/(select count(no)*1.0 from Note no) from Note n where n.status = 'REJECTED'")
-	Double avgNotesByVerifierGroupByStatusRejected();
-
-
-
+	//La media de notas, agrupadas por estado
+	@Query("select (select count(q) from Note q where q.status = 'PENDING') * 1. / count(n), (select count(q) from Note q where q.status = 'CANCELLED') * 1. / count(n), (select count(q) from Note q where q.status = 'CORRECTED') * 1. / count(n), (select count(q) from Note q where q.status = 'REJECTED') * 1. / count(n) from Note n")
+	Double avgNotesByVerifierGroupByStatus();
+	
+	//notes of verifier group by candidates
+	@Query("select ca from Candidate ca, Verifier v join ca.curriculas cu join cu.notes n join v.notes vn where v.id = ?1 and vn.id = n.id group by ca")
+	Number[] notesOfVerifierGroupByCandidates(int verifier_id);
 }

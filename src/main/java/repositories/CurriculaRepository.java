@@ -12,7 +12,7 @@ import domain.Curricula;
 public interface CurriculaRepository extends JpaRepository<Curricula, Integer> {
 
 	//Curriculums por candidato
-	@Query("select c from Candidate ca join ca.curriculas c where ca.id = ?1")
+	@Query("select c.curriculas from Candidate c where c.id = ?1")
 	List<Curricula> getCurriculasByCandidate(int candidate_id);
 
 	//Curriculums  agrupado por candidato

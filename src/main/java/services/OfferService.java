@@ -40,10 +40,6 @@ public class OfferService {
 
 	//Others Methods
 	
-	public List<Offer> offers() {
-		return offerRepository.offers();
-	}
-
 	public List<Offer> offersByCompany(int company_id) {
 		return offerRepository.offersByCompany(company_id);
 	}

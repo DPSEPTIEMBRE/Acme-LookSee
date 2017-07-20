@@ -1,5 +1,6 @@
 package repositories;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,8 +22,8 @@ JpaRepository<Application, Integer> {
 	List<Application> applicationOrderCreatedMoment(int candidate_id);
 
 	//Lista de solicitudes ordenadas por su fecha limite
-	@Query("select a from Candidate c join c.applications a where c.id = ?1 order by a.createMoment+7 DESC")
-	List<Application> applicationOrderLimit(int candidate_id);
+	@Query("select a from Candidate c join c.applications a where c.id = ?1 and a.createMoment > ?2 order by a.createMoment DESC")
+	List<Application> applicationOrderLimit(int candidate_id, Date date_sub_7_days);
 
 	//La media, mínimo y máximo de solicitudes por candidato
 	@Query("select avg(c.applications.size),max(c.applications.size),min(c.applications.size) from Candidate c")

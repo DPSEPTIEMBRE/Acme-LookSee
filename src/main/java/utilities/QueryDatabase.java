@@ -34,6 +34,8 @@ public class QueryDatabase {
 		LogManager.getLogger("org.hibernate").setLevel(Level.OFF);
 		databaseUtil = null;
 
+//		-Notas de verificador agrupadas por candidato
+		
 		try {
 			System.out.println("QueryDatabase 1.9");
 			System.out.println("-----------------");

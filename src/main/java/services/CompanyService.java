@@ -44,10 +44,6 @@ public class CompanyService {
 		return companyRepository.companyByOffer(offer_id);
 	}
 
-	public Company companies() {
-		return companyRepository.companies();
-	}
-
 	public List<Company> orderByNumOffers() {
 		return companyRepository.orderByNumOffers();
 	}

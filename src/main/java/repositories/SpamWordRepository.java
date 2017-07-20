@@ -12,8 +12,4 @@ import domain.SpamWord;
 @Repository
 public interface SpamWordRepository extends JpaRepository<SpamWord, Integer> {
 
-	//Lista de palabras de spam
-	@Query("select s from SpamWord s")
-	List<Folder> listSpamWords();
-	
 }
