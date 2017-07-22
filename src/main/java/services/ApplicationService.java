@@ -1,6 +1,7 @@
 package services;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import domain.Application;
+import domain.StatusApplication;
 import repositories.ApplicationRepository;
 
 @Service
@@ -21,12 +23,39 @@ public class ApplicationService {
 	
 	//Services
 	
+	@Autowired
+	private CurriculaService curriculaService;
+	
+	@Autowired
+	private OfferService offerService;
+	
+	//Constuctor
+	
+	public ApplicationService() {
+		super();
+	}
+	
 	//CRUD Methods
 	
+	public Application create() {
+		Application application = new Application();
+		
+		application.setCreateMoment(new Date());
+		application.setCurricula(curriculaService.create());
+		application.setOffer(offerService.create());
+		
+		StatusApplication status= new StatusApplication();
+		status.setValue("PENDING");
+		
+		application.setStatus(status);
+		
+		return application;
+	}
 
 	public List<Application> findAll() {
 		return applicationRepository.findAll();
 	}
+
 
 	public <S extends Application> List<S> save(Iterable<S> entities) {
 		return applicationRepository.save(entities);
@@ -76,4 +105,8 @@ public class ApplicationService {
 	public Object[] AvgMaxMinApplicationsByCandidate() {
 		return applicationRepository.AvgMaxMinApplicationsByCandidate();
 	}
+
+
+	
+	
 }

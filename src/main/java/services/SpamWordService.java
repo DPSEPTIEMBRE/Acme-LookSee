@@ -19,8 +19,22 @@ public class SpamWordService {
 	private  SpamWordRepository  spamWordRepository;
 
 	//Services
+	
+	//Constructor
+	
+	public SpamWordService() {
+		super();
+	}
 
 	//CRUD Methods
+	
+	public SpamWord create() {
+		SpamWord spam= new SpamWord();
+		
+		spam.setName(new String());
+		
+		return spam;
+	}
 	
 	public List<SpamWord> findAll() {
 		return spamWordRepository.findAll();

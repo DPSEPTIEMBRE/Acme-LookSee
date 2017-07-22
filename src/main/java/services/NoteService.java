@@ -1,5 +1,6 @@
 package services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import domain.Curricula;
 import domain.Note;
+import domain.StatusNote;
 import repositories.NoteRepository;
 
 @Service
@@ -20,9 +22,35 @@ public class NoteService {
 	private NoteRepository noteRepository;
 	
 	//Services
+	
+	@Autowired
+	private CurriculaService curriculaService;
+	
+	//Constructor
+	
+	public NoteService() {
+		super();
+	}
 
 	//CRUD Methods
 
+	public Note create() {
+		Note note= new Note();
+		
+		note.setCreatedMoment(new Date());
+		note.setCurricula(curriculaService.create());
+		note.setRemark(new String());
+		note.setReply(new String());
+		note.setReplyMoment(new Date());
+		
+		StatusNote status= new StatusNote();
+		status.setValue(new String("PENDING"));
+		
+		note.setStatus(status);
+		
+		return note;
+	}
+	
 	public List<Note> findAll() {
 		return noteRepository.findAll();
 	}
@@ -51,6 +79,10 @@ public class NoteService {
 
 	Number[] notesOfVerifierGroupByCandidates(int verifier_id) {
 		return noteRepository.notesOfVerifierGroupByCandidates(verifier_id);
+	}
+
+	public Double avgNotesByVerifierGroupByStatus() {
+		return noteRepository.avgNotesByVerifierGroupByStatus();
 	}
 
 

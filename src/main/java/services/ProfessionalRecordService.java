@@ -1,5 +1,7 @@
 package services;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +21,33 @@ public class ProfessionalRecordService {
 	private  ProfessionalRecordRepository  professionalRecordRepository;
 
 	//Services
+	
+	//Constructor
+	
+	public ProfessionalRecordService() {
+		super();
+	}
 
 	//CRUD Methods
+	
+	public ProfessionalRecord create() {
+		ProfessionalRecord record= new ProfessionalRecord();
+		
+		record.setAttachment(new String());
+		record.setComments(new ArrayList<String>());
+		record.setCompanyName(new String());
+		record.setCopy(false);
+		record.setFinalWork(new Date());
+		record.setInitialWork(new Date());
+		record.setRole(new String());
+		
+		return record;
+	}
 
 	public List<ProfessionalRecord> findAll() {
 		return professionalRecordRepository.findAll();
 	}
+
 
 	public ProfessionalRecord findOne(Integer arg0) {
 		return professionalRecordRepository.findOne(arg0);

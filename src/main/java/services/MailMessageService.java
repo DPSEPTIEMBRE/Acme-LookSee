@@ -1,5 +1,6 @@
 package services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import domain.Folder;
 import domain.MailMessage;
+import domain.Priority;
 import repositories.MailMessageRepository;
 
 @Service
@@ -20,8 +22,35 @@ public class MailMessageService {
 	private MailMessageRepository mailMessageRepository;
 
 	//Services
+	
+	@Autowired
+	private AdministratorService administratorService;
+	
+	//Constructor
+	
+	public MailMessageService() {
+		super();
+	}
+
 
 	//CRUD Methods
+	
+	public MailMessage create() {
+		MailMessage message= new MailMessage();
+		
+		message.setBody(new String());
+		
+		Priority priority= new Priority();
+		priority.setValue("NEUTRAL");
+		
+		message.setPriority(priority);
+		message.setRecipient(administratorService.create());
+		message.setSender(administratorService.create());
+		message.setSent(new Date());
+
+		
+		return message;
+	}
 
 	public List<MailMessage> findAll() {
 		return mailMessageRepository.findAll();

@@ -1,5 +1,6 @@
 package services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,30 @@ public class PaymentService {
 	private  PaymentRepository  paymentRepository;
 
 	//Services
+	
+	@Autowired
+	private CreditCardService creditCardService;
+	
+	//Constructor
+	
+	public PaymentService() {
+		super();
+	}
 
 	//CRUD Methods
+	
+	public Payment create() {
+		Payment payment= new Payment();
+		
+		payment.setCreateMoment(new Date());
+		payment.setCreditCard(creditCardService.create());
+		payment.setDescription(new String());
+		payment.setPaid(false);
+		payment.setPrice(new Double(0.0));
+		payment.setTax(new Double(0.0));
+		
+		return payment;
+	}
 
 	public List<Payment> findAll() {
 		return paymentRepository.findAll();

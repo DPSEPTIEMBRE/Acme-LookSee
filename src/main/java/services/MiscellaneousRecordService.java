@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,30 @@ public class MiscellaneousRecordService {
 	private MiscellaneousRecordRepository miscellaneousRecordRepository;
 
 	//Services
-
+	
+	//Constructor
+	
+	public MiscellaneousRecordService() {
+		super();
+	}
+	
 	//CRUD Methods
+	
+	public MiscellaneousRecord create() {
+		MiscellaneousRecord record= new MiscellaneousRecord();
+		
+		record.setAttachment(new String());
+		record.setComments(new ArrayList<String>());
+		record.setCopy(false);
+		record.setTitle(new String());
+		
+		return record;
+	}
 
 	public List<MiscellaneousRecord> findAll() {
 		return miscellaneousRecordRepository.findAll();
 	}
+
 
 	public MiscellaneousRecord findOne(Integer arg0) {
 		return miscellaneousRecordRepository.findOne(arg0);

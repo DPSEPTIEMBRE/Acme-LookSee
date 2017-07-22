@@ -1,13 +1,18 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import domain.ActivityReport;
 import domain.Company;
+import domain.Offer;
+import domain.Payment;
 import repositories.CompanyRepository;
+import security.UserAccount;
 
 @Service
 @Transactional
@@ -19,8 +24,40 @@ public class CompanyService {
 	private CompanyRepository companyRepository;
 
 	//Services
+	
+	@Autowired
+	private FolderService folderService;
+	
+	@Autowired
+	private CreditCardService creditCardService;
+	
+	//Constructor
+	
+	public CompanyService() {
+		super();
+	}
 
 	//CRUD Methods
+	
+	public Company create() {
+		Company company= new Company();
+		
+		company.setActivities(new ArrayList<ActivityReport>());
+		company.setactorName(new String());
+		company.setAddress(new String());
+		company.setEmail(new String());
+		company.setFolders(folderService.createDefaultFolders());
+		company.setPhone(new String());
+		company.setSurname(new String());
+		company.setUserAccount(new UserAccount());
+		company.setCompanyName(new String());
+		company.setCreditCard(creditCardService.create());
+		company.setOffers(new ArrayList<Offer>());
+		company.setPayments(new ArrayList<Payment>());
+		company.setVAT(new String());
+		
+		return company;
+	}
 
 	public List<Company> findAll() {
 		return companyRepository.findAll();

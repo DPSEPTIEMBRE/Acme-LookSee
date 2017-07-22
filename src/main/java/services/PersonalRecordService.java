@@ -19,8 +19,29 @@ public class PersonalRecordService {
 	private  PersonalRecordRepository  personalRecordRepository;
 
 	//Services
+	
+	//Constructor
+	
+	public PersonalRecordService() {
+		super();
+	}
 
+	
 	//CRUD Methods
+	
+	public PersonalRecord create() {
+		PersonalRecord record= new PersonalRecord();
+		
+		record.setCopy(false);
+		record.setEmail(new String());
+		record.setFullName(new String());
+		record.setLinkedIn(new String());
+		record.setPhone(new String());
+		record.setPicture(new String());
+		
+		
+		return record;
+	}
 
 	public List<PersonalRecord> findAll() {
 		return personalRecordRepository.findAll();

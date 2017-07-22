@@ -1,5 +1,7 @@
 package services;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,29 @@ public class EducationRecordService {
 	private EducationRecordRepository educationRecordRepository;
 
 	//Services
+	
+	//Constructor
+	
+	public EducationRecordService() {
+		super();
+	}
 
+	
 	//CRUD Methods
+	
+	public EducationRecord create() {
+		EducationRecord record= new EducationRecord();
+		
+		record.setAttachment(new String());
+		record.setComments(new ArrayList<String>());
+		record.setCopy(false);
+		record.setDiplomaTitle(new String());
+		record.setFinalStudying(new Date());
+		record.setInitialStudying(new Date());
+		record.setInstitution(new String());
+		
+		return record;
+	}
 	
 	public List<EducationRecord> findAll() {
 		return educationRecordRepository.findAll();

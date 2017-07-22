@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,27 @@ public class EndorserRecordService {
 	private EndorserRecordRepository endorserRecordRepository;
 
 	//Services
+	
+	//Constructor
+	
+	public EndorserRecordService() {
+		super();
+	}
 
 	//CRUD Methods
+	
+	public EndorserRecord create() {
+		EndorserRecord record= new EndorserRecord();
+		
+		record.setComments(new ArrayList<String>());
+		record.setCopy(false);
+		record.setEndorserEmail(new String());
+		record.setEndorserName(new String());
+		record.setEndorserPhone(new String());
+		record.setLinkedIn(new String());
+		
+		return record;
+	}
 	
 	public List<EndorserRecord> findAll() {
 		return endorserRecordRepository.findAll();
