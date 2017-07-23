@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.ActivityReport;
 import domain.Administrator;
@@ -57,19 +58,28 @@ public class AdministratorService {
 	}
 
 	public Administrator findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return administratorRepository.findOne(arg0);
 	}
 
-	public <S extends Administrator> List<S> save(Iterable<S> entities) {
+	public  List<Administrator> save(List<Administrator> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return administratorRepository.save(entities);
 	}
 
-	public <S extends Administrator> S save(S arg0) {
+	public Administrator save(Administrator arg0) {
+		Assert.notNull(arg0);
+		
 		return administratorRepository.save(arg0);
 	}
 	
 	//Others Methods
 	public static boolean check_phone(CharSequence phone) {
+		Assert.notNull(phone);
+		
 		Pattern p = Pattern.compile("(\\+\\d{2} \\(\\d{1,3}\\) \\d{4,})|(\\+\\d{2} \\d{4,})");
 		Matcher m = p.matcher(phone);
 		

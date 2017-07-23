@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.ProfessionalRecord;
 import repositories.ProfessionalRecordRepository;
@@ -50,14 +51,21 @@ public class ProfessionalRecordService {
 
 
 	public ProfessionalRecord findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return professionalRecordRepository.findOne(arg0);
 	}
 
-	public <S extends ProfessionalRecord> List<S> save(Iterable<S> entities) {
+	public List<ProfessionalRecord> save(List<ProfessionalRecord> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return professionalRecordRepository.save(entities);
 	}
 
-	public <S extends ProfessionalRecord> S save(S arg0) {
+	public ProfessionalRecord save(ProfessionalRecord arg0) {
+		Assert.notNull(arg0);
+		
 		return professionalRecordRepository.save(arg0);
 	}
 

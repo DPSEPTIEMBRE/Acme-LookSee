@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.ActivityReport;
 import domain.Application;
@@ -59,15 +60,22 @@ public class CandidateService {
 	}
 
 	public Candidate findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return CandidateRepository.findOne(arg0);
 	}
 
 
-	public <S extends Candidate> List<S> save(Iterable<S> entities) {
+	public List<Candidate> save(List<Candidate> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return CandidateRepository.save(entities);
 	}
 
-	public <S extends Candidate> S save(S arg0) {
+	public Candidate save(Candidate arg0) {
+		Assert.notNull(arg0);
+		
 		return CandidateRepository.save(arg0);
 	}
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.PersonalRecord;
 import repositories.PersonalRecordRepository;
@@ -48,16 +49,26 @@ public class PersonalRecordService {
 	}
 
 	public PersonalRecord findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return personalRecordRepository.findOne(arg0);
 	}
 
-	public <S extends PersonalRecord> S save(S arg0) {
+	public PersonalRecord save(PersonalRecord arg0) {
+		Assert.notNull(arg0);
+		
 		return personalRecordRepository.save(arg0);
 	}
 
-	public PersonalRecord saveAndFlush(PersonalRecord entity) {
-		return personalRecordRepository.saveAndFlush(entity);
+
+	public List<PersonalRecord> save(List<PersonalRecord> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
+		return personalRecordRepository.save(entities);
 	}
+	
+
 
 
 }

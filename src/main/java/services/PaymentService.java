@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.Payment;
 import repositories.PaymentRepository;
@@ -50,14 +51,21 @@ public class PaymentService {
 	}
 
 	public Payment findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return paymentRepository.findOne(arg0);
 	}
 
-	public <S extends Payment> List<S> save(Iterable<S> entities) {
+	public List<Payment> save(List<Payment> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return paymentRepository.save(entities);
 	}
 
-	public <S extends Payment> S save(S arg0) {
+	public Payment save(Payment arg0) {
+		Assert.notNull(arg0);
+		
 		return paymentRepository.save(arg0);
 	}
 	
@@ -76,6 +84,8 @@ public class PaymentService {
 	}
 
 	public List<Payment> paymentByCompany(int company_id) {
+		Assert.notNull(company_id);
+		
 		return paymentRepository.paymentByCompany(company_id);
 	}
 

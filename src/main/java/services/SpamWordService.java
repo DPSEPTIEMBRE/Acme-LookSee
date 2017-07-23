@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.SpamWord;
 import repositories.SpamWordRepository;
@@ -41,14 +42,21 @@ public class SpamWordService {
 	}
 
 	public SpamWord findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return spamWordRepository.findOne(arg0);
 	}
 
-	public <S extends SpamWord> List<S> save(Iterable<S> entities) {
+	public List<SpamWord> save(List<SpamWord> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return spamWordRepository.save(entities);
 	}
 
-	public <S extends SpamWord> S save(S arg0) {
+	public SpamWord save(SpamWord arg0) {
+		Assert.notNull(arg0);
+		
 		return spamWordRepository.save(arg0);
 	}
 	

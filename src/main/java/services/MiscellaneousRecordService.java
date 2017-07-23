@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.MiscellaneousRecord;
 import repositories.MiscellaneousRecordRepository;
@@ -46,14 +47,21 @@ public class MiscellaneousRecordService {
 
 
 	public MiscellaneousRecord findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return miscellaneousRecordRepository.findOne(arg0);
 	}
 
-	public <S extends MiscellaneousRecord> List<S> save(Iterable<S> entities) {
+	public List<MiscellaneousRecord> save(List<MiscellaneousRecord> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return miscellaneousRecordRepository.save(entities);
 	}
 
-	public <S extends MiscellaneousRecord> S save(S arg0) {
+	public MiscellaneousRecord save(MiscellaneousRecord arg0) {
+		Assert.notNull(arg0);
+		
 		return miscellaneousRecordRepository.save(arg0);
 	}
 

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.Curricula;
 import domain.Note;
@@ -56,20 +57,29 @@ public class NoteService {
 	}
 
 	public Note findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return noteRepository.findOne(arg0);
 	}
 
-	public <S extends Note> List<S> save(Iterable<S> entities) {
+	public List<Note> save(List<Note> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return noteRepository.save(entities);
 	}
 
-	public <S extends Note> S save(S arg0) {
+	public Note save(Note arg0) {
+		Assert.notNull(arg0);
+		
 		return noteRepository.save(arg0);
 	}
 	
 	//Others Methods
 	
 	public List<Curricula> notesGroupByState(int verifier_id) {
+		Assert.notNull(verifier_id);
+		
 		return noteRepository.notesGroupByState(verifier_id);
 	}
 
@@ -78,6 +88,8 @@ public class NoteService {
 	}
 
 	Number[] notesOfVerifierGroupByCandidates(int verifier_id) {
+		Assert.notNull(verifier_id);
+		
 		return noteRepository.notesOfVerifierGroupByCandidates(verifier_id);
 	}
 

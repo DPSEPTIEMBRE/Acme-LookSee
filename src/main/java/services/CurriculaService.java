@@ -8,6 +8,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.Curricula;
 import domain.EducationRecord;
@@ -62,20 +63,29 @@ public class CurriculaService {
 
 
 	public Curricula findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return curriculaRepository.findOne(arg0);
 	}
 
-	public <S extends Curricula> List<S> save(Iterable<S> entities) {
+	public List<Curricula> save(List<Curricula> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return curriculaRepository.save(entities);
 	}
 
 	public <S extends Curricula> S save(S arg0) {
+		Assert.notNull(arg0);
+		
 		return curriculaRepository.save(arg0);
 	}
 	
 	//Others Methods
 	
 	public List<Curricula> getCurriculasByCandidate(int candidate_id) {
+		Assert.notNull(candidate_id);
+		
 		return curriculaRepository.getCurriculasByCandidate(candidate_id);
 	}
 

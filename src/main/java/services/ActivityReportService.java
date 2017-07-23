@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.ActivityReport;
 import domain.Actor;
@@ -47,16 +48,21 @@ public class ActivityReportService {
 	}
 
 	public ActivityReport findOne(Integer arg0) {	
+		Assert.notNull(arg0);
 		
 		return activityReportRepository.findOne(arg0);
 	}
 
-	public <S extends ActivityReport> List<S> save(Iterable<S> entities) {
+	public  List<ActivityReport> save(List<ActivityReport> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
 		
 		return activityReportRepository.save(entities);
 	}
 
-	public <S extends ActivityReport> S save(S arg0) {
+	public ActivityReport save(ActivityReport arg0) {
+		Assert.notNull(arg0);
+		
 		return activityReportRepository.save(arg0);
 	}
 	
@@ -71,6 +77,8 @@ public class ActivityReportService {
 	}
 
 	public List<Actor> ActivitiesByActor(int company_id) {
+		Assert.notNull(company_id);
+		
 		return activityReportRepository.ActivitiesByActor(company_id);
 	}
 

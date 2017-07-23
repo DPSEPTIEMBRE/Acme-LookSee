@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.EndorserRecord;
 import repositories.EndorserRecordRepository;
@@ -47,14 +48,21 @@ public class EndorserRecordService {
 	}
 
 	public EndorserRecord findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return endorserRecordRepository.findOne(arg0);
 	}
 
-	public <S extends EndorserRecord> List<S> save(Iterable<S> entities) {
+	public List<EndorserRecord> save(List<EndorserRecord> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return endorserRecordRepository.save(entities);
 	}
 
-	public <S extends EndorserRecord> S save(S arg0) {
+	public EndorserRecord save(EndorserRecord arg0) {
+		Assert.notNull(arg0);
+		
 		return endorserRecordRepository.save(arg0);
 	}
 }

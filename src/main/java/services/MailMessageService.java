@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.Folder;
 import domain.MailMessage;
@@ -57,14 +58,21 @@ public class MailMessageService {
 	}
 
 	public MailMessage findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return mailMessageRepository.findOne(arg0);
 	}
 
-	public <S extends MailMessage> List<S> save(Iterable<S> entities) {
+	public List<MailMessage> save(List<MailMessage> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return mailMessageRepository.save(entities);
 	}
 
-	public <S extends MailMessage> S save(S arg0) {
+	public MailMessage save(MailMessage arg0) {
+		Assert.notNull(arg0);
+		
 		return mailMessageRepository.save(arg0);
 	}
 
@@ -72,6 +80,8 @@ public class MailMessageService {
 	//Other Methods
 	
 	public List<Folder> messagesByFolder(int folder_id) {
+		Assert.notNull(folder_id);
+		
 		return mailMessageRepository.messagesByFolder(folder_id);
 	}
 }

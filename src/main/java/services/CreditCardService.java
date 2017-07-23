@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.Brand;
 import domain.CreditCard;
@@ -50,14 +51,21 @@ public class CreditCardService {
 	}
 
 	public CreditCard findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return creditCardRepository.findOne(arg0);
 	}
 
-	public <S extends CreditCard> List<S> save(Iterable<S> entities) {
+	public List<CreditCard> save(List<CreditCard> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return creditCardRepository.save(entities);
 	}
 
-	public <S extends CreditCard> S save(S arg0) {
+	public CreditCard save(CreditCard arg0) {
+		Assert.notNull(arg0);
+		
 		return creditCardRepository.save(arg0);
 	}
 

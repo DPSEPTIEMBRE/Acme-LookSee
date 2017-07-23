@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.ActivityReport;
 import domain.Company;
@@ -64,20 +65,29 @@ public class CompanyService {
 	}
 
 	public Company findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return companyRepository.findOne(arg0);
 	}
 
-	public <S extends Company> List<S> save(Iterable<S> entities) {
+	public List<Company> save(List<Company> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return companyRepository.save(entities);
 	}
 
-	public <S extends Company> S save(S arg0) {
+	public Company save(Company arg0) {
+		Assert.notNull(arg0);
+		
 		return companyRepository.save(arg0);
 	}
 	
 	//Others Methods
 	
 	public Company companyByOffer(int offer_id) {
+		Assert.notNull(offer_id);
+		
 		return companyRepository.companyByOffer(offer_id);
 	}
 

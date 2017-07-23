@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.Application;
 import domain.StatusApplication;
@@ -57,15 +58,22 @@ public class ApplicationService {
 	}
 
 
-	public <S extends Application> List<S> save(Iterable<S> entities) {
+	public List<Application> save(List<Application> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return applicationRepository.save(entities);
 	}
 
 	public Application findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return applicationRepository.findOne(arg0);
 	}
 
-	public <S extends Application> S save(S arg0) {
+	public Application save(Application arg0) {
+		Assert.notNull(arg0);
+		
 		return applicationRepository.save(arg0);
 	}
 	
@@ -89,14 +97,20 @@ public class ApplicationService {
 	}
 	
 	public List<Application> applicationOrderStatus(int candidate_id) {
+		Assert.notNull(candidate_id);
+		
 		return applicationRepository.applicationOrderStatus(candidate_id);
 	}
 
 	public List<Application> applicationOrderCreatedMoment(int candidate_id) {
+		Assert.notNull(candidate_id);
+		
 		return applicationRepository.applicationOrderCreatedMoment(candidate_id);
 	}
 
 	public List<Application> applicationOrderLimit(int candidate_id) {
+		Assert.notNull(candidate_id);
+		
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH) -7);
 		return applicationRepository.applicationOrderLimit(candidate_id, c.getTime());

@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.Application;
 import domain.Offer;
@@ -54,20 +55,29 @@ public class OfferService {
 	}
 
 	public Offer findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return offerRepository.findOne(arg0);
 	}
 
-	public <S extends Offer> List<S> save(Iterable<S> entities) {
+	public List<Offer> save(List<Offer> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return offerRepository.save(entities);
 	}
 
-	public <S extends Offer> S save(S arg0) {
+	public Offer save(Offer arg0) {
+		Assert.notNull(arg0);
+		
 		return offerRepository.save(arg0);
 	}
 
 	//Others Methods
 	
 	public List<Offer> offersByCompany(int company_id) {
+		Assert.notNull(company_id);
+		
 		return offerRepository.offersByCompany(company_id);
 	}
 

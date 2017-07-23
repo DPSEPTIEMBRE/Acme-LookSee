@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.ActivityReport;
 import domain.Note;
@@ -57,14 +58,21 @@ public class VerifierService {
 	}
 	
 	public Verifier findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return verifierRepository.findOne(arg0);
 	}
 
-	public <S extends Verifier> List<S> save(Iterable<S> entities) {
+	public List<Verifier> save(List<Verifier> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return verifierRepository.save(entities);
 	}
 
-	public <S extends Verifier> S save(S arg0) {
+	public Verifier save(Verifier arg0) {
+		Assert.notNull(arg0);
+		
 		return verifierRepository.save(arg0);
 	}
 

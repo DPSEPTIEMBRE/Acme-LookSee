@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import domain.EducationRecord;
 import repositories.EducationRecordRepository;
@@ -50,14 +51,21 @@ public class EducationRecordService {
 	}
 
 	public EducationRecord findOne(Integer arg0) {
+		Assert.notNull(arg0);
+		
 		return educationRecordRepository.findOne(arg0);
 	}
 
-	public <S extends EducationRecord> List<S> save(Iterable<S> entities) {
+	public List<EducationRecord> save(List<EducationRecord> entities) {
+		Assert.notNull(entities);
+		Assert.noNullElements(entities.toArray());
+		
 		return educationRecordRepository.save(entities);
 	}
 
-	public <S extends EducationRecord> S save(S arg0) {
+	public EducationRecord save(EducationRecord arg0) {
+		Assert.notNull(arg0);
+		
 		return educationRecordRepository.save(arg0);
 	}
 
