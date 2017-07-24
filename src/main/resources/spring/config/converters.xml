@@ -17,7 +17,9 @@
 		<bean class="converters.ActivityReportToStringConverter" />
 		<bean class="converters.ActorToStringConverter" />
 		<bean class="converters.ApplicationToStringConverter" />
+
 		<bean class="converters.AuthorityToStringConverter" />
+
 		<bean class="converters.CandidateToStringConverter" />
 		<bean class="converters.CompanyToStringConverter" />
 		<bean class="converters.CreditCardToStringConverter" />
@@ -36,7 +38,9 @@
 		<bean class="converters.VerifierToStringConverter" />
 		<bean class="converters.StringToActivityReportConverter" />
 		<bean class="converters.StringToApplicationConverter" />
+
 		<bean class="converters.StringToAuthorityConverter" />
+
 		<bean class="converters.StringToCandidateConverter" />
 		<bean class="converters.StringToCompanyConverter" />
 		<bean class="converters.StringToCreditCardConverter" />
