@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- 
- * converters.xml
- *
- * Copyright (C) 2017 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
- * http://www.tdg-seville.info/License.html
- -->
+<!-- * converters.xml * * Copyright (C) 2017 Universidad de Sevilla * * The 
+	use of this project is hereby constrained to the conditions of the * TDG 
+	Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
@@ -18,10 +12,50 @@
 	">
 
 	<util:list id="converters">
-		<!-- 
-			Add your own converters using entries of the following form: 
-			<bean class="converters.Class1ToClass2" /> 
-		-->
-	</util:list>
 	
+		<bean class="converters.CompanyToStringConverter" />
+		<bean class="converters.ActivityReportToStringConverter" />
+		<bean class="converters.ActorToStringConverter" />
+		<bean class="converters.ApplicationToStringConverter" />
+		<bean class="converters.AuthorityToStringConverter" />
+		<bean class="converters.CandidateToStringConverter" />
+		<bean class="converters.CompanyToStringConverter" />
+		<bean class="converters.CreditCardToStringConverter" />
+		<bean class="converters.CurriculaToStringConverter" />
+		<bean class="converters.EducationRecordToStringConverter" />
+		<bean class="converters.EndorserRecordToStringConverter" />
+		<bean class="converters.FolderToStringConverter" />
+		<bean class="converters.MailMessageToStringConverter" />
+		<bean class="converters.MiscellaneousRecordToStringConverter" />
+		<bean class="converters.NoteToStringConverter" />
+		<bean class="converters.OfferToStringConverter" />
+		<bean class="converters.PaymentToStringConverter" />
+		<bean class="converters.PersonalRecordToStringConverter" />
+		<bean class="converters.ProfessionalRecordToStringConverter" />
+		<bean class="converters.SpamWordToStringConverter" />
+		<bean class="converters.VerifierToStringConverter" />
+		<bean class="converters.StringToActivityReportConverter" />
+		<bean class="converters.StringToApplicationConverter" />
+		<bean class="converters.StringToAuthorityConverter" />
+		<bean class="converters.StringToCandidateConverter" />
+		<bean class="converters.StringToCompanyConverter" />
+		<bean class="converters.StringToCreditCardConverter" />
+		<bean class="converters.StringToCurriculaConverter" />
+		<bean class="converters.StringToEducationRecordConverter" />
+		<bean class="converters.StringToEndorserRecordConverter" />
+		<bean class="converters.StringToFolderConverter" />
+		<bean class="converters.StringToMailMessageConverter" />
+		<bean class="converters.StringToMiscellaneousRecordConverter" />
+		<bean class="converters.StringToNoteConverter" />
+		<bean class="converters.StringToOfferConverter" />
+		<bean class="converters.StringToPaymentConverter" />
+		<bean class="converters.StringToPersonalRecordConverter" />
+		<bean class="converters.StringToProfessionalRecordConverter" />
+		<bean class="converters.StringToSpamWordConverter" />
+		<bean class="converters.StringToVerifierConverter" />
+
+		<!-- Add your own converters using entries of the following form: <bean 
+			class="converters.Class1ToClass2" /> -->
+	</util:list>
+
 </beans>

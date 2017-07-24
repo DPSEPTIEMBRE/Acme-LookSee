@@ -50,6 +50,22 @@
 		<security:intercept-url pattern="/profile/action-1.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-2.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 
+		
+		
+
+		<security:intercept-url pattern="/company/signUp.do" access="permitAll"/>
+		<security:intercept-url pattern="/company/create.do" access="permitAll"/>
+		<security:intercept-url pattern="/company/**" access="permitAll"/>
+		<security:intercept-url pattern="/company/cancel.do" access="permitAll"/>
+		<security:intercept-url pattern="/company/save.do" access="permitAll"/>
+		
+		<security:intercept-url pattern="/candidate/signUp.do" access="permitAll"/>
+		<security:intercept-url pattern="/candidate/create.do" access="permitAll"/>
+		<security:intercept-url pattern="/candidate/**" access="permitAll"/>
+		<security:intercept-url pattern="/candidate/cancel.do" access="permitAll"/>
+		<security:intercept-url pattern="/candidate/save.do" access="permitAll"/>
+		
+		<security:intercept-url pattern="/welcome/termsAndConditions.do"  access="permitAll"/>
 	
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
