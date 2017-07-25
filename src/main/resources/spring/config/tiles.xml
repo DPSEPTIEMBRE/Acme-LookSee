@@ -29,7 +29,6 @@
 		
 		<value>/views/company/tiles.xml</value>
 		<value>/views/candidate/tiles.xml</value>
-		<value>/views/termsAndConditions/tiles.xml</value>
 	</util:list>
 
 </beans>

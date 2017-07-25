@@ -18,6 +18,7 @@ import domain.Folder;
 import domain.MailMessage;
 import repositories.CandidateRepository;
 import security.Authority;
+import security.LoginService;
 import security.UserAccount;
 
 @Service
@@ -27,25 +28,27 @@ public class CandidateService {
 	//Repositories
 
 	@Autowired
-	private CandidateRepository CandidateRepository;
+	private CandidateRepository candidateRepository;
 
 	//Services
-	
+
 	@Autowired
 	private FolderService folderService;
-	
+
 	//Constructor
-	
+
 	public CandidateService() {
 		super();
 	}
 
-	
+
 	//CRUD Methods
-	
+
 	public Candidate create() {
-		Candidate candidate=new Candidate();
-		
+		Candidate candidate = new Candidate();
+		List<Folder> defaultFolders = folderService.createDefaultFolders();
+		folderService.save(defaultFolders);
+
 		candidate.setActivities(new ArrayList<ActivityReport>());
 		candidate.setactorName(new String());
 		candidate.setAddress(new String());
@@ -54,52 +57,83 @@ public class CandidateService {
 		candidate.setSurname(new String());
 		candidate.setApplications(new ArrayList<Application>());
 		candidate.setCurriculas(new ArrayList<Curricula>());
-		
+
+		candidate.setFolders(defaultFolders);
+
 		Authority a = new Authority();
 		a.setAuthority(Authority.CANDIDATE);
 		UserAccount account = new UserAccount();
 		account.setAuthorities(Arrays.asList(a));
 		candidate.setUserAccount(account);
-		
+
+
 		return candidate;
 	}
 
 	public List<Candidate> findAll() {
-		return CandidateRepository.findAll();
+		return candidateRepository.findAll();
 	}
 
 	public Candidate findOne(Integer arg0) {
 		Assert.notNull(arg0);
-		
-		return CandidateRepository.findOne(arg0);
+
+		return candidateRepository.findOne(arg0);
 	}
 
 
 	public List<Candidate> save(List<Candidate> entities) {
 		Assert.notNull(entities);
 		Assert.noNullElements(entities.toArray());
-		
-		return CandidateRepository.save(entities);
+
+		return candidateRepository.save(entities);
 	}
 
-	public Candidate save(Candidate arg0) {
-		Assert.notNull(arg0);
+	public void save(Candidate user) {
+		Assert.notNull(user);
+
+		UserAccount account = user.getUserAccount();
+		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		String password = account.getPassword();
+
+		password = encoder.encodePassword(password, null);
+		account.setPassword(password);
 		
-		return CandidateRepository.save(arg0);
+		List<Folder> defaultFolders = folderService.createDefaultFolders();
+		folderService.save(defaultFolders);
+		user.setFolders(defaultFolders);
+
+		candidateRepository.save(user);
 	}
-	
+
 	//Others Methods
-	
+
 	public List<Candidate> CandidateWithMoreCurriculas() {
-		return CandidateRepository.CandidateWithMoreCurriculas();
+		return candidateRepository.CandidateWithMoreCurriculas();
 	}
-	
+
 	public List<Candidate> orderByNumCurriculas() {
-		return CandidateRepository.orderByNumCurriculas();
+		return candidateRepository.orderByNumCurriculas();
 	}
-	
-	public Candidate save_create(Candidate user) {
-		
+
+	public Candidate findByPrincipal() {
+		Candidate res;
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
+		Assert.notNull(userAccount);
+		res = findByUserAccount(userAccount);
+		return res;
+	}
+
+	public Candidate findByUserAccount(UserAccount userAccount) {
+		Assert.notNull(userAccount);
+		Candidate res;
+		res = candidateRepository.findByUserAccount(userAccount.getId());
+		return res;
+	}
+
+
+	public void save_create(Candidate user) {
+
 		Folder inbox = folderService.create();
 		inbox.setFolderName("INBOX");
 		inbox.setMessages(new ArrayList<MailMessage>());
@@ -115,17 +149,15 @@ public class CandidateService {
 		Folder spambox = folderService.create();
 		spambox.setFolderName("SPAMBOX");
 		spambox.setMessages(new ArrayList<MailMessage>());
-		
+
 		user.setFolders(Arrays.asList(inbox, outbox, thrasbox, spambox));
-		
-		
+
+
 		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		String pass = user.getUserAccount().getPassword();
 		user.getUserAccount().setPassword(encoder.encodePassword(pass, null));
-		
-		
-		return save(user);
+
 	}
-	
-	
+
+
 }

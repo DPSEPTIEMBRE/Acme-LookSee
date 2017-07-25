@@ -20,6 +20,7 @@ import domain.Offer;
 import domain.Payment;
 import forms.CompanyRegisterForm;
 import repositories.CompanyRepository;
+import security.Authority;
 import security.UserAccount;
 
 @Service
@@ -61,15 +62,19 @@ public class CompanyService {
 		company.setactorName(new String());
 		company.setAddress(new String());
 		company.setEmail(new String());
-		company.setFolders(folderService.createDefaultFolders());
 		company.setPhone(new String());
 		company.setSurname(new String());
 		company.setUserAccount(new UserAccount());
 		company.setCompanyName(new String());
-		company.setCreditCard(creditCardService.create());
 		company.setOffers(new ArrayList<Offer>());
 		company.setPayments(new ArrayList<Payment>());
 		company.setVAT(new String());
+		
+		Authority a = new Authority();
+		a.setAuthority(Authority.COMPANY);
+		UserAccount account = new UserAccount();
+		account.setAuthorities(Arrays.asList(a));
+		company.setUserAccount(account);
 		
 		return company;
 	}

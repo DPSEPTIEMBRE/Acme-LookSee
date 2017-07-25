@@ -13,6 +13,7 @@ import org.springframework.util.Assert;
 import domain.ActivityReport;
 import domain.Administrator;
 import repositories.AdministratorRepository;
+import security.LoginService;
 import security.UserAccount;
 
 @Service
@@ -86,6 +87,26 @@ public class AdministratorService {
 		return m.matches();
 	}
 	
+	public Administrator findByPrincipal() {
+		Administrator res;
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
+		Assert.notNull(userAccount);
+		res = findByUserAccount(userAccount);
+		return res;
+	}
 	
+	public Administrator findByUserAccount(UserAccount userAccount) {
+		Assert.notNull(userAccount);
+		Administrator res;
+		res = administratorRepository.findOneByAdminId(userAccount.getId());
+		return res;
+	}
 	
+	public Administrator findByUserAccountId(int userAccountId) {
+		Assert.notNull(userAccountId);
+		Administrator res;
+		res = administratorRepository.findOneByAdminId(userAccountId);
+		return res;
+	}
 }

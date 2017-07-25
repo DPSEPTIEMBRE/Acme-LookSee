@@ -62,6 +62,8 @@ public class FolderService {
 		
 		return folderRepository.save(arg0);
 	}
+	
+
 
 	//Others Methods
 
@@ -78,13 +80,13 @@ public class FolderService {
 		inbox.setFolderName("Inbox");
 
 		Folder outbox= create();
-		inbox.setFolderName("Outbox");
+		outbox.setFolderName("Outbox");
 		
 		Folder trashbox= create();
-		inbox.setFolderName("Trashbox");
+		trashbox.setFolderName("Trashbox");
 		
 		Folder spambox= create();
-		inbox.setFolderName("Spambox");
+		spambox.setFolderName("Spambox");
 		
 		folders.add(inbox);
 		folders.add(outbox);

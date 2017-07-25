@@ -18,22 +18,17 @@ import services.CandidateService;
 public class CandidateController extends AbstractController {
 
 	//Services
-
 	@Autowired
 	private CandidateService candidateService;
 
 
 	//Constructor
-
 	public CandidateController() {
 		super();
 	}
 
 
 	//Creation
-	
-	
-
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
@@ -42,9 +37,10 @@ public class CandidateController extends AbstractController {
 
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ModelAndView save(@Valid Candidate user, BindingResult binding) {
+
 		ModelAndView result;
 
 		for(FieldError e : binding.getFieldErrors()) {
@@ -56,6 +52,7 @@ public class CandidateController extends AbstractController {
 			result = createNewModelAndView(user, null);
 		} else {
 			try {
+
 				candidateService.save(user);
 
 				result = new ModelAndView("redirect:/welcome/index.do");
@@ -78,4 +75,27 @@ public class CandidateController extends AbstractController {
 		return result;
 	}
 
+
+	//Ancillary methods -----------------------------
+
+	protected ModelAndView createEditModelAndView(Candidate candidate){
+		ModelAndView result;
+		result= createEditModelAndView(candidate, null, null);
+		return result;
+
+	}
+
+	private ModelAndView createEditModelAndView(Candidate candidate, String message, String msgType) {
+		ModelAndView result;
+
+		//if(candidate.getId()==0)
+		result= new ModelAndView("candidate/create");
+		//else
+		//result= new ModelAndView("candidate/edit");
+		result.addObject("candidate", candidate);
+		result.addObject("message", message);
+		result.addObject("msgType", msgType);
+
+		return result;
+	}
 }

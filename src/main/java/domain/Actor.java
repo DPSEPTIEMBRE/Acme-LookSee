@@ -75,7 +75,7 @@ public class Actor extends DomainEntity {
 
 	@NotNull
 	@Valid
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	public UserAccount getUserAccount() {
 		return userAccount;
 	}

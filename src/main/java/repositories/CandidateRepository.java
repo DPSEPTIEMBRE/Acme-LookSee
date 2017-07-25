@@ -18,6 +18,11 @@ public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
 	//Los candidatos que han registrado mas curriculums
 	@Query("select c from Candidate c where c.curriculas.size=(select max(c.curriculas.size) from Candidate c)")
 	List<Candidate> CandidateWithMoreCurriculas();
+	
+	//Encuentra un candidato por su cuenta de usuario
+	@Query("select c from Candidate c where c.userAccount.id = ?1") 
+	Candidate findByUserAccount(int id);
+
 
 
 

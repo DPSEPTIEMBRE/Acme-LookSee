@@ -56,7 +56,7 @@ public class CompanyController extends AbstractController {
 			result = createNewModelAndView(user, null);
 		} else {
 			try {
-				companyService.save_create(user);
+				companyService.save(user);
 
 				result = new ModelAndView("redirect:/welcome/index.do");
 			} catch (Throwable e) {
