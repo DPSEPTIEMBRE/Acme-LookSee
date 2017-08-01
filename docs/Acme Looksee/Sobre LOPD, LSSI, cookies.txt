@@ -1,0 +1,9 @@
+-Las vistas de leyes están en views/legislation.
+-En principio, extienden de master page como páginas normales,
+	no he tocado master page para que no haya conflicto mientras terminais de montar.
+-Las vistas son sólo texto, si hacemos los términos y servicios como una confirmación
+	antes de crear un perfil se puede coger el mismo texto y añadir los botones.
+-Si queréis usar una plantilla oficial se pueden buscar en internet. Ahora mismo tengo
+	internet justo para Git y Trello así que lo he escrito a mano.
+
+	-Gonzalo
