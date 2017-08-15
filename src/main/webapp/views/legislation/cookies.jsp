@@ -19,4 +19,3 @@
 <p><spring:message code="legislation.cookies1" /></p>
 <p><spring:message code="legislation.cookies2" /></p>
 <p><spring:message code="legislation.cookies3" /></p>
-<p><spring:message code="legislation.cookies4" /></p>
