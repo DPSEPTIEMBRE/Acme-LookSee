@@ -45,4 +45,34 @@ public class WelcomeController extends AbstractController {
 
 		return result;
 	}
+	
+	@RequestMapping(value = "/cookies")
+	public ModelAndView cookies()  {
+		ModelAndView result;
+
+
+		result = new ModelAndView("legislation/cookies");
+
+		return result;
+	}
+	
+	@RequestMapping(value = "/lopd")
+	public ModelAndView lopd()  {
+		ModelAndView result;
+
+
+		result = new ModelAndView("legislation/lopd");
+
+		return result;
+	}
+	
+	@RequestMapping(value = "/lssi")
+	public ModelAndView lssi()  {
+		ModelAndView result;
+
+
+		result = new ModelAndView("legislation/lssi");
+
+		return result;
+	}
 }

@@ -29,6 +29,7 @@
 		
 		<value>/views/company/messages</value>
 		<value>/views/candidate/messages</value>
+		<value>/views/legislation/messages</value>
 	</util:list>
 
 </beans>

@@ -18,22 +18,28 @@
 
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<p>INFORMACIÓN RELEVANTE</p>
+<b><spring:message code="legislation.title1"/></b>
 <p><spring:message code="legislation.lopd1"/></p>
 <p><spring:message code="legislation.lopd2"/></p>
 <p><spring:message code="legislation.lopd3"/></p>
-<p>LICENCIA</p>
+
+<b><spring:message code="legislation.title2"/></b>
 <p><spring:message code="legislation.lopd4"/></p>
-<p>USO NO AUTORIZADO</p>
+
+<b><spring:message code="legislation.title3"/></b>
 <p><spring:message code="legislation.lopd5"/></p>
-<p>PROPIEDAD</p>
+
+<b><spring:message code="legislation.title4"/></b>
 <p><spring:message code="legislation.lopd6"/></p>
-<p>POLÍTICA DE REEMBOLSO Y GARANTÍA</p>
+
+<b><spring:message code="legislation.title5"/></b>
 <p><spring:message code="legislation.lopd7"/></p>
 <p><spring:message code="legislation.lopd8"/></p>
-<p>COMPROBACIÓN ANTIFRAUDE</p>
+
+<b><spring:message code="legislation.title6"/></b>
 <p><spring:message code="legislation.lopd9"/></p>
-<p>PRIVACIDAD</p>
+
+<b><spring:message code="legislation.title7"/></b>
 <p><spring:message code="legislation.lopd10"/></p>
 <p><spring:message code="legislation.lopd11"/></p>
 <p><spring:message code="legislation.lopd12"/></p>
