@@ -12,6 +12,7 @@ import domain.ActivityReport;
 import domain.Note;
 import domain.Verifier;
 import repositories.VerifierRepository;
+import security.LoginService;
 import security.UserAccount;
 
 @Service
@@ -53,6 +54,10 @@ public class VerifierService {
 		return verifier;
 	}
 	
+	public Verifier selectByUsername() {
+		return verifierRepository.selectByUsername(LoginService.getPrincipal().getUsername());
+	}
+	
 	public List<Verifier> findAll() {
 		return verifierRepository.findAll();
 	}
@@ -76,5 +81,10 @@ public class VerifierService {
 		return verifierRepository.save(arg0);
 	}
 
+	public Verifier saveEditing(Verifier arg0) {
+		Assert.notNull(arg0);
+		
+		return verifierRepository.save(arg0);
+	}
 
 }

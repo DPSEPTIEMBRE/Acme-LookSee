@@ -1,6 +1,8 @@
 package services;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,8 +14,9 @@ import org.springframework.util.Assert;
 
 import domain.ActivityReport;
 import domain.Administrator;
+import domain.AdministratorKey;
+import domain.Payment;
 import repositories.AdministratorRepository;
-import security.LoginService;
 import security.UserAccount;
 
 @Service
@@ -29,6 +32,10 @@ public class AdministratorService {
 	
 	@Autowired
 	private FolderService folderService;
+	@Autowired
+	private AdministratorKeyService administratorKeyService;
+	@Autowired
+	private PaymentService paymentService;
 	
 	//Constructor
 	
@@ -70,6 +77,12 @@ public class AdministratorService {
 		
 		return administratorRepository.save(entities);
 	}
+	
+	public Administrator saveEditing(Administrator arg0) {
+		Assert.notNull(arg0);
+		
+		return administratorRepository.save(arg0);
+	}
 
 	public Administrator save(Administrator arg0) {
 		Assert.notNull(arg0);
@@ -87,26 +100,42 @@ public class AdministratorService {
 		return m.matches();
 	}
 	
-	public Administrator findByPrincipal() {
-		Administrator res;
-		UserAccount userAccount;
-		userAccount = LoginService.getPrincipal();
-		Assert.notNull(userAccount);
-		res = findByUserAccount(userAccount);
-		return res;
+	public boolean payment() {
+		AdministratorKey administratorKey = administratorKeyService.select_lastPaid();
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		
+		try {
+			Date date = format.parse(administratorKey.getKeyValue());
+			
+			int days = daysBetween(date);
+			
+			if(days > 7) {
+				List<Payment> payments = paymentService.getUnpaidments();
+				
+				for(Payment e : payments) {
+					e.setPaid(true);
+				}
+				
+				if(!payments.isEmpty()) {
+					paymentService.save(payments);
+				}
+				
+				administratorKey.setKeyValue(format.format(new Date()));
+				administratorKeyService.saveEditing(administratorKey);
+				
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
-	public Administrator findByUserAccount(UserAccount userAccount) {
-		Assert.notNull(userAccount);
-		Administrator res;
-		res = administratorRepository.findOneByAdminId(userAccount.getId());
-		return res;
+	private int daysBetween(Date date) {
+		Date now = new Date();
+		
+		return (int) ((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
 	}
 	
-	public Administrator findByUserAccountId(int userAccountId) {
-		Assert.notNull(userAccountId);
-		Administrator res;
-		res = administratorRepository.findOneByAdminId(userAccountId);
-		return res;
-	}
 }

@@ -27,4 +27,10 @@ public interface PaymentRepository extends JpaRepository<Payment, Integer> {
 	@Query("select c.payments from Company c where c.id = ?1")
 	List<Payment> paymentByCompany(int company_id);
 
+	//Lista de pagos por compañia pagados o no pagados.
+	@Query("select p from Company c join c.payments p where c.id = ?1 and p.paid = ?2")
+	List<Payment> paymentByCompanyAndPaid(int companyId, Boolean paid);
+	
+	@Query("select c from Payment c where c.paid = false")
+	List<Payment> getUnpaidments();
 }

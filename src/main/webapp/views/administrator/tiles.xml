@@ -16,14 +16,24 @@
        
 <tiles-definitions>
 
-	<definition name="administrator/action-1" extends="master.page">	
-		<put-attribute name="title" value="Administrator: Action 1" />
-		<put-attribute name="body" value="/views/administrator/action-1.jsp" />
+	<definition name="administrator/dashboard" extends="master.page">	
+		<put-attribute name="title" value="dashboard" />
+		<put-attribute name="body" value="/views/administrator/dashboard.jsp" />
 	</definition>
 	
-	<definition name="administrator/action-2" extends="master.page">	
-		<put-attribute name="title" value="Administrator: Action 2" />
-		<put-attribute name="body" value="/views/administrator/action-2.jsp" />
+	<definition name="administrator/edit" extends="master.page">	
+		<put-attribute name="title" value="Edit personal data" />
+		<put-attribute name="body" value="/views/administrator/edit.jsp" />
+	</definition>
+	
+	<definition name="administrator/editAdministratorkey" extends="master.page">	
+		<put-attribute name="title" value="Edit variables" />
+		<put-attribute name="body" value="/views/administrator/editAdministratorkey.jsp" />
+	</definition>
+	
+	<definition name="administrator/listAdministratorkey" extends="master.page">	
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/views/administrator/listAdministratorkey.jsp" />
 	</definition>
 	
 </tiles-definitions>

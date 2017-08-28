@@ -22,6 +22,7 @@ public class Company extends Actor{
 	private List<Offer> offers;
 	private List<Payment> payments;
 	private CreditCard creditCard;
+	private Boolean bloked;
 	
 	//Getters
 	
@@ -30,6 +31,11 @@ public class Company extends Actor{
 		return companyName;
 	}
 	
+	@NotNull
+	public Boolean getBloked() {
+		return bloked;
+	}
+
 	@NotBlank
 	public String getVAT() {
 		return VAT;
@@ -47,7 +53,6 @@ public class Company extends Actor{
 		return payments;
 	}
 	
-	@NotNull
 	@OneToOne(optional=true)
 	public CreditCard getCreditCard() {
 		return creditCard;
@@ -75,6 +80,8 @@ public class Company extends Actor{
 		this.creditCard = creditCard;
 	}
 	
-	
+	public void setBloked(Boolean bloked) {
+		this.bloked = bloked;
+	}
 	
 }

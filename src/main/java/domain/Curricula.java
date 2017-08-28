@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
@@ -45,8 +46,7 @@ public class Curricula extends DomainEntity{
 		return educationRecords;
 	}
 	
-	@OneToOne(optional=true)
-	@NotNull
+	@OneToOne(optional = true)
 	public PersonalRecord getPersonalRecord() {
 		return personalRecord;
 	}
@@ -70,7 +70,7 @@ public class Curricula extends DomainEntity{
 	}
 	
 	@NotNull
-	@OneToMany
+	@ManyToMany
 	public List<Note> getNotes(){
 		return notes;
 	}

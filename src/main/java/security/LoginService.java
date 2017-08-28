@@ -21,6 +21,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import domain.Actor;
+
 @Service
 @Transactional
 public class LoginService implements UserDetailsService {
@@ -46,6 +48,36 @@ public class LoginService implements UserDetailsService {
 		result.getAuthorities().size();
 
 		return result;
+	}
+	
+	public static boolean isAnyAuthenticated() {
+		try {
+			SecurityContext context;
+			Authentication authentication;
+			Object principal;
+
+			context = SecurityContextHolder.getContext();
+			authentication = context.getAuthentication();
+			principal = authentication.getPrincipal();
+
+			return principal instanceof UserAccount;
+		} catch(Throwable t) {
+			return false;
+		}
+	}
+	
+	public static boolean hasRole(String role) {
+		for(Authority e : LoginService.getPrincipal().getAuthorities()) {
+			if(e.getAuthority().equalsIgnoreCase(role)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public Actor findActorByUsername(String username) {
+		return userRepository.findActorByUsername(LoginService.getPrincipal().getUsername());
 	}
 
 	public static UserAccount getPrincipal() {
@@ -74,4 +106,11 @@ public class LoginService implements UserDetailsService {
 		return result;
 	}
 
+	public boolean exists(Integer id) {
+		return userRepository.exists(id);
+	}
+
+	public UserAccount findOne(Integer id) {
+		return userRepository.findOne(id);
+	}
 }

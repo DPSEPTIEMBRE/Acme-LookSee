@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="miscellaneousrecord/edit" extends="master.page">
+		<put-attribute name="title" value="Editar registro misceláneo" />
+		<put-attribute name="body" value="/views/miscellaneousrecord/edit.jsp" />
+	</definition>
+
+	<definition name="miscellaneousrecord/create" extends="master.page">
+		<put-attribute name="title" value="Añadir registro misceláneo" />
+		<put-attribute name="body" value="/views/miscellaneousrecord/create.jsp" />
+	</definition>
+
+	<definition name="miscellaneousrecord/list" extends="master.page">
+		<put-attribute name="title" value="Registros misceláneos" />
+		<put-attribute name="body" value="/views/miscellaneousrecord/list.jsp" />
+	</definition>
+
+</tiles-definitions>

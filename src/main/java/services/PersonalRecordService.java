@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import domain.Curricula;
 import domain.PersonalRecord;
 import repositories.PersonalRecordRepository;
 
@@ -20,6 +21,8 @@ public class PersonalRecordService {
 	private  PersonalRecordRepository  personalRecordRepository;
 
 	//Services
+	@Autowired
+	CurriculaService curriculaService;
 	
 	//Constructor
 	
@@ -29,6 +32,18 @@ public class PersonalRecordService {
 
 	
 	//CRUD Methods
+	
+	public PersonalRecord clone(PersonalRecord p) {
+		PersonalRecord res = new PersonalRecord();
+		res.setCopy(true);
+		res.setEmail(new String(p.getEmail()));
+		res.setFullName(new String(p.getFullName()));
+		res.setLinkedIn(new String(p.getLinkedIn()));
+		res.setPhone(new String(p.getPhone()));
+		res.setPicture(new String(p.getPicture()));
+		
+		return personalRecordRepository.save(res);
+	}
 	
 	public PersonalRecord create() {
 		PersonalRecord record= new PersonalRecord();
@@ -44,6 +59,11 @@ public class PersonalRecordService {
 		return record;
 	}
 
+	public void delete(PersonalRecord entity) {
+		Assert.notNull(entity);
+		personalRecordRepository.delete(entity);
+	}
+
 	public List<PersonalRecord> findAll() {
 		return personalRecordRepository.findAll();
 	}
@@ -54,10 +74,26 @@ public class PersonalRecordService {
 		return personalRecordRepository.findOne(arg0);
 	}
 
-	public PersonalRecord save(PersonalRecord arg0) {
+	public PersonalRecord save(PersonalRecord arg0, int curricula_id) {
 		Assert.notNull(arg0);
 		
-		return personalRecordRepository.save(arg0);
+		Curricula curricula = curriculaService.findOne(curricula_id);
+		PersonalRecord saved = personalRecordRepository.save(arg0);
+		
+		curricula.setPersonalRecord(saved);
+		
+		curriculaService.saveEditing(curricula);
+		
+		return saved;
+	}
+	
+	public void flush() {
+		personalRecordRepository.flush();
+	}
+
+
+	public PersonalRecord saveEditing(PersonalRecord personalRecord) {
+		return personalRecordRepository.save(personalRecord);
 	}
 
 

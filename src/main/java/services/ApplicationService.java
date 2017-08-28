@@ -2,6 +2,7 @@ package services;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import domain.Application;
+import domain.Candidate;
 import domain.StatusApplication;
 import repositories.ApplicationRepository;
+import security.LoginService;
 
 @Service
 @Transactional
@@ -28,7 +31,7 @@ public class ApplicationService {
 	private CurriculaService curriculaService;
 	
 	@Autowired
-	private OfferService offerService;
+	private CandidateService candidateService;
 	
 	//Constuctor
 	
@@ -43,14 +46,57 @@ public class ApplicationService {
 		
 		application.setCreateMoment(new Date());
 		application.setCurricula(curriculaService.create());
-		application.setOffer(offerService.create());
+		application.setOffer(null);
 		
-		StatusApplication status= new StatusApplication();
+		StatusApplication status = new StatusApplication();
 		status.setValue("PENDING");
 		
 		application.setStatus(status);
 		
 		return application;
+	}
+	
+	public void rejectSchedule(Integer id) {
+		if(id != null) {
+			if(applicationRepository.exists(id)) {
+				try {
+					Application entity = applicationRepository.findOne(id);
+					
+					if(entity.getStatus().getValue().equals("PENDING")) {
+						StatusApplication rejected = new StatusApplication();
+						rejected.setValue("REJECTED");
+						
+						entity.setStatus(rejected);
+						
+						applicationRepository.save(entity);
+					}
+				} catch(Throwable th) {
+					th.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public boolean exists(Integer id) {
+		return applicationRepository.exists(id);
+	}
+
+	public List<Application> selectSelf() {
+		try {
+			Candidate candidate = candidateService.selectByUsername(LoginService.getPrincipal().getUsername());
+			
+			return candidate.getApplications();
+		} catch(Exception e) {
+			return new LinkedList<Application>();
+		}
+	}
+	
+	public List<Application> selectSelfCompany() {
+		try {
+			return applicationRepository.getCompanyApplications(LoginService.getPrincipal().getUsername());
+		} catch(Exception e) {
+			return new LinkedList<Application>();
+		}
 	}
 
 	public List<Application> findAll() {
@@ -120,7 +166,7 @@ public class ApplicationService {
 		return applicationRepository.AvgMaxMinApplicationsByCandidate();
 	}
 
-
-	
-	
+	public void flush() {
+		applicationRepository.flush();
+	}
 }

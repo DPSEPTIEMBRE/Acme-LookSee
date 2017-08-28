@@ -13,6 +13,8 @@
 
 	<util:list id="converters">
 	
+		<bean class="converters.StringToBrandConverter" />
+		<bean class="converters.BrandToStringConverter" />
 		<bean class="converters.CompanyToStringConverter" />
 		<bean class="converters.ActivityReportToStringConverter" />
 		<bean class="converters.ActorToStringConverter" />
@@ -51,10 +53,16 @@
 		<bean class="converters.StringToProfessionalRecordConverter" />
 		<bean class="converters.StringToSpamWordConverter" />
 		<bean class="converters.StringToVerifierConverter" />
+		<bean class="converters.AuthorityToStringConverter"/>
+		<bean class="converters.StringToAuthorityConverter"/>
 		<bean class="converters.StringToUserAccountConverter"/>
 		<bean class="converters.UserAccountToStringConverter"/>
-		<bean class="converters.StringToAuthorityConverter"/>
-		<bean class="converters.AuthorityToStringConverter"/>
+		<bean class="converters.StatusNoteToStringConverter"/>
+		<bean class="converters.StringToStatusNote"/>
+		<bean class="converters.StringToStatusApplication"/>
+		<bean class="converters.StatusApplicationToStringConverter"/>
+		<bean class="converters.StringToAdministratorKeyConverter"/>
+		<bean class="converters.AdministratorKeyToStringConverter"/>
 
 		<!-- Add your own converters using entries of the following form: <bean 
 			class="converters.Class1ToClass2" /> -->

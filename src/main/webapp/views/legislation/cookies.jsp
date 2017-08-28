@@ -16,6 +16,9 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+
 <p><spring:message code="legislation.cookies1" /></p>
 <p><spring:message code="legislation.cookies2" /></p>
 <p><spring:message code="legislation.cookies3" /></p>
+
+ 

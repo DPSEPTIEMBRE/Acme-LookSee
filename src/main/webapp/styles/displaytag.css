@@ -6,7 +6,7 @@
  * TDG Licence, a copy of which you may download from 
  * http://www.tdg-seville.info/License.html
  * 
- */
+
  
 table {
 	border: 1px solid #666;
@@ -161,4 +161,13 @@ span.pagelinks {
 
 .grandtotal-row {
 	border-top: 2px solid black;
+}
+ */
+ 
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #c7c7e0;
+}
+
+.table-hover thead{
+ background-color: #9696cc;
 }

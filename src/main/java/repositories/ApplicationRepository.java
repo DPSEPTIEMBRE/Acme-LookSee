@@ -45,6 +45,7 @@ JpaRepository<Application, Integer> {
 	@Query("select avg(a.size),max(a.size),min(a.size) from Company c join c.offers o join o.applications a where a.status='REJECTED'")
 	Object[] AvgMaxMinApplicationsRejectedByCompany();
 
-
+	@Query("select u.applications from Company c join c.offers u where c.userAccount.username = ?1")
+	List<Application> getCompanyApplications(String username);
 
 }

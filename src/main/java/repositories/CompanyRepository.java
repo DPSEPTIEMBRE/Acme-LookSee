@@ -27,6 +27,9 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
 	//La compañia que han registrado mas ofertas
 	@Query("select c from Company c where c.offers.size = (select max(c.offers.size) from Company c) ")
 	List<Company> companyMaxOffers();
+	
+	@Query("select c from Company c where c.userAccount.username = ?1")
+	Company selectByUsername(String username);
 
 
 

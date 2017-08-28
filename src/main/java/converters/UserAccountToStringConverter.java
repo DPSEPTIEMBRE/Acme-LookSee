@@ -10,17 +10,13 @@ import security.UserAccount;
 @Transactional
 public class UserAccountToStringConverter implements Converter<UserAccount, String> {
 
-	@Override
-	public String convert(UserAccount userAccount) {
+	public String convert(UserAccount u){
 		String res;
-
-		if (userAccount == null) {
+		if(u == null){
 			res = null;
-		} else {
-			res = String.valueOf(userAccount.getId());
+		}else{
+			res = String.valueOf(u.getId());
 		}
-
 		return res;
 	}
-
 }

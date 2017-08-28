@@ -1,5 +1,6 @@
 package services;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import domain.AdministratorKey;
+import domain.Company;
+import domain.Offer;
 import domain.Payment;
 import repositories.PaymentRepository;
 
@@ -24,6 +28,10 @@ public class PaymentService {
 	
 	@Autowired
 	private CreditCardService creditCardService;
+	@Autowired
+	private AdministratorKeyService administratorKeyService;
+	@Autowired
+	private CompanyService companyService;
 	
 	//Constructor
 	
@@ -71,6 +79,10 @@ public class PaymentService {
 	
 	//Others Methods
 	
+	public void flush() {
+		paymentRepository.flush();
+	}
+
 	public Double AvgPaymentsNoFinishByCompany() {
 		return paymentRepository.AvgPaymentsNoFinishByCompany();
 	}
@@ -89,4 +101,37 @@ public class PaymentService {
 		return paymentRepository.paymentByCompany(company_id);
 	}
 
+	public List<Payment> paymentByCompanyAndPaid(int companyId, Boolean paid){
+		return paymentRepository.paymentByCompanyAndPaid(companyId, paid);
+	}
+	
+	public List<Payment> getUnpaidments() {
+		return paymentRepository.getUnpaidments();
+	}
+	
+	public Payment create_auto(Offer offer) {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		AdministratorKey price_key = administratorKeyService.select_price();
+		AdministratorKey iva_key = administratorKeyService.select_iva();
+		
+		double price = Double.valueOf(price_key.getKeyValue());
+		double iva = Double.valueOf(iva_key.getKeyValue());
+		
+		Payment payment = new Payment();
+		payment.setCreateMoment(new Date());
+		payment.setCreditCard(offer.getCompany().getCreditCard());
+		payment.setDescription(String.format("Auto generated at %s", format.format(new Date())));
+		payment.setPaid(false);
+		payment.setPrice(price * (1 + (iva / 100d)));
+		payment.setTax(iva);
+		
+		Payment saved = paymentRepository.save(payment);
+		
+		Company company = offer.getCompany();
+		company.getPayments().add(saved);
+		
+		companyService.save(company);
+		
+		return saved;
+	}
 }

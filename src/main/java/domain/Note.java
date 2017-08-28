@@ -41,12 +41,10 @@ public class Note extends DomainEntity{
 		return remark;
 	}
 	
-	@NotNull
 	public String getReply() {
 		return reply;
 	}
 	
-	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
 	public Date getReplyMoment() {

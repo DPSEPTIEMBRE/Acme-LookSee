@@ -13,8 +13,8 @@
 	<!-- User accounts -->
 
 	<bean id="userAccount1" class="security.UserAccount">
-		<property name="username" value="admin" />
-		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="username" value="administrator" />
+		<property name="password" value="200ceb26807d6bf99fd6f4f0d1ca54d4" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -184,7 +184,12 @@
 			<list></list>
 		</property>
 		<property name="folders">
-			<list></list>
+			<list>
+			<ref bean="adminInbox"/>
+			<ref bean ="adminOutbox"/>
+			<ref bean="adminTrashbox"/>
+			<ref bean="adminSpambox"/>
+			</list>
 		</property>
 	</bean>
 
@@ -785,39 +790,17 @@
 			<list></list>
 		</property>
 		<property name="folders">
-			<list></list>
+			<list>
+			<ref bean="candi1Inbox"/>
+			<ref bean="candi1Outbox"/>
+			<ref bean="candi1Trashbox"/>
+			<ref bean="candi1Spambox"/>
+			</list>
 		</property>
 
 		<property name="curriculas">
 			<list>
 				<ref bean="curricula1" />
-			</list>
-		</property>
-		<property name="applications">
-			<list></list>
-		</property>
-	</bean>
-
-	<bean id="candidate2" class="domain.Candidate">
-		<property name="actorName" value="Juan Carlos" />
-		<property name="surname" value="Lopez Muñoz" />
-		<property name="email" value="juanca@hotmail.com" />
-		<property name="phone" value="+5 (10) 8888" />
-		<property name="address" value="41100" />
-		<property name="userAccount" ref="userAccount4" />
-		<property name="activities">
-			<list>
-				<ref bean="activityReport1" />
-				<ref bean="activityReport2" />
-			</list>
-		</property>
-		<property name="folders">
-			<list></list>
-		</property>
-
-		<property name="curriculas">
-			<list>
-				<ref bean="curricula2" />
 			</list>
 		</property>
 		<property name="applications">
@@ -837,7 +820,7 @@
 	<bean id="mailMessage2" class="domain.MailMessage">
 		<property name="sent" value="11/07/2017" />
 		<property name="subject" value="hello" />
-		<property name="body" value="it is a mesage important" />
+		<property name="body" value="it is a sex important" />
 		<property name="priority" ref="NEUTRAL" />
 		<property name="sender" ref="candidate1" />
 		<property name="recipient" ref="candidate2" />
@@ -851,10 +834,73 @@
 		<property name="sender" ref="candidate2" />
 		<property name="recipient" ref="candidate1" />
 	</bean>
+	
+	<bean id="adminInbox" class="domain.Folder">
+		<property name="folderName" value="inbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+
+	<bean id="adminOutbox" class="domain.Folder">
+		<property name="folderName" value="outbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="adminTrashbox" class="domain.Folder">
+		<property name="folderName" value="trashbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="adminSpambox" class="domain.Folder">
+		<property name="folderName" value="spambox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
 
 
 	<bean id="candi1Inbox" class="domain.Folder">
 		<property name="folderName" value="inbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="candi1Outbox" class="domain.Folder">
+		<property name="folderName" value="outbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="candi1Trashbox" class="domain.Folder">
+		<property name="folderName" value="trashbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	<bean id="candi1Spambox" class="domain.Folder">
+		<property name="folderName" value="spambox" />
+		<property name="messages">
+			<list>
+			<ref bean="mailMessage2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="candi2Inbox" class="domain.Folder">
+		<property name="folderName" value="inbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="candi2Trashbox" class="domain.Folder">
+		<property name="folderName" value="trashbox" />
 		<property name="messages">
 			<list></list>
 		</property>
@@ -869,21 +915,168 @@
 		</property>
 	</bean>
 	
-	<bean id="candi1Spambox" class="domain.Folder">
+	<bean id="candi2Spambox" class="domain.Folder">
 		<property name="folderName" value="spambox" />
 		<property name="messages">
 			<list>
-				<ref bean="mailMessage2" />
 			</list>
 		</property>
 	</bean>
 	
-	<bean id="candi2Trashbox" class="domain.Folder">
+	<bean id="company1Inbox" class="domain.Folder">
+		<property name="folderName" value="inbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="company1Trashbox" class="domain.Folder">
 		<property name="folderName" value="trashbox" />
 		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+
+	<bean id="company1Outbox" class="domain.Folder">
+		<property name="folderName" value="outbox" />
+		<property name="messages">
 			<list>
-				<ref bean="mailMessage3" />
 			</list>
+		</property>
+	</bean>
+	
+	<bean id="company1Spambox" class="domain.Folder">
+		<property name="folderName" value="spambox" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="company2Inbox" class="domain.Folder">
+		<property name="folderName" value="inbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="company2Trashbox" class="domain.Folder">
+		<property name="folderName" value="trashbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+
+	<bean id="company2Outbox" class="domain.Folder">
+		<property name="folderName" value="outbox" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="company2Spambox" class="domain.Folder">
+		<property name="folderName" value="spambox" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="verifier1Inbox" class="domain.Folder">
+		<property name="folderName" value="inbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="verifier1Trashbox" class="domain.Folder">
+		<property name="folderName" value="trashbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+
+	<bean id="verifier1Outbox" class="domain.Folder">
+		<property name="folderName" value="outbox" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="verifier1Spambox" class="domain.Folder">
+		<property name="folderName" value="spambox" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="verifier2Inbox" class="domain.Folder">
+		<property name="folderName" value="inbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+	
+	<bean id="verifier2Trashbox" class="domain.Folder">
+		<property name="folderName" value="trashbox" />
+		<property name="messages">
+			<list></list>
+		</property>
+	</bean>
+
+	<bean id="verifier2Outbox" class="domain.Folder">
+		<property name="folderName" value="outbox" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="verifier2Spambox" class="domain.Folder">
+		<property name="folderName" value="spambox" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	
+	<bean id="candidate2" class="domain.Candidate">
+		<property name="actorName" value="Juan Carlos" />
+		<property name="surname" value="Lopez Muñoz" />
+		<property name="email" value="juanca@hotmail.com" />
+		<property name="phone" value="+5 (10) 8888" />
+		<property name="address" value="41100" />
+		<property name="userAccount" ref="userAccount4" />
+		<property name="activities">
+			<list>
+				<ref bean="activityReport1" />
+				<ref bean="activityReport2" />
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			<ref bean="candi2Inbox"/>
+			<ref bean="candi2Outbox"/>
+			<ref bean="candi2Trashbox"/>
+			<ref bean="candi2Spambox"/>
+			</list>
+		</property>
+
+		<property name="curriculas">
+			<list>
+				<ref bean="curricula2" />
+			</list>
+		</property>
+		<property name="applications">
+			<list></list>
 		</property>
 	</bean>
 
@@ -917,7 +1110,7 @@
 	<bean id="payment1" class="domain.Payment">
 		<property name="createMoment" value="10/06/2017 20:00:30" />
 		<property name="description" value="description payment 1" />
-		<property name="price" value="120.0" />
+		<property name="price" value="1.0" />
 		<property name="tax" value="21.0" />
 		<property name="creditCard" ref="creditCard1" />
 		<property name="paid" value="false"/>
@@ -926,7 +1119,7 @@
 	<bean id="payment2" class="domain.Payment">
 		<property name="createMoment" value="10/07/2017 15:00:00" />
 		<property name="description" value="description payment 2" />
-		<property name="price" value="121.0" />
+		<property name="price" value="1.0" />
 		<property name="tax" value="31.0" />
 		<property name="creditCard" ref="creditCard2" />
 		<property name="paid" value="true"/>
@@ -935,7 +1128,7 @@
 	<bean id="payment3" class="domain.Payment">
 		<property name="createMoment" value="18/07/2017 15:02:00" />
 		<property name="description" value="description payment 2" />
-		<property name="price" value="400.0" />
+		<property name="price" value="1.0" />
 		<property name="tax" value="20.0" />
 		<property name="creditCard" ref="creditCard2" />
 		<property name="paid" value="true"/>
@@ -948,11 +1141,18 @@
 		<property name="phone" value="+5 (10) 9777" />
 		<property name="address" value="41036" />
 		<property name="userAccount" ref="userAccount5" />
+		<property name="bloked" value="false"/>
 		<property name="activities">
 			<list></list>
 		</property>
 		<property name="folders">
-			<list></list>
+			<list>
+			<ref bean="company1Inbox"/>
+			<ref bean="company1Outbox"/>
+			<ref bean="company1Trashbox"/>
+			<ref bean="company1Spambox"/>
+			
+			</list>
 		</property>
 
 		<property name="companyName" value="Company name 1" />
@@ -975,17 +1175,24 @@
 		<property name="phone" value="+5 (10) 9678" />
 		<property name="address" value="41436" />
 		<property name="userAccount" ref="userAccount6" />
+		<property name="bloked" value="false"/>
 		<property name="activities">
 			<list></list>
 		</property>
 		<property name="folders">
-			<list></list>
+			<list>
+			<ref bean="company2Inbox"/>
+			<ref bean="company2Outbox"/>
+			<ref bean="company2Trashbox"/>
+			<ref bean="company2Spambox"/>
+			</list>
 		</property>
 		<property name="companyName" value="Company name 2" />
 		<property name="VAT" value="ES87654321R" />
 		<property name="creditCard" ref="creditCard2" />
 		<property name="offers">
 			<list>
+		
 			</list>
 		</property>
 		<property name="payments">
@@ -1094,7 +1301,12 @@
 			<list></list>
 		</property>
 		<property name="folders">
-			<list></list>
+			<list>
+			<ref bean="verifier1Inbox"/>
+			<ref bean="verifier1Outbox"/>
+			<ref bean="verifier1Trashbox"/>
+			<ref bean="verifier1Spambox"/>
+			</list>
 		</property>
 		<property name="notes">
 			<list>
@@ -1115,7 +1327,12 @@
 			<list></list>
 		</property>
 		<property name="folders">
-			<list></list>
+			<list>
+			<ref bean="verifier2Inbox"/>
+			<ref bean="verifier2Outbox"/>
+			<ref bean="verifier2Trashbox"/>
+			<ref bean="verifier2Spambox"/>
+			</list>
 		</property>
 		<property name="notes">
 			<list>
@@ -1123,5 +1340,30 @@
 			</list>
 		</property>
 	</bean>
-
+	
+	<bean class="domain.AdministratorKey" id="iva">
+		<property name="keyName" value="IVA"/>
+		<property name="keyValue" value="21"/>
+	</bean>
+	
+	<bean class="domain.AdministratorKey" id="lastPaid">
+		<property name="keyName" value="LASTPAID"/>
+		<property name="keyValue" value="10/8/2017"/>
+	</bean>
+	
+	<bean class="domain.AdministratorKey" id="price">
+		<property name="keyName" value="PRICE"/>
+		<property name="keyValue" value="1"/>
+	</bean>
+	
+	<bean class="domain.AdministratorKey" id="cache">
+		<property name="keyName" value="CACHE"/>
+		<property name="keyValue" value="10"/>
+	</bean>
+	
+	<bean class="domain.AdministratorKey" id="maxResults">
+		<property name="keyName" value="MAXRESULTS"/>
+		<property name="keyValue" value="10"/>
+	</bean>
+	
 </beans>

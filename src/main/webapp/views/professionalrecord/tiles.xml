@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="professionalrecord/edit" extends="master.page">
+		<put-attribute name="title" value="view name" />
+		<put-attribute name="body" value="/views/professionalrecord/edit.jsp" />
+	</definition>
+
+	<definition name="professionalrecord/create" extends="master.page">
+		<put-attribute name="title" value="view name" />
+		<put-attribute name="body" value="/views/professionalrecord/create.jsp" />
+	</definition>
+
+	<definition name="professionalrecord/list" extends="master.page">
+		<put-attribute name="title" value="view name" />
+		<put-attribute name="body" value="/views/professionalrecord/list.jsp" />
+	</definition>
+
+</tiles-definitions>

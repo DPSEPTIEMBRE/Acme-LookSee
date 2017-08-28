@@ -31,7 +31,7 @@ public class WelcomeController extends AbstractController {
 	// Index ------------------------------------------------------------------		
 
 	@RequestMapping(value = "/index")
-	public ModelAndView index(@RequestParam(required=false, defaultValue="anonymous") String name)  {
+	public ModelAndView index(@RequestParam(required = false, defaultValue = "John Doe") final String name) {
 		ModelAndView result;
 		SimpleDateFormat formatter;
 		String moment;
@@ -45,31 +45,28 @@ public class WelcomeController extends AbstractController {
 
 		return result;
 	}
-	
-	@RequestMapping(value = "/cookies")
-	public ModelAndView cookies()  {
-		ModelAndView result;
 
+	@RequestMapping(value = "/cookies")
+	public ModelAndView cookies() {
+		ModelAndView result;
 
 		result = new ModelAndView("legislation/cookies");
 
 		return result;
 	}
-	
-	@RequestMapping(value = "/lopd")
-	public ModelAndView lopd()  {
-		ModelAndView result;
 
+	@RequestMapping(value = "/lopd")
+	public ModelAndView lopd() {
+		ModelAndView result;
 
 		result = new ModelAndView("legislation/lopd");
 
 		return result;
 	}
-	
-	@RequestMapping(value = "/lssi")
-	public ModelAndView lssi()  {
-		ModelAndView result;
 
+	@RequestMapping(value = "/lssi")
+	public ModelAndView lssi() {
+		ModelAndView result;
 
 		result = new ModelAndView("legislation/lssi");
 

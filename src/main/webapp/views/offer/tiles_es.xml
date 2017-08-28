@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="offer/edit" extends="master.page">
+		<put-attribute name="title" value="Editar oferta" />
+		<put-attribute name="body" value="/views/offer/edit.jsp" />
+	</definition>
+
+	<definition name="offer/create" extends="master.page">
+		<put-attribute name="title" value="Nueva oferta" />
+		<put-attribute name="body" value="/views/offer/create.jsp" />
+	</definition>
+
+	<definition name="offer/list" extends="master.page">
+		<put-attribute name="title" value="Mis ofertas" />
+		<put-attribute name="body" value="/views/offer/list.jsp" />
+	</definition>
+
+	<definition name="offer/listAll" extends="master.page">
+		<put-attribute name="title" value="Ofertas" />
+		<put-attribute name="body" value="/views/offer/listAll.jsp" />
+	</definition>
+	
+	<definition name="offer/view" extends="master.page">
+		<put-attribute name="title" value="Oferta" />
+		<put-attribute name="body" value="/views/offer/view.jsp" />
+	</definition>
+	
+	<definition name="offer/solicitation" extends="master.page">
+		<put-attribute name="title" value="Solicitud" />
+		<put-attribute name="body" value="/views/offer/solicitation.jsp" />
+	</definition>
+	
+	<definition name="offer/okpage" extends="master.page">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/views/offer/okpage.jsp" />
+	</definition>
+	
+	<definition name="offer/searcher" extends="master.page">
+		<put-attribute name="title" value="Buscador de ofertas" />
+		<put-attribute name="body" value="/views/offer/searcher.jsp" />
+	</definition>
+	
+	<definition name="offer/advanced_list" extends="master.page">
+		<put-attribute name="title" value="Buscador de ofertas" />
+		<put-attribute name="body" value="/views/offer/advanced_list.jsp" />
+	</definition>
+
+</tiles-definitions>

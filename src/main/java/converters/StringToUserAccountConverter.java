@@ -6,34 +6,29 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import security.LoginService;
 import security.UserAccount;
-import security.UserAccountRepository;
 
 @Component
 @Transactional
-public class StringToUserAccountConverter implements Converter<String, UserAccount> {
-
+public class StringToUserAccountConverter  implements Converter<String, UserAccount> {
+	
 	@Autowired
-	UserAccountRepository	userAccountRepository;
+	LoginService loginService;
 
-
-	@Override
-	public UserAccount convert(String text) {
-		UserAccount res;
+	public UserAccount convert(String text){
+		UserAccount result;
 		int id;
-
 		try {
 			if (StringUtils.isEmpty(text)) {
-				res = null;
+				result = null;
 			} else {
 				id = Integer.valueOf(text);
-				res = userAccountRepository.findOne(id);
+				result = loginService.findOne(id);
 			}
-		} catch (Throwable oops) {
+		} catch (Exception oops) {
 			throw new IllegalArgumentException(oops);
 		}
-
-		return res;
+		return result;
 	}
-
 }

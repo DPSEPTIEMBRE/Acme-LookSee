@@ -1,35 +1,41 @@
 package controllers;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import domain.Candidate;
+import security.LoginService;
+import security.UserAccount;
+import services.CacheService;
 import services.CandidateService;
+import services.CurriculaService;
 
 @Controller
 @RequestMapping("/candidate")
-public class CandidateController extends AbstractController {
+public class CandidateController {
 
-	//Services
 	@Autowired
-	private CandidateService candidateService;
-
-
-	//Constructor
+	CandidateService candidateService;
+	@Autowired
+	CurriculaService curriculaService;
+	@Autowired
+	CacheService cacheService;
+	
 	public CandidateController() {
 		super();
 	}
-
-
-	//Creation
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/actor/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
 
@@ -38,36 +44,76 @@ public class CandidateController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ModelAndView save(@Valid Candidate user, BindingResult binding) {
-
+	@RequestMapping(value="/actor/save", method=RequestMethod.POST, params = "save")
+	public ModelAndView saveCreate(@Valid Candidate candidate, BindingResult binding) {
 		ModelAndView result;
-
-		for(FieldError e : binding.getFieldErrors()) {
-			System.err.println(e.getField());
-			System.err.println(e.getDefaultMessage());
-		}
-
+		
 		if (binding.hasErrors()) {
-			result = createNewModelAndView(user, null);
+			result = createNewModelAndView(candidate, null);
 		} else {
 			try {
-
-				candidateService.save(user);
-
+				candidateService.save(candidate);
 				result = new ModelAndView("redirect:/welcome/index.do");
-			} catch (Throwable e) {
-				result = createNewModelAndView(user, "candidate.commit.error");
+			} catch (Throwable th) {
+				result = createNewModelAndView(candidate, "candidate.commit.error");
 			}
 		}
-
+		
 		return result;
 	}
 
 	protected ModelAndView createNewModelAndView(Candidate candidate, String message) {
 		ModelAndView result;
-
 		result = new ModelAndView("candidate/create");
+		result.addObject("candidate", candidate);
+		result.addObject("message", message);
+		return result;
+	}
+
+	@RequestMapping(value = "/actor/edit", method = RequestMethod.GET)
+	public ModelAndView edit() {
+		ModelAndView result;
+		result = new ModelAndView("candidate/edit");
+		
+		UserAccount userAccount = LoginService.getPrincipal();
+		Candidate candidate = candidateService.selectByUsername(userAccount.getUsername());
+		
+		result.addObject(candidate);
+		return result;
+	}
+	
+	@RequestMapping(value = "/company/list-advanced", method = RequestMethod.GET)
+	public ModelAndView listAdvanced(HttpServletRequest request, @RequestParam(defaultValue = "") String q) {
+		ModelAndView result;
+		
+		result = new ModelAndView("company/advanced_list");
+		
+		List<Candidate> candidates = curriculaService.findAllCandidates(q, request.getSession().getId());
+		result.addObject("candidate", candidates);
+		cacheService.createCandidate(candidates, request.getSession().getId());
+		
+		return result;
+	}
+
+	@RequestMapping(value="/actor/edit", method=RequestMethod.POST, params = "save")
+	public ModelAndView saveEdit(@Valid Candidate candidate, BindingResult binding) {
+		ModelAndView result;
+		if (binding.hasErrors()) {
+			result = createEditModelAndView(candidate, null);
+		} else {
+			try {
+				candidateService.saveEditing(candidate);
+				result = new ModelAndView("redirect:/welcome/index.do");
+			} catch (Throwable th) {
+				th.printStackTrace();
+				result = createEditModelAndView(candidate, "candidate.commit.error");
+			}
+		}
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndView(Candidate candidate, String message) {
+		ModelAndView result = new ModelAndView("candidate/edit");
 
 		result.addObject("candidate", candidate);
 		result.addObject("message", message);
@@ -75,27 +121,4 @@ public class CandidateController extends AbstractController {
 		return result;
 	}
 
-
-	//Ancillary methods -----------------------------
-
-	protected ModelAndView createEditModelAndView(Candidate candidate){
-		ModelAndView result;
-		result= createEditModelAndView(candidate, null, null);
-		return result;
-
-	}
-
-	private ModelAndView createEditModelAndView(Candidate candidate, String message, String msgType) {
-		ModelAndView result;
-
-		//if(candidate.getId()==0)
-		result= new ModelAndView("candidate/create");
-		//else
-		//result= new ModelAndView("candidate/edit");
-		result.addObject("candidate", candidate);
-		result.addObject("message", message);
-		result.addObject("msgType", msgType);
-
-		return result;
-	}
 }

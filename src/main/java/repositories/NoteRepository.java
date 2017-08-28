@@ -22,7 +22,7 @@ public interface NoteRepository extends JpaRepository<Note, Integer> {
 
 	//La media de notas, agrupadas por estado
 	@Query("select (select count(q) from Note q where q.status = 'PENDING') * 1. / count(n), (select count(q) from Note q where q.status = 'CANCELLED') * 1. / count(n), (select count(q) from Note q where q.status = 'CORRECTED') * 1. / count(n), (select count(q) from Note q where q.status = 'REJECTED') * 1. / count(n) from Note n")
-	Double avgNotesByVerifierGroupByStatus();
+	Double[] avgNotesByVerifierGroupByStatus();
 	
 	//notes of verifier group by candidates
 	@Query("select ca from Candidate ca, Verifier v join ca.curriculas cu join cu.notes n join v.notes vn where v.id = ?1 and vn.id = n.id group by ca")

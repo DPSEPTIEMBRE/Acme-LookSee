@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.ArrayList;
@@ -14,11 +15,8 @@ import domain.ActivityReport;
 import domain.Application;
 import domain.Candidate;
 import domain.Curricula;
-import domain.Folder;
-import domain.MailMessage;
 import repositories.CandidateRepository;
 import security.Authority;
-import security.LoginService;
 import security.UserAccount;
 
 @Service
@@ -28,12 +26,13 @@ public class CandidateService {
 	//Repositories
 
 	@Autowired
-	private CandidateRepository candidateRepository;
+	private CandidateRepository	candidateRepository;
 
 	//Services
 
 	@Autowired
-	private FolderService folderService;
+	private FolderService		folderService;
+
 
 	//Constructor
 
@@ -41,31 +40,37 @@ public class CandidateService {
 		super();
 	}
 
-
 	//CRUD Methods
 
-	public Candidate create() {
-		Candidate candidate = new Candidate();
-		List<Folder> defaultFolders = folderService.createDefaultFolders();
-		folderService.save(defaultFolders);
+	public Candidate selectByUsername(String username) {
+		Assert.notNull(username);
 
+		return candidateRepository.selectByUsername(username);
+	}
+
+	public boolean exists(Integer id) {
+		return candidateRepository.exists(id);
+	}
+
+	public Candidate create() {
+		Authority a = new Authority();
+		a.setAuthority(Authority.CANDIDATE);
+
+		UserAccount account = new UserAccount();
+		account.setAuthorities(Arrays.asList(a));
+
+		Candidate candidate = new Candidate();
+
+		candidate.setUserAccount(account);
 		candidate.setActivities(new ArrayList<ActivityReport>());
 		candidate.setactorName(new String());
 		candidate.setAddress(new String());
 		candidate.setEmail(new String());
+		candidate.setFolders(folderService.createDefaultFolders());
 		candidate.setPhone(new String());
 		candidate.setSurname(new String());
 		candidate.setApplications(new ArrayList<Application>());
 		candidate.setCurriculas(new ArrayList<Curricula>());
-
-		candidate.setFolders(defaultFolders);
-
-		Authority a = new Authority();
-		a.setAuthority(Authority.CANDIDATE);
-		UserAccount account = new UserAccount();
-		account.setAuthorities(Arrays.asList(a));
-		candidate.setUserAccount(account);
-
 
 		return candidate;
 	}
@@ -74,12 +79,15 @@ public class CandidateService {
 		return candidateRepository.findAll();
 	}
 
+	public List<Candidate> findAll(Iterable<Integer> ids) {
+		return candidateRepository.findAll(ids);
+	}
+
 	public Candidate findOne(Integer arg0) {
 		Assert.notNull(arg0);
 
 		return candidateRepository.findOne(arg0);
 	}
-
 
 	public List<Candidate> save(List<Candidate> entities) {
 		Assert.notNull(entities);
@@ -88,21 +96,25 @@ public class CandidateService {
 		return candidateRepository.save(entities);
 	}
 
-	public void save(Candidate user) {
-		Assert.notNull(user);
+	public Candidate save(Candidate arg0) {
+		Assert.notNull(arg0);
 
-		UserAccount account = user.getUserAccount();
 		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-		String password = account.getPassword();
+		arg0.getUserAccount().setPassword(encoder.encodePassword(arg0.getUserAccount().getPassword(), null));
 
-		password = encoder.encodePassword(password, null);
-		account.setPassword(password);
-		
-		List<Folder> defaultFolders = folderService.createDefaultFolders();
-		folderService.save(defaultFolders);
-		user.setFolders(defaultFolders);
+		arg0.setFolders(folderService.save(folderService.createDefaultFolders()));
 
-		candidateRepository.save(user);
+		return candidateRepository.save(arg0);
+	}
+
+	public Candidate saveEditing(Candidate c) {
+		Assert.notNull(c);
+
+		return candidateRepository.save(c);
+	}
+
+	public void flush() {
+		candidateRepository.flush();
 	}
 
 	//Others Methods
@@ -114,50 +126,5 @@ public class CandidateService {
 	public List<Candidate> orderByNumCurriculas() {
 		return candidateRepository.orderByNumCurriculas();
 	}
-
-	public Candidate findByPrincipal() {
-		Candidate res;
-		UserAccount userAccount;
-		userAccount = LoginService.getPrincipal();
-		Assert.notNull(userAccount);
-		res = findByUserAccount(userAccount);
-		return res;
-	}
-
-	public Candidate findByUserAccount(UserAccount userAccount) {
-		Assert.notNull(userAccount);
-		Candidate res;
-		res = candidateRepository.findByUserAccount(userAccount.getId());
-		return res;
-	}
-
-
-	public void save_create(Candidate user) {
-
-		Folder inbox = folderService.create();
-		inbox.setFolderName("INBOX");
-		inbox.setMessages(new ArrayList<MailMessage>());
-
-		Folder outbox = folderService.create();
-		outbox.setFolderName("OUTBOX");
-		outbox.setMessages(new ArrayList<MailMessage>());
-
-		Folder thrasbox = folderService.create();
-		thrasbox.setFolderName("THRASBOX");
-		thrasbox.setMessages(new ArrayList<MailMessage>());
-
-		Folder spambox = folderService.create();
-		spambox.setFolderName("SPAMBOX");
-		spambox.setMessages(new ArrayList<MailMessage>());
-
-		user.setFolders(Arrays.asList(inbox, outbox, thrasbox, spambox));
-
-
-		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-		String pass = user.getUserAccount().getPassword();
-		user.getUserAccount().setPassword(encoder.encodePassword(pass, null));
-
-	}
-
 
 }

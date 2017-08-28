@@ -28,8 +28,19 @@ public interface CurriculaRepository extends JpaRepository<Curricula, Integer> {
 	List<Curricula> curriculasGroupByOffer();
 
 	//Curriculums por Compañia
-	@Query("select a.curricula from Application a group by a.offer.company")
+	@Query("select distinct c from Curricula c, Offer u where c.copy = false group by u")
 	List<Curricula> curriculasGroupByCompany();
+	
+	@Query("select u from Candidate c join c.curriculas u where u.copy = false and c.userAccount.username = ?1")
+	List<Curricula> curriculasOfSelf(String username);
+	
+	@Query("select u from Candidate c join c.curriculas u where u.copy = false and c.id = ?1")
+	List<Curricula> curriculasOfSelf(Integer id);
+	
+	@Query("select u from Candidate c join c.curriculas u where u.copy = false and c.userAccount.username = ?1")
+	List<Curricula> selectCurriculasNotCopy(String username);
 
+	@Query("select c from Curricula c where c.copy = false")
+	List<Curricula> findAllNotCopy();
 
 }

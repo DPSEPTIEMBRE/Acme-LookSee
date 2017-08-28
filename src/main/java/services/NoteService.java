@@ -1,6 +1,7 @@
 package services;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.util.Assert;
 import domain.Curricula;
 import domain.Note;
 import domain.StatusNote;
+import domain.Verifier;
 import repositories.NoteRepository;
 
 @Service
@@ -26,6 +28,8 @@ public class NoteService {
 	
 	@Autowired
 	private CurriculaService curriculaService;
+	@Autowired
+	private VerifierService verifierService;
 	
 	//Constructor
 	
@@ -35,14 +39,14 @@ public class NoteService {
 
 	//CRUD Methods
 
-	public Note create() {
+	public Note create(Curricula curricula) {
 		Note note= new Note();
 		
 		note.setCreatedMoment(new Date());
-		note.setCurricula(curriculaService.create());
+		note.setCurricula(curricula);
 		note.setRemark(new String());
 		note.setReply(new String());
-		note.setReplyMoment(new Date());
+		note.setReplyMoment(null);
 		
 		StatusNote status= new StatusNote();
 		status.setValue(new String("PENDING"));
@@ -52,6 +56,41 @@ public class NoteService {
 		return note;
 	}
 	
+	public List<Note> list_group_by(Integer q) {
+		Verifier verifier = verifierService.selectByUsername();
+		Assert.notNull(verifier);
+		
+		if(q == 0) {
+			noteRepository.notesGroupByState(verifier.getId());
+		} else if(q == 1) {
+			noteRepository.notesOfVerifierGroupByCandidates(verifier.getId());
+		}
+		
+		return new LinkedList<Note>();
+	}
+	
+	public void delete(Note entity) {
+		Assert.notNull(entity);
+		
+		noteRepository.delete(entity);
+	}
+	
+	public void delete(Iterable<Note> entities) {
+		Assert.notNull(entities);
+		
+		noteRepository.delete(entities);
+	}
+
+	public void delete(Note entity, int curricula_id) {
+		Assert.notNull(entity);
+		
+		Curricula curricula = curriculaService.findOne(curricula_id);
+		curricula.getNotes().remove(entity);
+		curriculaService.saveEditing(curricula);
+		
+		noteRepository.delete(entity);
+	}
+
 	public List<Note> findAll() {
 		return noteRepository.findAll();
 	}
@@ -75,6 +114,30 @@ public class NoteService {
 		return noteRepository.save(arg0);
 	}
 	
+	public void flush() {
+		curriculaService.flush();
+	}
+
+	public Note saveCandidate(Note arg0) {
+		Assert.notNull(arg0);
+		
+		arg0.setReplyMoment(new Date());
+		
+		return noteRepository.save(arg0);
+	}
+	
+	public Note save(Note arg0, int curricula_id) {
+		Assert.notNull(arg0);
+		
+		Curricula curricula = curriculaService.findOne(curricula_id);
+		Note saved = noteRepository.save(arg0);
+		curricula.getNotes().add(saved);
+		
+		curriculaService.saveEditing(curricula);
+		
+		return saved;
+	}
+	
 	//Others Methods
 	
 	public List<Curricula> notesGroupByState(int verifier_id) {
@@ -93,10 +156,8 @@ public class NoteService {
 		return noteRepository.notesOfVerifierGroupByCandidates(verifier_id);
 	}
 
-	public Double avgNotesByVerifierGroupByStatus() {
+	public Double[] avgNotesByVerifierGroupByStatus() {
 		return noteRepository.avgNotesByVerifierGroupByStatus();
 	}
-
-
 
 }

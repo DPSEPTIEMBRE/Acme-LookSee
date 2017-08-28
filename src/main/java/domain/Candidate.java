@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Candidate extends Actor{
+public class Candidate extends Actor {
 	
 	//Attributes
 	

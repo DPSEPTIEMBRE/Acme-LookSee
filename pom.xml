@@ -185,7 +185,8 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>3.2.0.RELEASE</version>
 		</dependency>
-		
+
+	
 		<!-- Spring Framework - Testing -->
 		
 		<dependency>
