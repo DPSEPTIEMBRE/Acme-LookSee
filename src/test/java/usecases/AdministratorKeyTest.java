@@ -1,4 +1,3 @@
-
 package usecases;
 
 import javax.transaction.Transactional;

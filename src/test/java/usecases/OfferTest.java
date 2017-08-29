@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 import domain.Application;
 import domain.Company;
@@ -26,69 +27,63 @@ import utilities.AbstractTest;
 public class OfferTest extends AbstractTest {
 
 	// System under test ------------------------------------------------------
+	
 	@Autowired
 	private OfferService offerService;
+	
 	@Autowired
-	private CompanyService companyservice;
+	private CompanyService companyService;
+		
+	
+	//Templates
+	
+	/*
+	 * 10.4: Any actor can browse the list of companies and navigate to their offers.
+	 */
+	public void browseTemplate(final Integer id, final Class<?> expected) {
+		Class<?> caught = null;
 
-	//Test #01: All parameters correct. Expected true.
-	@Test
-	public void positiveTest0() {
+		try {
+			
+			Assert.notNull(id);
+			Offer o = offerService.findOne(id);
+			o.getCurrency();
+			
+			offerService.findAll();
+			companyService.companyByOffer(id);
+			
+			
+		} catch (final Throwable oops) {
 
-		Company company = companyservice.findAll().iterator().next();
+			caught = oops.getClass();
 
-		List<Application> applications = new ArrayList<Application>();
-		template("company1", "title", "description", 50d, 50d, "currency", new Date(), company, applications, null);
+		}
 
+		this.checkExceptions(expected, caught);
 	}
+	
+	/*
+	 * 10.5: Search for offers that contain a single key word in their title or description,
+	 * 		 provide a given salary (in a given currency), and are still open.
+	 */
+	public void searchTemplate(String q, final Class<?> expected) {
+		Class<?> caught = null;
 
-	//Test #02: All parameters correct. Expected true.
-	@Test
-	public void positiveTest1() {
+		try {
 
-		Company company = companyservice.findAll().iterator().next();
+			Assert.notNull(q);
+			Assert.isTrue(q != "");
+			offerService.findQ(q, false);
+			
+		} catch (final Throwable oops) {
 
-		List<Application> applications = new ArrayList<Application>();
-		template("company1", "title", "description", 50d, 50d, "currency", new Date(), company, applications, null);
+			caught = oops.getClass();
 
+		}
+
+		this.checkExceptions(expected, caught);
 	}
-
-	//Test #03: Empty fields. Expected false.
-	@Test
-	public void negativeTest0() {
-
-		Company company = companyservice.findAll().iterator().next();
-
-		List<Application> applications = new ArrayList<Application>();
-		template("company1", "", "", 50d, 50d, "", new Date(), company, applications,
-				ConstraintViolationException.class);
-
-	}
-
-	//Test #04: Empty fields. Expected false.
-	@Test
-	public void negativeTest1() {
-
-		Company company = companyservice.findAll().iterator().next();
-
-		List<Application> applications = new ArrayList<Application>();
-		template("company1", "", "", 50d, 50d, "", new Date(), company, applications,
-				ConstraintViolationException.class);
-
-	}
-
-	//Test #05: Null fields. Expected false.
-	@Test
-	public void negativeTest2() {
-
-		Company company = companyservice.findAll().iterator().next();
-
-		List<Application> applications = new ArrayList<Application>();
-		template("company1", null, null, null, null, null, null, company, applications,
-				ConstraintViolationException.class);
-
-	}
-
+	
 	/*
 	 * 13.1: A company must be able to publish an offer.
 	 */
@@ -119,5 +114,103 @@ public class OfferTest extends AbstractTest {
 		}
 
 		checkExceptions(expected, caught);
+	}
+	
+	//Drivers
+
+	//Test #01: All parameters correct. Expected true.
+	@Test
+	public void positiveTest0() {
+
+		Company company = companyService.findAll().iterator().next();
+
+		List<Application> applications = new ArrayList<Application>();
+		template("company1", "title", "description", 50d, 50d, "currency", new Date(), company, applications, null);
+
+	}
+
+	//Test #02: All parameters correct. Expected true.
+	@Test
+	public void positiveTest1() {
+
+		Company company = companyService.findAll().iterator().next();
+
+		List<Application> applications = new ArrayList<Application>();
+		template("company1", "title", "description", 50d, 50d, "currency", new Date(), company, applications, null);
+
+	}
+
+	//Test #03: Empty fields. Expected false.
+	@Test
+	public void negativeTest0() {
+
+		Company company = companyService.findAll().iterator().next();
+
+		List<Application> applications = new ArrayList<Application>();
+		template("company1", "", "", 50d, 50d, "", new Date(), company, applications,
+				ConstraintViolationException.class);
+
+	}
+
+	//Test #04: Empty fields. Expected false.
+	@Test
+	public void negativeTest1() {
+
+		Company company = companyService.findAll().iterator().next();
+
+		List<Application> applications = new ArrayList<Application>();
+		template("company1", "", "", 50d, 50d, "", new Date(), company, applications,
+				ConstraintViolationException.class);
+
+	}
+
+	//Test #05: Null fields. Expected false.
+	@Test
+	public void negativeTest2() {
+
+		Company company = companyService.findAll().iterator().next();
+
+		List<Application> applications = new ArrayList<Application>();
+		template("company1", null, null, null, null, null, null, company, applications,
+				ConstraintViolationException.class);
+
+	}
+	
+	@Test
+	public void browseDriver() {
+
+		final Object testingData[][] = {
+					
+			//Test #01: Correct access. Expected true.
+			{352, null},
+				
+			//Test #02: Attempt to access a nonexistent company. Expected false.
+			{null, IllegalArgumentException.class},
+				
+			//Test #03: Attempt to access a different entity as company. Expected false.
+			{332, NullPointerException.class}
+
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.browseTemplate((Integer) testingData[i][0], (Class<?>) testingData[i][1]);
+	}
+	
+	@Test
+	public void searchDriver() {
+
+		final Object testingData[][] = {
+					
+			//Test #01: Correct search. Expected true.
+			{"offer", null},
+				
+			//Test #02: Attempt to introduce null. Expected false.
+			{null, IllegalArgumentException.class},
+				
+			//Test #03: Attempt to search an empty string. Expected false.
+			{"", IllegalArgumentException.class}
+
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.searchTemplate((String) testingData[i][0], (Class<?>) testingData[i][1]);
 	}
 }

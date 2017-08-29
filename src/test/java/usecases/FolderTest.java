@@ -26,10 +26,56 @@ import utilities.AbstractTest;
 public class FolderTest extends AbstractTest {
 
 	// System under test ------------------------------------------------------
+	
 	@Autowired
 	private FolderService folderService;
+	
 	@Autowired
 	private CandidateService candidateService;
+	
+	
+	//Templates
+	
+	/*
+	 * 26.2: An authenticated actor must be able to manage his or her message folders.
+	 */
+	protected void template(final String username, final String folderName, final List<MailMessage> messages,
+			final Class<?> expected) {
+		Class<?> caught = null;
+
+		try {
+			authenticate(username);
+			
+			Assert.notNull(username);
+			folderService.findAll();
+
+			Folder folder = folderService.create();
+			folder.setFolderName(folderName);
+			folder.setMessages(messages);
+
+			Candidate candidate = candidateService.findAll().iterator().next();
+			
+			for(Candidate e : candidateService.findAll()) {
+				if(e.getUserAccount().getUsername().equals("candidate2")) {
+					candidate = e;
+					break;
+				}
+			}
+			
+			candidate.getFolders().add(folderService.save(folder));
+			folderService.flush();
+			
+			candidateService.saveEditing(candidate);
+
+			unauthenticate();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+	}
+	
+	//Drivers
 
 	//Test #01: All parameters correct. Expected true.
 	@Test
@@ -97,41 +143,5 @@ public class FolderTest extends AbstractTest {
 		List<MailMessage> messages = new ArrayList<MailMessage>();
 		template("candidate2", null, messages, ConstraintViolationException.class);
 
-	}
-
-	/*
-	 * 26.2: An authenticated actor must be able to manage his or her message folders.
-	 */
-	protected void template(final String username, final String folderName, final List<MailMessage> messages,
-			final Class<?> expected) {
-		Class<?> caught = null;
-
-		try {
-			authenticate(username);
-
-			Folder folder = folderService.create();
-			folder.setFolderName(folderName);
-			folder.setMessages(messages);
-
-			Candidate candidate = candidateService.findAll().iterator().next();
-			
-			for(Candidate e : candidateService.findAll()) {
-				if(e.getUserAccount().getUsername().equals("candidate2")) {
-					candidate = e;
-					break;
-				}
-			}
-			
-			candidate.getFolders().add(folderService.save(folder));
-			folderService.flush();
-			
-			candidateService.saveEditing(candidate);
-
-			unauthenticate();
-		} catch (final Throwable oops) {
-			caught = oops.getClass();
-		}
-
-		checkExceptions(expected, caught);
 	}
 }

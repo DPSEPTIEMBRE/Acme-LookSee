@@ -26,6 +26,40 @@ public class CreditCardTest extends AbstractTest {
 	// System under test ------------------------------------------------------
 	@Autowired
 	private CreditCardService creditcardService;
+	
+	
+	//Templates
+	
+	/*
+	 * 15.3: A company must be able to provide a credit card to settle payments with.
+	 */
+	protected void template(final String username, final String holderName, final Brand brandName, final BigInteger number, final Integer expirationMonth, final Integer expirationYear, final Integer CVV, final Class<?> expected) {
+		Class<?> caught = null;
+
+		try {
+			authenticate(username);
+			
+			CreditCard creditcard = creditcardService.findAll().iterator().next();
+			creditcard.setHolderName(holderName);
+			creditcard.setBrandName(brandName);
+			creditcard.setNumber(number);
+			creditcard.setExpirationMonth(expirationMonth);
+			creditcard.setExpirationYear(expirationYear);
+			creditcard.setCVV(CVV);
+
+			creditcardService.save(creditcard);
+			creditcardService.flush();
+
+			
+			unauthenticate();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+		
+		checkExceptions(expected, caught);
+	}
+	
+	//Drivers
 
 	//Test #01: All parameters correct. Expected true.
 	@Test
@@ -77,47 +111,5 @@ public class CreditCardTest extends AbstractTest {
 
 		template("company1", null, brandName, null, null, null, null, ConstraintViolationException.class);
 		
-	}
-	
-	//Ancillary tests
-	@Test
-	public void driver() {
-		Brand brandName = new Brand();
-		brandName.setValue("DISCOVER");
-		
-		template("company1", "holderName", brandName, new BigInteger("5419601375809935"), 8, 2, 150, null);
-		template("company1", "holderName", brandName, new BigInteger("370974017560671"), 5, 5, 300, null);
-		template("company1", "holderName", brandName, new BigInteger("4716562891053296"), -10, 10, 10, ConstraintViolationException.class);
-		template("company1", "holderName", brandName, new BigInteger("102012120"), 10, 10, null, ConstraintViolationException.class);
-		template("company1", "holderName", brandName, new BigInteger("376024930208471"), 500000, 10, 10, ConstraintViolationException.class);
-	}
-	
-	/*
-	 * 15.3: A company must be able to provide a credit card to settle payments with.
-	 */
-	protected void template(final String username, final String holderName, final Brand brandName, final BigInteger number, final Integer expirationMonth, final Integer expirationYear, final Integer CVV, final Class<?> expected) {
-		Class<?> caught = null;
-
-		try {
-			authenticate(username);
-			
-			CreditCard creditcard = creditcardService.findAll().iterator().next();
-			creditcard.setHolderName(holderName);
-			creditcard.setBrandName(brandName);
-			creditcard.setNumber(number);
-			creditcard.setExpirationMonth(expirationMonth);
-			creditcard.setExpirationYear(expirationYear);
-			creditcard.setCVV(CVV);
-
-			creditcardService.save(creditcard);
-			creditcardService.flush();
-
-			
-			unauthenticate();
-		} catch (final Throwable oops) {
-			caught = oops.getClass();
-		}
-		
-		checkExceptions(expected, caught);
 	}
 }

@@ -1,4 +1,3 @@
-
 package usecases;
 
 import java.util.ArrayList;
@@ -13,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 import domain.ActivityReport;
 import domain.Company;
@@ -23,6 +23,7 @@ import security.Authority;
 import security.UserAccount;
 import services.CompanyService;
 import services.CreditCardService;
+import services.OfferService;
 import utilities.AbstractTest;
 
 @ContextConfiguration(locations = {
@@ -37,7 +38,97 @@ public class CompanyTest extends AbstractTest {
 
 	@Autowired
 	private CreditCardService	creditCardService;
+	
+	@Autowired
+	private OfferService offerService;
 
+	
+	//Templates
+
+	/*
+	 * 10.2: A non authenticated user must be able to register as a company.
+	 */
+	protected void template(final String actorname, final String surname, final String email, final String phone, final String address, final UserAccount userAccount, final List<ActivityReport> activities, final List<Folder> folders,
+		final String companyName, final String vat, final List<Payment> payments, final CreditCard creditcard, final Boolean bloked, final Class<?> expected) {
+		Class<?> caught = null;
+
+		try {
+
+			Company company = companyService.findAll().iterator().next();
+			company.setactorName(actorname);
+			company.setSurname(surname);
+			company.setEmail(email);
+			company.setPhone(phone);
+			company.setAddress(address);
+			company.setUserAccount(userAccount);
+			company.setActivities(activities);
+			company.setFolders(folders);
+			company.setCompanyName(companyName);
+			company.setVAT(vat);
+			company.setPayments(payments);
+			company.setCreditCard(creditcard);
+			company.setBloked(bloked);
+
+			companyService.save(company);
+			companyService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+
+	}
+	
+	/*
+	 * 10.3: Any actor can browse the list of companies and navigate to their offers.
+	 */
+	public void browseTemplate(final Integer id, final Class<?> expected) {
+		Class<?> caught = null;
+
+		try {
+			
+			Assert.notNull(id);
+			Company c = companyService.findOne(id);
+			c.getactorName();
+			
+			companyService.findAll();
+			offerService.offersByCompany(id);
+			
+			
+		} catch (final Throwable oops) {
+
+			caught = oops.getClass();
+
+		}
+
+		this.checkExceptions(expected, caught);
+	}
+	
+	/*
+	 * 14.1: An administrator can ban or unban a company.
+	 */
+	public void banTemplate(final String username, final Class<?> expected) {
+		Class<?> caught = null;
+
+		try {
+			this.authenticate(username);
+				
+			Assert.isTrue(username == "administrator");
+			Company c = companyService.findAll().iterator().next();
+			companyService.lockCompany(c);
+
+			this.unauthenticate();
+		} catch (final Throwable oops) {
+
+			caught = oops.getClass();
+
+		}
+
+		this.checkExceptions(expected, caught);
+	}
+	
+	//Drivers
 
 	//Test #01: All parameters correct. Expected true.
 	@Test
@@ -120,57 +211,42 @@ public class CompanyTest extends AbstractTest {
 
 		template("holi", "compi3", "compi@gmail.com", " 9999", "41100", userAccount, new ArrayList<ActivityReport>(), new ArrayList<Folder>(), "hellowrld", "1234", new ArrayList<Payment>(), creditCard, false, ConstraintViolationException.class);
 	}
-
-	//Ancillary tests
+	
 	@Test
-	public void driver() {
-		Authority a = new Authority();
-		a.setAuthority(Authority.COMPANY);
-		UserAccount userAccount = new UserAccount();
-		userAccount.setAuthorities(Arrays.asList(a));
-		CreditCard creditCard = creditCardService.findAll().iterator().next();
+	public void browseDriver() {
 
-		template("company1", "compi", "compi@gmail.com", "+34 (88) 9999", "41100", userAccount, new ArrayList<ActivityReport>(), new ArrayList<Folder>(), "hellowrld", "1234", new ArrayList<Payment>(), creditCard, false, null);
-		template("company2", "compi", "compi@gmail.com", "+34 (88) 9999", "41100", userAccount, new ArrayList<ActivityReport>(), new ArrayList<Folder>(), "hellowrld", "1234", new ArrayList<Payment>(), creditCard, false, null);
-		template("company3", "compi", "compi@gmail.com", "+34 (88) 9999", "41100", userAccount, new ArrayList<ActivityReport>(), new ArrayList<Folder>(), "hellowrld", "1234", new ArrayList<Payment>(), creditCard, false, null);
-		template("", "compi3", "compi@gmail.com", "+34 (88) 9999", "41100", userAccount, new ArrayList<ActivityReport>(), new ArrayList<Folder>(), "hellowrld", "1234", new ArrayList<Payment>(), creditCard, false, ConstraintViolationException.class);
-		template("mal", "compi3", "compigmail.com", ") 9999", "41100", userAccount, new ArrayList<ActivityReport>(), new ArrayList<Folder>(), "hellowrld", "1234", new ArrayList<Payment>(), creditCard, false, ConstraintViolationException.class);
-		template("mal", "compi3", "compi@gmail.com", "+34 (88) 9999", "41100", userAccount, new ArrayList<ActivityReport>(), new ArrayList<Folder>(), "hellowrld", "1234", new ArrayList<Payment>(), creditCard, false, ConstraintViolationException.class);
+		final Object testingData[][] = {
+					
+			//Test #01: Correct access. Expected true.
+			{350, null},
+				
+			//Test #02: Attempt to access a nonexistent company. Expected false.
+			{null, IllegalArgumentException.class},
+				
+			//Test #03: Attempt to access a different entity as company. Expected false.
+			{340, NullPointerException.class}
 
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.browseTemplate((Integer) testingData[i][0], (Class<?>) testingData[i][1]);
 	}
+	
+	@Test
+	public void banDriver() {
 
-	/*
-	 * 10.2: A non authenticated user must be able to register as a company.
-	 */
-	protected void template(final String actorname, final String surname, final String email, final String phone, final String address, final UserAccount userAccount, final List<ActivityReport> activities, final List<Folder> folders,
-		final String companyName, final String vat, final List<Payment> payments, final CreditCard creditcard, final Boolean bloked, final Class<?> expected) {
-		Class<?> caught = null;
+		final Object testingData[][] = {
+					
+			//Test #01: Correct access. Expected true.
+			{"administrator", null},
+				
+			//Test #02: Attempt to access by anonymous user. Expected false.
+			{null, IllegalArgumentException.class},
+				
+			//Test #03: Attempt to access by unauthorized user. Expected false.
+			{"candidate1", IllegalArgumentException.class}
 
-		try {
-
-			Company company = companyService.findAll().iterator().next();
-			company.setactorName(actorname);
-			company.setSurname(surname);
-			company.setEmail(email);
-			company.setPhone(phone);
-			company.setAddress(address);
-			company.setUserAccount(userAccount);
-			company.setActivities(activities);
-			company.setFolders(folders);
-			company.setCompanyName(companyName);
-			company.setVAT(vat);
-			company.setPayments(payments);
-			company.setCreditCard(creditcard);
-			company.setBloked(bloked);
-
-			companyService.save(company);
-			companyService.flush();
-
-		} catch (final Throwable oops) {
-			caught = oops.getClass();
-		}
-
-		checkExceptions(expected, caught);
-
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.banTemplate((String) testingData[i][0], (Class<?>) testingData[i][1]);
 	}
 }
