@@ -49,6 +49,7 @@ public class CurriculaTest extends AbstractTest {
 
 	}
 
+	//Test #01: All parameters correct. Expected true.
 	@Test
 	public void positiveTest1() {
 
@@ -64,6 +65,7 @@ public class CurriculaTest extends AbstractTest {
 
 	}
 
+	//Test #02: Empty curriculum. Expected false.
 	@Test
 	public void negativeTest0() {
 
@@ -78,6 +80,7 @@ public class CurriculaTest extends AbstractTest {
 
 	}
 
+	//Test #03: Empty curriculum and faulty records. Expected false.
 	@Test
 	public void negativeTest1() {
 
@@ -92,6 +95,7 @@ public class CurriculaTest extends AbstractTest {
 
 	}
 
+	//Test #04: Null copy value. Expected false.
 	@Test
 	public void negativeTest2() {
 
@@ -109,6 +113,7 @@ public class CurriculaTest extends AbstractTest {
 
 	}
 
+	//Ancillary tests.
 	@Test
 	public void driver() {
 		List<EducationRecord> educationRecords = new ArrayList<EducationRecord>();
@@ -130,7 +135,9 @@ public class CurriculaTest extends AbstractTest {
 				endorserRecords, notes, null, ConstraintViolationException.class);
 	}
 
-	// Ancillary methods ------------------------------------------------------
+	/*
+	 * 12.3: A candidate must be able to edit his or her curricula.
+	 */
 	protected void template(final String username, final String ticker, final List<EducationRecord> educationRecords,
 			final PersonalRecord personalRecord, final List<ProfessionalRecord> professionalRecords,
 			final List<MiscellaneousRecord> miscellaneousRecords, final List<EndorserRecord> endorserRecords,

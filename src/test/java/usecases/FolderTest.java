@@ -31,6 +31,7 @@ public class FolderTest extends AbstractTest {
 	@Autowired
 	private CandidateService candidateService;
 
+	//Test #01: All parameters correct. Expected true.
 	@Test
 	public void positiveTest0() {
 
@@ -39,6 +40,7 @@ public class FolderTest extends AbstractTest {
 
 	}
 
+	//Test #02: All parameters correct. Expected true.
 	@Test
 	public void positiveTest1() {
 
@@ -47,12 +49,14 @@ public class FolderTest extends AbstractTest {
 
 	}
 	
+	//Test #03: Correct number of folders. Expected true.
 	@Test
 	public void positiveTest2() {
 
 		Assert.isTrue(folderService.createDefaultFolders().size() == 4);
 	}
 
+	//Test #04: Attempt to create a folder with a protected name. Expected false.
 	@Test
 	public void negativeTest0() {
 
@@ -77,6 +81,7 @@ public class FolderTest extends AbstractTest {
 
 	}
 
+	//Test #05: Name field empty. Expected false.
 	@Test
 	public void negativeTest1() {
 
@@ -85,6 +90,7 @@ public class FolderTest extends AbstractTest {
 
 	}
 
+	//Test #06: Name field null. Expected false.
 	@Test
 	public void negativeTest2() {
 
@@ -93,7 +99,9 @@ public class FolderTest extends AbstractTest {
 
 	}
 
-	// Ancillary methods ------------------------------------------------------
+	/*
+	 * 26.2: An authenticated actor must be able to manage his or her message folders.
+	 */
 	protected void template(final String username, final String folderName, final List<MailMessage> messages,
 			final Class<?> expected) {
 		Class<?> caught = null;

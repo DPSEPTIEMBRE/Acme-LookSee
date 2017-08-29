@@ -35,6 +35,7 @@ public class CandidateTest extends AbstractTest {
 	private CandidateService candidateService;
 
 
+	//Test #01: All parameters correct. Expected true.
 	@Test
 	public void positiveTest0() {
 
@@ -47,6 +48,7 @@ public class CandidateTest extends AbstractTest {
 
 	}
 
+	//Test #02: All parameters correct. Expected true.
 	@Test
 	public void positiveTest1() {
 
@@ -59,6 +61,7 @@ public class CandidateTest extends AbstractTest {
 
 	}
 
+	//Test #03: All parameters correct. Expected true.
 	@Test
 	public void positiveTest2() {
 
@@ -71,6 +74,7 @@ public class CandidateTest extends AbstractTest {
 
 	}
 
+	//Test #04: Incorrect username. Expected false.
 	@Test
 	public void negativeTest0() {
 		Authority a = new Authority();
@@ -82,6 +86,7 @@ public class CandidateTest extends AbstractTest {
 
 	}
 
+	//Test #05: Incorrect mail. Expected false.
 	@Test
 	public void negativeTest1() {
 
@@ -94,6 +99,7 @@ public class CandidateTest extends AbstractTest {
 
 	}
 
+	//Test #06: Incorrect phone number. Expected false.
 	@Test
 	public void negativeTest2() {
 
@@ -105,6 +111,8 @@ public class CandidateTest extends AbstractTest {
 		template("candidate3", "candi", "cand3i@gmail.com", "6555", "41100", userAccount, new ArrayList<ActivityReport>(), new ArrayList<Folder>(), new ArrayList<Curricula>(), new ArrayList<Application>(), ConstraintViolationException.class);
 
 	}
+	
+	//Ancillary tests
 
 	@Test
 	public void driver() {
@@ -122,6 +130,9 @@ public class CandidateTest extends AbstractTest {
 
 	}
 
+	/*
+	 * 10.1: An actor who is not authenticated must be able to register as candidate.
+	 */
 	protected void template(final String actorname, final String surname, final String email, final String phone, final String address, final UserAccount userAccount, final List<ActivityReport> activities, final List<Folder> folders,
 		final List<Curricula> curriculas, final List<Application> applications, final Class<?> expected) {
 		Class<?> caught = null;

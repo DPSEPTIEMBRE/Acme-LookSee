@@ -30,6 +30,7 @@ public class MailMessageTest extends AbstractTest {
 	@Autowired
 	private CandidateService candidateService;
 
+	//Test #01: All parameters correct. Expect true.
 	@Test
 	public void positiveTest0() {
 
@@ -48,7 +49,8 @@ public class MailMessageTest extends AbstractTest {
 		template("candidate2", new Date(), "subject", "body", priority, candidate, candidate, null);
 
 	}
-
+	
+	//Test #02: All parameters correct. Expected true.
 	@Test
 	public void positiveTest1() {
 
@@ -68,6 +70,7 @@ public class MailMessageTest extends AbstractTest {
 
 	}
 
+	//Test #03: Empty sender. Expected false.
 	@Test
 	public void negativeTest0() {
 
@@ -87,6 +90,7 @@ public class MailMessageTest extends AbstractTest {
 
 	}
 
+	//Test #04: Empty date. Expected false.
 	@Test
 	public void positiveTest2() {
 
@@ -106,6 +110,7 @@ public class MailMessageTest extends AbstractTest {
 
 	}
 
+	//Test #05: Sending a correct message. Expected true.
 	@Test
 	public void positiveTest3() {
 
@@ -124,6 +129,7 @@ public class MailMessageTest extends AbstractTest {
 		mailmessageService.send("hello", "body sample", "LOW", candidate.getEmail());
 	}
 	
+	//Test #06: Attempt to send a message without authentication. Expected false.
 	@Test
 	public void negativeTest3() {
 		try {
@@ -133,7 +139,9 @@ public class MailMessageTest extends AbstractTest {
 		}
 	}
 
-	// Ancillary methods ------------------------------------------------------
+	/*
+	 * 26.1: An authenticated actor must be able to exchange messages with other actors.
+	 */
 	protected void template(final String username, final Date sent, final String subject, final String body,
 			final Priority priority, final Actor sender, final Actor recipient, final Class<?> expected) {
 		Class<?> caught = null;

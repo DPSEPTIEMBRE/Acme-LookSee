@@ -28,6 +28,7 @@ public class ActivityReportTest extends AbstractTest {
 	@Autowired
 	private ActivityReportService activityReportService;
 
+	//Test #01: All parameters correct. Expected true.
 	@Test
 	public void positiveTest0() {
 		
@@ -35,6 +36,7 @@ public class ActivityReportTest extends AbstractTest {
 		
 	}
 	
+	//Test #02: All parameters correct. Expected true.
 	@Test
 	public void positiveTest1() {
 		
@@ -42,6 +44,7 @@ public class ActivityReportTest extends AbstractTest {
 		
 	}
 	
+	//Test #03: Empty title. Expected false.
 	@Test
 	public void negativeTest0() {
 		
@@ -49,6 +52,7 @@ public class ActivityReportTest extends AbstractTest {
 		
 	}
 	
+	//Test #04: Empty description. Expected false.
 	@Test
 	public void negativeTest1() {
 		
@@ -56,6 +60,7 @@ public class ActivityReportTest extends AbstractTest {
 		
 	}
 	
+	//Test #05: All fields null. Expected false.
 	@Test
 	public void negativeTest2() {
 		
@@ -63,16 +68,9 @@ public class ActivityReportTest extends AbstractTest {
 		
 	}
 	
-//	@Test
-//	public void driver() {
-//		template("company1", new Date(), "title0", "description0", Arrays.asList("http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png"), null);
-//		template("company1", new Date(), "title1", "description1", Arrays.asList("http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png"), null);
-//		template("company1", new Date(), "", "description", Arrays.asList("http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png"), ConstraintViolationException.class);
-//		template("company1", new Date(), "title", "", Arrays.asList("http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png"), ConstraintViolationException.class);
-//		template("company1", null, null, null, null, ConstraintViolationException.class);
-//	}
-	
-	// Ancillary methods ------------------------------------------------------
+	/*
+	 * 13.1: An authenticated actor must be able to manage his or her activity records.
+	 */
 	protected void template(final String username, final Date writtenMoment, final String title, final String description, final List<String> attachments,
 			final Class<?> expected) {
 		Class<?> caught = null;

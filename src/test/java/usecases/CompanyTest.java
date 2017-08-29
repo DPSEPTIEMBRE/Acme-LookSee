@@ -39,6 +39,7 @@ public class CompanyTest extends AbstractTest {
 	private CreditCardService	creditCardService;
 
 
+	//Test #01: All parameters correct. Expected true.
 	@Test
 	public void positiveTest0() {
 
@@ -53,6 +54,7 @@ public class CompanyTest extends AbstractTest {
 
 	}
 
+	//Test #02: All parameters correct. Expected true.
 	@Test
 	public void positiveTest1() {
 
@@ -67,6 +69,7 @@ public class CompanyTest extends AbstractTest {
 
 	}
 
+	//Text #03: All parameters correct. Expected true.
 	@Test
 	public void positiveTest2() {
 		Authority a = new Authority();
@@ -80,6 +83,7 @@ public class CompanyTest extends AbstractTest {
 
 	}
 
+	//Test #04: Empty username. Expected false.
 	@Test
 	public void negativeTest0() {
 		Authority a = new Authority();
@@ -91,6 +95,7 @@ public class CompanyTest extends AbstractTest {
 		template("", "compi3", "compi@gmail.com", "+34 (88) 9999", "41100", userAccount, new ArrayList<ActivityReport>(), new ArrayList<Folder>(), "hellowrld", "1234", new ArrayList<Payment>(), creditCard, false, ConstraintViolationException.class);
 	}
 
+	//Test 05: Incorrect mail format. Expected false.
 	@Test
 	public void negativeTest1() {
 
@@ -103,6 +108,7 @@ public class CompanyTest extends AbstractTest {
 		template("compi", "compi3", "compigmail.com", "+34 (88) 9999", "41100", userAccount, new ArrayList<ActivityReport>(), new ArrayList<Folder>(), "hellowrld", "1234", new ArrayList<Payment>(), creditCard, false, ConstraintViolationException.class);
 	}
 
+	//Test #06: Incorrect phone number. Expected false.
 	@Test
 	public void negativeTest2() {
 
@@ -115,6 +121,7 @@ public class CompanyTest extends AbstractTest {
 		template("holi", "compi3", "compi@gmail.com", " 9999", "41100", userAccount, new ArrayList<ActivityReport>(), new ArrayList<Folder>(), "hellowrld", "1234", new ArrayList<Payment>(), creditCard, false, ConstraintViolationException.class);
 	}
 
+	//Ancillary tests
 	@Test
 	public void driver() {
 		Authority a = new Authority();
@@ -132,6 +139,9 @@ public class CompanyTest extends AbstractTest {
 
 	}
 
+	/*
+	 * 10.2: A non authenticated user must be able to register as a company.
+	 */
 	protected void template(final String actorname, final String surname, final String email, final String phone, final String address, final UserAccount userAccount, final List<ActivityReport> activities, final List<Folder> folders,
 		final String companyName, final String vat, final List<Payment> payments, final CreditCard creditcard, final Boolean bloked, final Class<?> expected) {
 		Class<?> caught = null;

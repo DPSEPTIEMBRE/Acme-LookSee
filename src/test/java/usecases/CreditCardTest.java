@@ -27,7 +27,7 @@ public class CreditCardTest extends AbstractTest {
 	@Autowired
 	private CreditCardService creditcardService;
 
-
+	//Test #01: All parameters correct. Expected true.
 	@Test
 	public void positiveTest0() {
 		
@@ -38,6 +38,7 @@ public class CreditCardTest extends AbstractTest {
 		
 	}
 	
+	//Test #02: All parameters correct. Expected true.
 	@Test
 	public void positiveTest1() {
 		
@@ -48,6 +49,7 @@ public class CreditCardTest extends AbstractTest {
 		
 	}
 	
+	//Test #03: Empty holder name. Expected false.
 	@Test
 	public void negativeTest0() {
 		
@@ -58,6 +60,7 @@ public class CreditCardTest extends AbstractTest {
 		
 	}
 	
+	//Test #04: Empty holder name and invalid expiration date. Expected false.
 	@Test
 	public void negativeTest1() {
 		
@@ -65,6 +68,7 @@ public class CreditCardTest extends AbstractTest {
 		
 	}
 	
+	//Test #05: All fields null. Expected false.
 	@Test
 	public void negativeTest2() {
 		
@@ -75,6 +79,7 @@ public class CreditCardTest extends AbstractTest {
 		
 	}
 	
+	//Ancillary tests
 	@Test
 	public void driver() {
 		Brand brandName = new Brand();
@@ -87,7 +92,9 @@ public class CreditCardTest extends AbstractTest {
 		template("company1", "holderName", brandName, new BigInteger("376024930208471"), 500000, 10, 10, ConstraintViolationException.class);
 	}
 	
-	// Ancillary methods ------------------------------------------------------
+	/*
+	 * 15.3: A company must be able to provide a credit card to settle payments with.
+	 */
 	protected void template(final String username, final String holderName, final Brand brandName, final BigInteger number, final Integer expirationMonth, final Integer expirationYear, final Integer CVV, final Class<?> expected) {
 		Class<?> caught = null;
 

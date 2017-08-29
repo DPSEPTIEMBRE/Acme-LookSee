@@ -25,6 +25,7 @@ public class EndorserRecordTest extends AbstractTest {
 	@Autowired
 	private EndorserRecordService endorserrecordService;
 
+	//Test #01: All parameters correct. Expected true.
 	@Test
 	public void positiveTest0() {
 
@@ -34,7 +35,8 @@ public class EndorserRecordTest extends AbstractTest {
 		template("candidate2", "endorserName", "endorserEmail@mail.es", "+5 (10) 9132", "http://simpleicon.com/wp-content/uploads/camera.png", comments, false, null);
 
 	}
-
+	
+	//Test #02: All parameters correct. Expected true.
 	@Test
 	public void positiveTest1() {
 
@@ -43,6 +45,7 @@ public class EndorserRecordTest extends AbstractTest {
 
 	}
 
+	//Test #03: Some empty fields. Expected false.
 	@Test
 	public void negativeTest0() {
 
@@ -51,6 +54,7 @@ public class EndorserRecordTest extends AbstractTest {
 
 	}
 
+	//Test #04: Some empty fields. Expected false.
 	@Test
 	public void negativeTest1() {
 
@@ -59,6 +63,7 @@ public class EndorserRecordTest extends AbstractTest {
 
 	}
 
+	//Test #05: All fields null. Expected false.
 	@Test
 	public void negativeTest2() {
 
@@ -67,6 +72,7 @@ public class EndorserRecordTest extends AbstractTest {
 
 	}
 
+	//Ancillary tests.
 	@Test
 	public void driver() {
 		List<String> comments = new ArrayList<String>();
@@ -81,7 +87,9 @@ public class EndorserRecordTest extends AbstractTest {
 				ConstraintViolationException.class);
 	}
 
-	// Ancillary methods ------------------------------------------------------
+	/*
+	 * 12.3: A candidate must be able to edit his or her curricula.
+	 */
 	protected void template(final String username, final String endorserName, final String endorserEmail,
 			final String endorserPhone, final String linkedIn, final List<String> comments, final Boolean copy,
 			final Class<?> expected) {

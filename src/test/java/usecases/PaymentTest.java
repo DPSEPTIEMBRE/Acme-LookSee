@@ -34,7 +34,7 @@ public class PaymentTest extends AbstractTest {
 	@Autowired
 	private AdministratorService	administratorService;
 
-
+	//Test #01: All parameters correct. Expected true.
 	@Test
 	public void positiveTest0() {
 
@@ -44,6 +44,7 @@ public class PaymentTest extends AbstractTest {
 
 	}
 
+	//Test #02: All parameters correct. Expected true.
 	@Test
 	public void positiveTest1() {
 
@@ -54,6 +55,7 @@ public class PaymentTest extends AbstractTest {
 		administratorService.payment();
 	}
 
+	//Test #03: Empty description. Expected false.
 	@Test
 	public void negativeTest0() {
 
@@ -63,6 +65,7 @@ public class PaymentTest extends AbstractTest {
 
 	}
 
+	//Test #04: Empty description and null date. Expected false.
 	@Test
 	public void negativeTest1() {
 
@@ -72,6 +75,7 @@ public class PaymentTest extends AbstractTest {
 
 	}
 
+	//Test #05: All fields null. Expected false.
 	@Test
 	public void negativeTest2() {
 
@@ -81,7 +85,9 @@ public class PaymentTest extends AbstractTest {
 
 	}
 
-	// Ancillary methods ------------------------------------------------------
+	/*
+	 * 17.1: An administrator must be able to create a payment provider service.
+	 */
 	protected void template(final String username, final Date createMoment, final String description, final Double price, final Double tax, final CreditCard creditCard, final Boolean paid, final Class<?> expected) {
 		Class<?> caught = null;
 

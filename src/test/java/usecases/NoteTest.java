@@ -29,6 +29,7 @@ public class NoteTest extends AbstractTest {
 	@Autowired
 	private CurriculaService curriculaservice;
 
+	//Test #01: All parameters correct. Expected true.
 	@Test
 	public void positiveTest0() {
 
@@ -41,6 +42,7 @@ public class NoteTest extends AbstractTest {
 
 	}
 
+	//Test #02: All parameters correct. Expected true.
 	@Test
 	public void positiveTest1() {
 
@@ -53,6 +55,7 @@ public class NoteTest extends AbstractTest {
 
 	}
 
+	//Test #03: Empty fields. Expected false.
 	@Test
 	public void negativeTest0() {
 
@@ -65,6 +68,7 @@ public class NoteTest extends AbstractTest {
 
 	}
 
+	//Test #04: Empty fields. Expected false.
 	@Test
 	public void negativeTest1() {
 
@@ -77,6 +81,7 @@ public class NoteTest extends AbstractTest {
 
 	}
 
+	//Test #05: Null fields. Expected false.
 	@Test
 	public void negativeTest2() {
 
@@ -89,7 +94,9 @@ public class NoteTest extends AbstractTest {
 
 	}
 
-	// Ancillary methods ------------------------------------------------------
+	/*
+	 * 16.4: A verifier must be able to write a note.
+	 */
 	protected void template(final String username, final Date createdMoment, final String remark, final String reply,
 			final Date replyMoment, final StatusNote status, final Curricula curricula, final Class<?> expected) {
 		Class<?> caught = null;

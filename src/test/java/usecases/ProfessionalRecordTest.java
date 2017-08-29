@@ -31,6 +31,7 @@ public class ProfessionalRecordTest extends AbstractTest {
 	@Autowired
 	private CandidateService candidateService;
 
+	//Test #01: All parameters correct. Expected true.
 	@Test
 	public void positiveTest0() {
 
@@ -40,6 +41,7 @@ public class ProfessionalRecordTest extends AbstractTest {
 
 	}
 
+	//Test #02: All parameters correct. Expected true.
 	@Test
 	public void positiveTest1() {
 
@@ -48,6 +50,7 @@ public class ProfessionalRecordTest extends AbstractTest {
 
 	}
 
+	//Test #03: Empty fields. Expected false.
 	@Test
 	public void negativeTest0() {
 
@@ -56,6 +59,7 @@ public class ProfessionalRecordTest extends AbstractTest {
 
 	}
 
+	//Test #04: Empty fields. Expected false.
 	@Test
 	public void negativeTest1() {
 
@@ -64,6 +68,7 @@ public class ProfessionalRecordTest extends AbstractTest {
 
 	}
 
+	//Test #05: Null fields. Expected false.
 	@Test
 	public void negativeTest2() {
 
@@ -72,7 +77,9 @@ public class ProfessionalRecordTest extends AbstractTest {
 
 	}
 
-	// Ancillary methods ------------------------------------------------------
+	/*
+	 * 12.3: A candidate must be able to edit his or her curricula.
+	 */
 	protected void template(final String username, final String companyName, final Date initialWork,
 			final Date finalWork, final String role, final String attachment, final List<String> comments,
 			final Boolean copy, final Class<?> expected) {

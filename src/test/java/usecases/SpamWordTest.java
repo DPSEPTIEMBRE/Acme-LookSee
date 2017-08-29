@@ -25,7 +25,7 @@ public class SpamWordTest extends AbstractTest {
 	@Autowired
 	private SpamWordService spamwordService;
 
-
+	//Test #01: All parameters correct. Expected true.
 	@Test
 	public void positiveTest0() {
 
@@ -33,6 +33,7 @@ public class SpamWordTest extends AbstractTest {
 
 	}
 
+	//Test #02: All parameters correct. Expected true.
 	@Test
 	public void positiveTest1() {
 
@@ -40,6 +41,7 @@ public class SpamWordTest extends AbstractTest {
 
 	}
 
+	//Test #03: Empty spam word. Expected false.
 	@Test
 	public void negativeTest0() {
 
@@ -47,6 +49,7 @@ public class SpamWordTest extends AbstractTest {
 
 	}
 
+	//Test #04: Empty null word. Expected false.
 	@Test
 	public void negativeTest1() {
 
@@ -54,7 +57,9 @@ public class SpamWordTest extends AbstractTest {
 
 	}
 
-	// Ancillary methods ------------------------------------------------------
+	/*
+	 * 25. The system's administrators can manage spamwords for the message filters.
+	 */
 	protected void template(final String username, final String name, final Class<?> expected) {
 		Class<?> caught = null;
 

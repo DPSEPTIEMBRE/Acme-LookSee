@@ -41,6 +41,7 @@ public class ApplicationTest extends AbstractTest {
 	@Autowired
 	private OfferService offerService;
 
+	//Test #01: All parameters correct. Expected true.
 	@Test
 	public void positiveTest0() {
 		
@@ -55,6 +56,7 @@ public class ApplicationTest extends AbstractTest {
 		
 	}
 	
+	//Test #02: All parameters correct. Expected true.
 	@Test
 	public void positiveTest1() {
 		
@@ -69,6 +71,7 @@ public class ApplicationTest extends AbstractTest {
 		
 	}
 	
+	//Test #03: Wrong status. Expected false.
 	@Test
 	public void negativeTest0() {
 		
@@ -83,6 +86,7 @@ public class ApplicationTest extends AbstractTest {
 		
 	}
 	
+	//Test #04: Wrong status. Expected false.
 	@Test
 	public void negativeTest1() {
 		
@@ -97,6 +101,7 @@ public class ApplicationTest extends AbstractTest {
 		
 	}
 	
+	//Test #05: Wrong status and date. Expected false.
 	@Test
 	public void negativeTest2() {
 		
@@ -111,7 +116,9 @@ public class ApplicationTest extends AbstractTest {
 		
 	}
 	
-	// Ancillary methods ------------------------------------------------------
+	/*
+	 * 12.2: A candidate must be able to apply for an offer.
+	 */
 	protected void template(final String username, final Date createMoment, final StatusApplication status, final Curricula curricula, final Offer offer, final Class<?> expected) {
 		Class<?> caught = null;
 

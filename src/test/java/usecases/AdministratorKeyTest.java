@@ -61,16 +61,6 @@ public class AdministratorKeyTest extends AbstractTest {
 
 	}
 
-	//	@Test
-	//	public void driver() {
-	//		template("admin", "keyName", "keyValue", null);
-	//		template("admin", "keyName", "keyValue", null);
-	//		template("admin", "", "", ConstraintViolationException.class);
-	//		template("admin", "", "", ConstraintViolationException.class);
-	//		template("admin", null, null, ConstraintViolationException.class);
-	//	}
-
-	// Ancillary methods ------------------------------------------------------
 	protected void template(final String username, final String keyName, final String keyValue, final Class<?> expected) {
 		Class<?> caught = null;
 
